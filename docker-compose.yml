@@ -1,0 +1,47 @@
+version: "3.7"
+
+services:
+  express:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: base
+    volumes:
+      - ./src:/home/node/app/src
+      - ./nodemon.json:/home/node/app/nodemon.json
+    container_name: express
+    expose:
+      - "4000"
+    ports:
+      - "4000:4000"
+    command: yarn dev
+
+  mysql:
+    image: mysql:5.7
+    container_name: mysql
+    ports:
+      - 3306:3306
+    volumes:
+      - ./mysql/data:/var/lib/mysql
+    environment:
+      - MYSQL_ROOT_PASSWORD=${SQLPASS}
+      - DB_SOCKET=/var/run/mysqld/mysqld.sock
+      - TZ=Asia/Tokyo
+    env_file: ./.env
+
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin:latest
+    container_name: phpmyadmin
+    ports:
+      - 8888:80
+    depends_on:
+      - mysql
+    environment:
+      - PMA_HOST=${ADDMINHOST}
+      - PMA_PASSWORD=${ADMINNPASS}
+      - PMA_USER=root
+      - PMA_PORT=3306
+      - TZ=Asia/Tokyo
+    env_file: .env
+    links:
+      - mysql
