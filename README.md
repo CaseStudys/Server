@@ -118,6 +118,8 @@ $ yarn dev
 http://localhost:8888/ にアクセスして、
 express_db って DB を作って、先ほど保存したデータを import する。
 
+Mysql データは追加必要
+
 ## Makefile
 
 #### Make コマンドとは？
