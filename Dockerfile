@@ -7,6 +7,8 @@ COPY package.json ./
 RUN npm i
 RUN npm install cros
 RUN npm install nodemon
+RUN yarn install
+
 COPY . .
 
 FROM base as production
