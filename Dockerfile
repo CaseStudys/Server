@@ -7,7 +7,7 @@ COPY package.json ./
 RUN npm i
 RUN npm install cros
 RUN npm install nodemon
-RUN yarn install
+RUN npm install --global yarn
 
 COPY . .
 
