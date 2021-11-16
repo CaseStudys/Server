@@ -7,9 +7,9 @@ b:
 	docker-compose build
 
 # dokcerを落としてから立ち上げる
-restart:
-	dokcer-compose down\
-	&& docker-compose up -d
+# restart:
+# 	dokcer-compose down\
+# 	&& docker-compose up -d
 
 
 # dockerを落とす
