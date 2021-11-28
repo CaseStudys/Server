@@ -1,2 +1,2 @@
 test2だよ
-issue test 実行
+issue test 実行.
