@@ -5,7 +5,7 @@ const db = mysql.createConnection({
   host: "localhost",
   user: "root",
   password: "root",
-  database: "hal_motor_auction",
+  database: "express_db",
 });
 
 module.exports.mysql_connection = db;
