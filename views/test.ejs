@@ -1,0 +1,33 @@
+<%-include('partials/header.ejs') %>
+    <h1>ejsテストぺーじ！！</h1>
+
+    <p>従業員検索API↓</p>
+    <h1>values-><%=values.values %></h1>
+    id<input type="text" id="id" value="999"><br>
+    <br />
+    <button onclick="getRequest()">取得（GET）</button>
+    <hr />
+    <div id="messageArea"></div>
+    <hr />
+    <%-include('partials/footer.ejs') %>
+
+    <script>
+
+        const getRequest = () => {
+            const id = document.getElementById('id').value
+            fetch(`/employee/${id}`).then((res) => {
+                res.json().then((data) => {
+                    const newElm = document.createElement('p')
+                    let resultMessage = "GET："
+                    for(let item in data[0]){
+                        resultMessage += data[0][item] + "　"
+                    }
+                    const newContent = document.createTextNode(resultMessage)
+                    newElm.appendChild(newContent)
+                    const parentElm = document.getElementById('messageArea')
+                    parentElm.insertBefore(newElm,parentElm.firstChild)
+                })
+            })
+        }
+
+    </script>

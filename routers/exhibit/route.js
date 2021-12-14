@@ -39,3 +39,5 @@ router.route(EXHIBIT_END_POINT).post(async (req, res) => {
 });
 
 module.exports = router;
+
+//select * from cars inner join exhibits on cars.car_id = exhibits.car_id where cars.car_id = ?
