@@ -18,8 +18,8 @@ router.route(EXHIBIT_END_POINT).post(async (req, res) => {
   const body = req.body;
 
   //db登録に必要なデータをbodyから取得。
-  const carId = body.data.car_id;
-  const startDate = body.data.start_date;
+  const carId = body.car_id;
+  const startDate = body.start_date;
 
   /* ☆手順２：データベースに新しい出品データを登録。（出品テーブルに新しいカラムを挿入）☆*/
   db.mysql_connection.connect((err) => {
