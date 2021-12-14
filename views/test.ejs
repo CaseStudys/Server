@@ -17,11 +17,17 @@
             const id = document.getElementById('id').value
             fetch(`/employee/${id}`).then((res) => {
                 res.json().then((data) => {
+                    console.log('hello',data)
                     const newElm = document.createElement('p')
                     let resultMessage = "GET："
-                    for(let item in data[0]){
-                        resultMessage += data[0][item] + "　"
+                    for(let i = 0;i < data.length;i++){
+                        console.log(data[i]['employee_id'])
+                        resultMessage += data[i]['employee_id']
+                        resultMessage += data[i]['name']
+                        resultMessage += data[i]['phone_number']
                     }
+                    console.log(resultMessage)
+
                     const newContent = document.createTextNode(resultMessage)
                     newElm.appendChild(newContent)
                     const parentElm = document.getElementById('messageArea')

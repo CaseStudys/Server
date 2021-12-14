@@ -21,6 +21,8 @@ router.route(`${EMPLOYEE_END_POINT}/:employee_id`).get((req, res) => {
         if (err) {
           res.status(500).json({ message: "エラー" });
         }
+        console.log("検索終了");
+        console.log(result);
         res.status(200).json(result);
       }
     );
