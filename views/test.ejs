@@ -14,7 +14,7 @@
     <script>
 
         const getRequest = () => {
-            const id = document.getElementById('id').value
+            const id = document.getElementById('id').value//id取得
             fetch(`/employee/${id}`).then((res) => {
                 res.json().then((data) => {
                     const newElm = document.createElement('p')
