@@ -1,3 +1,4 @@
+/*/exhibit*/
 const express = require("express");
 const db = require("../../db"); //db処理で使う。
 const router = express.Router(); //api定義で使う。これを使えばファイル分割してapi作れる。
