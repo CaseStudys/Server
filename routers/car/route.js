@@ -23,7 +23,6 @@ router.route(CAR_END_POINT).post(async (req, res) => {
     //     dataList.push(body[dataList[index]]);
     // }
 
-
     //値を配列に格納
     var valueList = [];
     valueList.push(body.employee_id);
@@ -55,7 +54,6 @@ router.route(CAR_END_POINT).post(async (req, res) => {
     valueList.push(body.comment);
     valueList.push(body.picture_path);
 
-
     //DB処理
     db.mysql_connection.connect((err) => {
       db.mysql_connection.query(
@@ -71,6 +69,7 @@ router.route(CAR_END_POINT).post(async (req, res) => {
     });
 
   });
+
 
 
 //オークション登録フラグをたてるPUTのAPI
@@ -94,9 +93,13 @@ router.route(CAR_END_POINT).put(async (req, res) => {
           }
         );
       });
-
 });
 
 
+
+//車両登録画面を表示するGETのAPI
+router.route(CAR_END_POINT).get((req, res) => {
+    res.status("200").render("emp_car_register.ejs");
+});
 
 module.exports = router;
