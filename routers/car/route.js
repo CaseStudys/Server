@@ -10,7 +10,7 @@ router.route(CAR_END_POINT).post(async (req, res) => {
 
     //テンプレートsql
     //＊＊＊＊カラムをプレースホルダーで入れるとSQL文にシングルクォーテーションが付いてしまう為、暫定的に手打ち＊＊＊＊＊＊＊＊
-    var sqlSentence = "INSERT INTO cars(employee_id,register_flg,age,type_name,maker,displacement,model_age,grade,model,repair,capacity,door_number,shape,loading_capacity,milage,transmission,drive_system,inspection_deadline,manual,evaluation,handle,exterior_color,exterior_color_number,interior_color,purchace_price,supplier,comment,picture_pass) VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?);";
+    var sqlSentence = "INSERT INTO cars(employee_id,register_flg,age,type_name,maker,displacement,model_age,grade,model,repair,capacity,door_number,shape,loading_capacity,milage,transmission,drive_system,inspection_deadline,manual,evaluation,handle,exterior_color,exterior_color_number,interior_color,purchace_price,supplier,comment,picture_path) VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?);";
 
     //db登録に必要なデータをbodyから取得。
     const body = req.body;
@@ -53,7 +53,7 @@ router.route(CAR_END_POINT).post(async (req, res) => {
     valueList.push(body.purchace_price);
     valueList.push(body.supplier);
     valueList.push(body.comment);
-    valueList.push(body.picture_pass);
+    valueList.push(body.picture_path);
 
 
     //DB処理
@@ -71,6 +71,31 @@ router.route(CAR_END_POINT).post(async (req, res) => {
     });
 
   });
+
+
+//オークション登録フラグをたてるPUTのAPI
+router.route(CAR_END_POINT).put(async (req, res) => {
+
+    //値取得
+    const body = req.body;
+    const carId = body.car_id;
+
+    //DB処理
+    //UPDATEしてからSELECT
+    db.mysql_connection.connect((err) => {
+        db.mysql_connection.query(
+          "UPDATE cars SET register_flg = 1 WHERE car_id = ?;SELECT car_id,picture_path,type_name,purchace_price,register_flg FROM cars;",
+          [carId],
+          (err, result) => {
+            if (err) {
+              return res.status(500).json({ code: 500, message: err });
+            }
+            return res.status(200).json(result[1]);
+          }
+        );
+      });
+
+});
 
 
 
