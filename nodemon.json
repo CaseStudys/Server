@@ -1,6 +1,6 @@
 {
   "verbose": true,
-  "watch": ["src/**/*.js"],
+  "watch": ["routers/**/*.js"],
   "execMap": {
     "ts": "node --inspect=0.0.0.0:9229 --nolazy -r ts-node/register src/index.js"
   }
