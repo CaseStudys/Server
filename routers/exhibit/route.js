@@ -39,4 +39,24 @@ router.route(EXHIBIT_END_POINT).post(async (req, res) => {
   });
 });
 
+
+
+//出品登録されていない車両データをすべて返すGETのAPI
+router.route(EXHIBIT_END_POINT).get(async (req, res) => {
+  //DB処理
+  db.mysql_connection.connect((err) => {
+    db.mysql_connection.query(
+      "SELECT c.car_id,c.picture_path,c.type_name,c.purchace_price FROM cars c LEFT JOIN exhibits e ON c.car_id = e.car_id WHERE e.exhibit_id IS NULL;",
+      (err, result) => {
+        if (err) {
+          return res.status(500).json({ code: 500, message: err });
+        }
+        return res.status("200").render("emp_exhibit.ejs", {values: result});
+        //テスト用
+        //return res.status("200").render("exhibit_get_test.ejs", {values: result});
+      }
+    );
+  });
+});
+
 module.exports = router;
