@@ -53,7 +53,7 @@ router.route(EXHIBIT_END_POINT).get(async (req, res) => {
         }
         return res.status("200").render("emp_exhibit.ejs", {values: result});
         //テスト用
-        //return res.status("200").render("exhibit_get_test.ejs", {values: result});
+        //return res.status("200").render("get_test.ejs", {values: result});
       }
     );
   });
