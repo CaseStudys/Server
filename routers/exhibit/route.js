@@ -41,7 +41,8 @@ router.route(EXHIBIT_END_POINT).post(async (req, res) => {
 
 
 
-//出品登録されていない車両データをすべて返すGETのAPI
+//(従業員)登録者出品ページを表示するGETのAPI
+//出品登録されていない車両データをすべて返す
 router.route(EXHIBIT_END_POINT).get(async (req, res) => {
   //DB処理
   db.mysql_connection.connect((err) => {

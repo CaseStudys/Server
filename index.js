@@ -8,6 +8,7 @@ const testRouter = require("./routers/test/route.js");
 const flgRouter = require("./routers/flg/route.js");
 const carRouter = require("./routers/car/route.js");
 const ledgerRouter = require("./routers/ledger/route.js");
+const managementRouter = require("./routers/management/route.js");
 const managementdetailRouter = require("./routers/management/detail/route.js");
 
 app.use(express.json());
@@ -18,6 +19,7 @@ app.use("/", testRouter);
 app.use("/", flgRouter);
 app.use("/", carRouter);
 app.use("/", ledgerRouter);
+app.use("/", managementRouter);
 app.use("/", managementdetailRouter);
 
 app.listen(PORT, console.log(`✋ Server Start:ポート番号${PORT}番 ✋`));
