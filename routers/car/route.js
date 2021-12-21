@@ -82,17 +82,17 @@ router.route(CAR_END_POINT).put(async (req, res) => {
     //DB処理
     //UPDATEしてからSELECT
     db.mysql_connection.connect((err) => {
-        db.mysql_connection.query(
-          "UPDATE cars SET register_flg = 1 WHERE car_id = ?;SELECT car_id,picture_path,type_name,purchace_price,register_flg FROM cars;",
-          [carId],
-          (err, result) => {
-            if (err) {
-              return res.status(500).json({ code: 500, message: err });
-            }
-            return res.status(200).json(result[1]);
+      db.mysql_connection.query(
+        "UPDATE cars SET register_flg = 1 WHERE car_id = ?;SELECT car_id,picture_path,type_name,purchace_price,register_flg FROM cars;",
+        [carId],
+        (err, result) => {
+          if (err) {
+            return res.status(500).json({ code: 500, message: err });
           }
-        );
-      });
+          return res.status(200).json(result[1]);
+        }
+      );
+    });
 });
 
 
@@ -101,5 +101,6 @@ router.route(CAR_END_POINT).put(async (req, res) => {
 router.route(CAR_END_POINT).get((req, res) => {
     res.status("200").render("emp_car_register.ejs");
 });
+
 
 module.exports = router;
