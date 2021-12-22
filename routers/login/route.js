@@ -48,9 +48,9 @@ router.route(LOGIN_END_POINT).put((req, res) => {
             //cookie有効時間(ミリ秒)
             const limitTime = 10800000;//3時間
             //cookie設定
-            res.cookie('user_id', result[0].user_id, {maxAge:limitTime, httpOnly:false});
-            res.cookie('name', result[0].name, {maxAge:limitTime, httpOnly:false});
-            res.cookie('password', result[0].password, {maxAge:limitTime, httpOnly:false});
+            res.cookie('user_id', result[0][0].user_id, {maxAge:limitTime, httpOnly:false});
+            res.cookie('name', result[0][0].name, {maxAge:limitTime, httpOnly:false});
+            res.cookie('password', result[0][0].password, {maxAge:limitTime, httpOnly:false});
 
             //render
             return res.status("200").render("user_auction.ejs", {values: result[1]});

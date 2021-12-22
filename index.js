@@ -13,6 +13,7 @@ const managementdetailRouter = require("./routers/management/detail/route.js");
 const loginRouter = require("./routers/login/route.js");
 const usersignupRouter = require("./routers/user/signup/route.js");
 const auctionRouter = require("./routers/auction/route.js");
+const logoutRouter = require("./routers/logout/route.js");
 
 app.use(express.json());
 app.use(cors());
@@ -27,5 +28,6 @@ app.use("/", managementdetailRouter);
 app.use("/", loginRouter);
 app.use("/", usersignupRouter);
 app.use("/", auctionRouter);
+app.use("/", logoutRouter);
 
 app.listen(PORT, console.log(`✋ Server Start:ポート番号${PORT}番 ✋`));
