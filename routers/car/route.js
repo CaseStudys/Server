@@ -8,14 +8,14 @@ const CAR_END_POINT = "/car";
 //車両登録するPOSTのAPI
 router.route(CAR_END_POINT).post(async (req, res) => {
 
-    //テンプレートsql
+    //sql文生成
     //＊＊＊＊カラムをプレースホルダーで入れるとSQL文にシングルクォーテーションが付いてしまう為、暫定的に手打ち＊＊＊＊＊＊＊＊
     var sqlSentence = "INSERT INTO cars(employee_id,register_flg,age,type_name,maker,displacement,model_age,grade,model,repair,capacity,door_number,shape,loading_capacity,milage,transmission,drive_system,inspection_deadline,manual,evaluation,handle,exterior_color,exterior_color_number,interior_color,purchace_price,supplier,comment,picture_path) VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?);";
 
     //db登録に必要なデータをbodyから取得。
     const body = req.body;
 
-    //一つの配列にキーを格納してから値を格納する処理ーーー
+    //一つの配列にキーを格納してから値を格納する処理(シングルクォーテーション問題が解決したときに使用)
     //キーを配列に代入
     //const dataList = Object.keys(body);
     //値を配列に代入
