@@ -50,7 +50,7 @@ router.route(EXHIBIT_END_POINT).get(async (req, res) => {
         if (err) {
           return res.status(500).json({ code: 500, message: err });
         }
-        //return res.status("200").render("emp_exhibit.ejs", {values: result});
+        return res.status("200").render("emp_exhibit.ejs", {values: result});
         //テスト用
         //return res.status("200").json(result);//値確認
         //return res.status("200").render("get_test.ejs", {values: result});//ejs確認
