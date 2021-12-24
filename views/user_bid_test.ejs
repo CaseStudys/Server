@@ -1,0 +1,38 @@
+
+exhibit_id:<%=values.exhibit_id %>
+car_id:<%=values.car_id %>
+car_name:<%=values.type_name %>
+
+現在価格：<span id="now_price"><%=values.price %></span>
+<p id="attention"></p>
+exhibit_id:<input type="text" name="" id="exhibit_id">
+user_id:<input type="text" name="" id="user_id">
+price:<input type="text" name="" id="price">
+
+<button onclick="postRequest()">入札</button>
+
+<script src="/socket.io/socket.io.js"></script>
+<script>
+    const userId = "<%=values.car_id %>"
+
+    const SocketIo = io();
+
+    const postRequest = () => {
+        const exhibitId = document.getElementById("exhibit_id").value;
+        const userId = document.getElementById("user_id").value;
+        const price = document.getElementById("price").value;
+
+        SocketIo.emit('c2s',{
+            exhibitId:exhibitId,
+            userId:userId,
+            price:price
+        })
+
+    }
+
+    SocketIo.on('s2c',(msg) => {
+        console.log('ソケットs2c'+msg)
+        document.getElementById('now_price').innerHTML= msg.price
+        if(userId === msg.userId) document.getElementById('attention').innerHTML='あなたが現在の最高額入札者です。'
+    })
+</script>

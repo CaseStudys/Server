@@ -15,6 +15,7 @@ const usersignupRouter = require("./routers/user/signup/route.js");
 const auctionRouter = require("./routers/auction/route.js");
 const logoutRouter = require("./routers/logout/route.js");
 const userRouter = require("./routers/user/route.js");
+const bidRouter = require("./routers/bid/route.js");
 
 app.use(express.json());
 app.use(cors());
@@ -31,5 +32,24 @@ app.use("/", usersignupRouter);
 app.use("/", auctionRouter);
 app.use("/", logoutRouter);
 app.use("/", userRouter);
+app.use("/", bidRouter);
 
-app.listen(PORT, console.log(`✋ Server Start:ポート番号${PORT}番 ✋`));
+const http_socket = require("http").Server(app);
+const io_socket = require("socket.io")(http_socket);
+
+http_socket.listen(PORT, console.log(`✋ Server Start:ポート番号${PORT}番 ✋`));
+
+io_socket.on("connection", (socket) => {
+  console.log("connected");
+  socket.on("c2s", (msg) => {
+    console.log("c2s:", msg);
+
+    //const exhibitId = msg.exhibitId;
+    //const price = msg.exhibitId;
+    const sendData = {
+      price: msg.price,
+      userId: msg.userId,
+    };
+    io_socket.emit("s2c", sendData);
+  });
+});
