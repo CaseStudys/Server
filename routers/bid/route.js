@@ -29,22 +29,26 @@ router.route(`${BID_END_POINT}/:car_id`).get(async (req, res) => {
           user_id: "",
           price: 0,
         };
-        console.log(values);
         //取得した出品物のオークション開始日が、現在日時 <= オークション開始日 <=オークション開始日　+五分 でない場合、user_auction.ejsにリダイレクト
         const startDate = new Date(values.start_date); //開始日を取得
         const endDate = new Date(
           startDate.setMinutes(startDate.getMinutes() + 5)
         ); //終了日を取得
         const nowDate = new Date(); //現在の日付を取得
-        if (endDate - nowDate < 0) return res.redirect("/auction");
+        //現在時間 > オークション終了時間 ||現在時間 < オークション開始五分前
+        if (
+          endDate - nowDate <
+          0 /*||new Date(endDate - nowDate).getMinutes() - 5 > 5*/
+        )
+          return res.redirect("/auction");
 
         //入札データをvaluesに連結
         if (bidDataList.length === 0) {
-          //まだ入札されていない場合、入札者を表すuserIdを空文字、価格に初期価格を設定しvaluesに連結
+          //まだ入札されていない場合、入札者を表すuserIdを空文字、価格に初期価格を設定
           values.price = values.purchace_price * 1.1;
         } else {
-          //入札データがある場合valuesに連結する。（userIdとprice）
-          values.userId = bidDataList[0].user_id;
+          //入札データがある場合
+          values.user_id = bidDataList[0].user_id;
           values.price = bidDataList[0].price;
         }
 
