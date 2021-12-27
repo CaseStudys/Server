@@ -115,9 +115,11 @@ io_socket.on("connection", async (socket) => {
 });
 
 /*------------------- 定時処理一括 -------------------- */
+//毎週土曜日当日に終了するオークション全ての落札処理を予約する。
 const cronJob = require("cron").CronJob;
-const cronTime = "51 2 * * 2"; //"5 23 * * 1";
-
+//毎週土曜深夜三時に実行;
+const cronTime = "0 3 * * 1";
+//↑テストする場合 例 "5 15 * * 2"月曜にテストする場合、昼三時五分に実行されるようにする。
 new cronJob({
   cronTime: cronTime,
   context: {},
