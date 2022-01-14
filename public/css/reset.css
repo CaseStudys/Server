@@ -1,0 +1,21 @@
+* {
+  margin: 0px;
+  padding: 0px;
+  list-style-type: none;
+  box-sizing: border-box;
+  text-decoration: none;
+}
+.none {
+  display: none;
+  /* ボックスごと非表示 */
+}
+.hidden {
+  text-indent: 100%;
+  white-space: nowrap; /* 改行せずに表示 */
+  overflow: hidden;
+  /* ボックスの中身が不可視 */
+}
+body {
+  width: 100%;
+  height: 100%;
+}
