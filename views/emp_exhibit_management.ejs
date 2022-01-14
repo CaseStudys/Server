@@ -77,6 +77,21 @@
       margin: 0 auto;
       /* background-color: red; */
     }
+    /* ボタン */
+    .main_button {
+      display: flex;
+      justify-content: right;
+      margin: 20px;
+    }
+
+    .main_button > li {
+      margin: 5px;
+    }
+
+    .main_button > li > button {
+      width: 120px;
+      height: 30px;
+    }
 
     /* 項目エリア */
     .content_area {
@@ -121,6 +136,11 @@
     </header>
     <main>
       <div>
+        <ul class="main_button">
+          <li><button>台帳管理</button></li>
+          <li><button>車両登録</button></li>
+        </ul>
+
         <div class="content_area">
           <p class="title_name">取引中</p>
           <div class="card_flex">
