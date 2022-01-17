@@ -61,7 +61,7 @@
         $.ajax({
             type: 'POST',
             data: values,
-            url: '/user',
+            url: '/user/signup',
         })
             .done(function (results) {
                 $('#output').append(`POST: ${results.message} <br>`);
