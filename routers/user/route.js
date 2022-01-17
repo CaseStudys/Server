@@ -9,8 +9,10 @@ const USER_END_POINT = "/user";
 //ユーザー情報と取引車両情報を渡す
 router.route(USER_END_POINT).get((req, res) => {
     //データ取得
-    const body = req.body;
-    const userId = body.user_id;
+    // const body = req.body;
+    // const userId = body.user_id;
+
+    const userId = 1;
 
     //sql文生成
     //ユーザー情報取得
