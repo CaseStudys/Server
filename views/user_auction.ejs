@@ -14,12 +14,14 @@
         <p>名前</p>
     </header>
 
-    <div>
-        <img src="<%= values[0].picture_path %>" alt="車両画像">
-        <p>車両名:<%= values[0].type_name %>
-        </p>
-        <p>金額:<%= values[0].purchace_price %>円</p>
-    </div>
+    <%= for(var i=0;i<=values.length;i++) {%>
+        <div>
+            <img src="<%= values[0].picture_path %>" alt="車両画像">
+            <p>車両名:<%= values[0].type_name %>
+            </p>
+            <p>金額:<%= values[0].purchace_price %>円</p>
+        </div>
+        <%= } %>
 </body>
 
 </html>
