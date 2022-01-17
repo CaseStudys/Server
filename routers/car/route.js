@@ -4,13 +4,10 @@ const db = require("../../db");
 const router = express.Router();
 const CAR_END_POINT = "/car";
 
-
 //車両登録するPOSTのAPI
 router.route(CAR_END_POINT).post(async (req, res) => {
-
   const body = req.files;
   console.log(body);
-
 
   //   //sql文生成
   //   //＊＊＊＊カラムをプレースホルダーで入れるとSQL文にシングルクォーテーションが付いてしまう為、暫定的に手打ち＊＊＊＊＊＊＊＊
@@ -71,41 +68,34 @@ router.route(CAR_END_POINT).post(async (req, res) => {
   //       }
   //     );
   //   });
-
-   });
-
-
+});
 
 //オークション登録フラグをたてるPUTのAPI
 router.route(CAR_END_POINT).put(async (req, res) => {
+  //値取得
+  const body = req.body;
+  const carId = body.car_id;
 
-    //値取得
-    const body = req.body;
-    const carId = body.car_id;
-
-    //DB処理
-    //UPDATEしてからSELECT
-    db.mysql_connection.connect((err) => {
-      db.mysql_connection.query(
-        "UPDATE cars SET register_flg = 1 WHERE car_id = ?;SELECT car_id,picture_path,type_name,purchace_price,register_flg FROM cars;",
-        [carId],
-        (err, result) => {
-          if (err) {
-            return res.status(500).json({ code: 500, message: err });
-          }
-          return res.status(200).json(result[1]);
+  //DB処理
+  //UPDATEしてからSELECT
+  db.mysql_connection.connect((err) => {
+    db.mysql_connection.query(
+      "UPDATE cars SET register_flg = 1 WHERE car_id = ?;SELECT car_id,picture_path,type_name,purchace_price,register_flg FROM cars;",
+      [carId],
+      (err, result) => {
+        if (err) {
+          return res.status(500).json({ code: 500, message: err });
         }
-      );
-    });
+        return res.status(200).json(result[1]);
+      }
+    );
+  });
 });
-
-
 
 //車両登録画面を表示するGETのAPI
 router.route(CAR_END_POINT).get((req, res) => {
-    //res.status("200").render("emp_car_register.ejs");
-    res.status("200").render("mae_test.ejs");
+  res.status("200").render("emp_car_register.ejs");
+  // res.status("200").render("mae_test.ejs");
 });
-
 
 module.exports = router;
