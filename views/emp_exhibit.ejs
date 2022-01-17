@@ -130,37 +130,44 @@
   </style>
   <body>
     <header>
-      <p class="logo">LOGO 社名</p>
+      <p class="logo">
+        <a href="/management"> LOGO 社名 </a>
+      </p>
 
       <ul class="header_r">
-        <li></li>
+        <li>
+          <button>
+            <a href="/car"> 車両登録</a>
+          </button>
+        </li>
         <li class="login_name">ログイン指名</li>
       </ul>
     </header>
     <main>
       <div>
+        <h1><%= console.log(values) %>様の</h1>
+
+
         <div class="content_area">
           <p class="title_name">車両登録一覧</p>
           <div class="card_flex">
             <!-- 1枚目 -->
+            <% for (var i = 0; i < values.length; i++) { %>
             <div class="card">
-              <img class="card_img" src="" alt="" />
-              <p class="price">3000円</p>
-              <div class="button">
-                <button>カレンダー</button>
-                <button>出品予約をする</button>
-              </div>
-            </div>
+              <img
+                class="card_img"
+                src="<%= values[i].picture_path %>"
+                alt=""
+              />
+              <button>カレンダー</button>
+              <button>出品予約</button>
+              <p>車両ID:<%= values[i].car_id %></p>
+              <p>車種名:<%= values[i].type_name %></p>
+              <p>仕入れ金額:<%= values[i].purchace_price %>円</p>
 
-            <!-- 2枚目 -->
-            <div class="card">
-              <img class="card_img" src="" alt="" />
-              <p class="price">3000円</p>
-              <div class="button">
-                <button>カレンダー</button>
-                <button>出品予約をする</button>
-              </div>
             </div>
+            <% } %>
+          </a>
           </div>
         </div>
       </div>
