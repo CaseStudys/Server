@@ -14,14 +14,18 @@
         <p>名前</p>
     </header>
 
-    <%= for(var i=0;i<=values[i].length;i++) {%>
+    <% for (var i=0; i < values.length; i++) { %>
         <div>
-            <!-- <img src="<%= values[0][i].picture_path %>" alt="車両画像"> -->
-            <p>車両名:<%= values[0][i].type_name %>
+            <p>車体番号:<%= values[i].car_id %>
             </p>
-            <p>金額:<%= values[0][i].purchace_price %>円</p>
+            <p>
+                車名:<%= values[i].type_name %>
+            </p>
+            <p>
+                金額:<%= values[i].purchace_price %>円
+            </p>
         </div>
-        <%= } %>
+        <% } %>
 </body>
 
 </html>
