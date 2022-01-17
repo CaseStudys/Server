@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>出品者 管理一覧ページ</title>
+  </head>
+  <style>
+    * {
+      margin: 0px;
+      padding: 0px;
+      list-style-type: none;
+      box-sizing: border-box;
+      text-decoration: none;
+    }
+    .none {
+      display: none;
+      /* ボックスごと非表示 */
+    }
+    .hidden {
+      text-indent: 100%;
+      white-space: nowrap; /* 改行せずに表示 */
+      overflow: hidden;
+      /* ボックスの中身が不可視 */
+    }
+    body {
+      width: 100%;
+      height: 100%;
+    }
+    header {
+      width: 100%;
+      height: 80px;
+      display: flex;
+      font-size: 25px;
+      align-items: center;
+      background-color: aqua;
+      text-align: center;
+      margin: 0 auto;
+    }
+
+    .logo {
+      width: 55%;
+      text-align: right;
+    }
+    .header_r {
+      width: 40%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    .header_r > li {
+      margin: 15px;
+    }
+    .header_r > li > button {
+      color: #fff;
+      background-color: #eb6100;
+      border: 1px solid gray;
+      width: 100px;
+      height: 40px;
+    }
+    .login_name {
+      font-size: 20px;
+    }
+    .login_box {
+      width: 40%;
+      height: 300px;
+      background-color: rgb(225, 222, 222);
+      border-radius: 8px;
+    }
+
+    /* ---- main ---- */
+    main {
+      width: 80%;
+      display: flex;
+      justify-content: center;
+      margin: 0 auto;
+      /* background-color: red; */
+    }
+    .main_img {
+      padding-top: 40px;
+    }
+    .card_img {
+      width: 800px;
+      height: 500px;
+      background-color: black;
+    }
+  </style>
+  <body>
+    <header>
+      <p class="logo">LOGO 社名</p>
+
+      <ul class="header_r">
+        <li>
+          <button>車両登録</button>
+        </li>
+        <li class="login_name">ログイン指名</li>
+      </ul>
+    </header>
+    <main>
+      <p><% console.log(values) %></p>
+
+      <% for (var i = 0; i < values.length; i++) { %>
+      <div class="main_img">
+        <table border="1">
+          <tr>
+            <th>車両プロジェクトID</th>
+            <td><%= values[i].project_id %></td>
+          </tr>
+          <tr>
+            <th>出品ID</th>
+            <td><%= values[i].exhibit_id %></td>
+          </tr>
+          <tr>
+            <th>落札者ID</th>
+            <td><%= values[i].buyer_id %></td>
+          </tr>
+          <tr>
+            <th>落札日</th>
+            <td><%= values[i].purchase_date %></td>
+          </tr>
+          <tr>
+            <th>落札額</th>
+            <td><%= values[i].price %></td>
+          </tr>
+          <tr>
+            <th>期日</th>
+            <td><%= values[i].due_date %></td>
+          </tr>
+          <tr>
+            <th>修理フラグ</th>
+            <td><%= values[i].repair_service_flg %></td>
+          </tr>
+          <tr>
+            <th>車検フラグ</th>
+            <td><%= values[i].car_inspection_service_flg %></td>
+          </tr>
+          <tr>
+            <th>書類フラグ</th>
+            <td><%= values[i].documents_flg %></td>
+          </tr>
+          <tr>
+            <th>出荷フラグ</th>
+            <td><%= values[i].shipped_flg %></td>
+          </tr>
+          <tr>
+            <th>納品フラグ</th>
+            <td><%= values[i].delivered_flg %></td>
+          </tr>
+          <tr>
+            <th>消込フラグ</th>
+            <td><%= values[i].deposit_apply_flg %></td>
+          </tr>
+          <tr>
+            <th>催促フラグ</th>
+            <td><%= values[i].reminder_flg %></td>
+          </tr>
+          <tr>
+            <th>キャンセルフラグ</th>
+            <td><%= values[i].cancel_flg %></td>
+          </tr>
+          <tr>
+            <th>法的措置フラグ</th>
+            <td><%= values[i].illegal_action_flg %></td>
+          </tr>
+          <tr>
+            <th>支払いフラグ</th>
+            <td><%= values[i].payment_flg %></td>
+          </tr>
+          <tr>
+            <th>受け取り連絡フラグ</th>
+            <td><%= values[i].receipt_contact_flg %></td>
+          </tr>
+        </table>
+        <% } %>
+      </div>
+    </main>
+
+    <footer></footer>
+  </body>
+</html>
