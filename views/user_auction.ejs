@@ -14,12 +14,18 @@
         <p>名前</p>
     </header>
 
-    <div>
-        <img src="" alt="車両画像">
-        <p>値段</p>
-    </div>
+    <% for (var i=0; i < values.length; i++) { %>
+        <div>
+            <p>車体番号:<%= values[i].car_id %>
+            </p>
+            <p>
+                車名:<%= values[i].type_name %>
+            </p>
+            <p>
+                金額:<%= values[i].purchace_price %>円
+            </p>
+        </div>
+        <% } %>
 </body>
 
 </html>
-
-<p>user_auction.ejs</p>

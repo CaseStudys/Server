@@ -55,12 +55,12 @@ router.route(`${BID_END_POINT}/:car_id`).get(async (req, res) => {
         if (err) {
           return res.status(500).json({ code: 500, message: err });
         }
-        //return res.status("200").render("user_bid.ejs", { values: values });
+        return res.status("200").render("user_bid.ejs", { values: values });
         //テスト用
         //return res.status("200").json(result);//値確認
-        return res
-          .status("200")
-          .render("user_bid_test.ejs", { values: values }); //ejs確認
+        // return res
+        //   .status("200")
+        //   .render("user_bid_test.ejs", { values: values }); //ejs確認
       }
     );
   });
