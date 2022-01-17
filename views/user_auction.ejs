@@ -15,14 +15,10 @@
     </header>
 
     <div>
-        <ul>
-            <li>
-                <%= values[0].type_name %>
-            </li>
-            <li><img src="<%= values[0].picture_path %>" alt="車両画像"></li>
-            <li>値段:<%= values[0].purchace_price %>
-            </li>
-        </ul>
+        <img src="<%= values[0].picture_path %>" alt="車両画像">
+        <p>車両名:<%= values[0].type_name %>
+        </p>
+        <p>金額:<%= values[0].purchace_price %>円</p>
     </div>
 </body>
 
