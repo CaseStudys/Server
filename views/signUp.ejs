@@ -15,54 +15,88 @@
     </header>
     <h1>登録</h1>
 
-    <form action="" method="get">
+    <form action="" method="POST">
         <label for="distinction">
-            <input type="radio" name="distinction" id="distinction" required="required">業者
-            <input type="radio" name="distinction" id="distinction" required="required">個人
+            <!-- <input type="radio" name="distinction" id="distinction" value="0" required>業者 -->
+            <input type="radio" name="distinction" id="distinction" value="0" required>個人
         </label><br>
         <label for="name">
-            氏名：<input type="text" name="name" required>
+            氏名：<input type="text" name="name" id="name" required>
         </label><br>
+        <label for="birthday">
+            誕生日:<input type="date" name="birthday" id="birthday" required>
+        </label>
         <label for="phone_number">
-            電話番号：<input type="phone_number" name="phone_number" size="12" required>
+            電話番号：<input type="number" id="phone_number" name="phone_number" size="12" required>
         </label><br>
         <label for="address">
-            住所：<input type="text" name="address" required>
+            住所：<input type="text" id="adderss" name="address" required>
         </label><br>
         <label for="password">
-            パスワード：<input type="password" name="password" required>
+            パスワード：<input type="password" id="password" name="password" required>
         </label><br>
-        <input type="submit" value="登録する" onclick="getRequest()">
+        <label for="trust_flg">
+            trust_flg <input type="text" name="trust_flg" id="trust_flg" value="0">
+        </label>
+        <button type="submit" id="postbutton">登録する</button>
     </form>
+    <div id="output"></div>
 
 </body>
 
 </html>
 
 <script>
-    const getRequest = () => {
-        const distinction = document.getElementById("distinction").value; //distinction取得
-        const name = document.getElementById("name").value; //name取得
-        const phone_number = document.getElementById("phone_number").value; //phone_number取得
-        const address = document.getElementById("address").value; //address取得
-        const password = document.getElementById("password").value; //password取得
-        fetch(`/user/${id}`).then((res) => {
-            res.json().then((data) => {
-                const newElm = document.createElement("p");
-                let resultMessage = "GET：";
-                for (let i = 0; i < data.length; i++) {
-                    resultMessage += data[i]["distinction"];
-                    resultMessage += data[i]["name"];
-                    resultMessage += data[i]["phone_number"];
-                    resultMessage += data[i]["address"];
-                    resultMessage += data[i]["password"];
-                }
+    $('#postbutton').click(function (e) {
+        let values = {
+            distinction: $('#distinction').val(),
+            name: $('#name').val(),
+            birthday: $('#birthday').val(),
+            phone_number: $('#phone_number').val(),
+            address: $('#address').val(),
+            password: $('#password').val(),
+            trust_flg: $('#trust_flg').val()
+        };
+        console.log(values);
+        $.ajax({
+            type: 'POST',
+            data: values,
+            url: '/user',
+        })
+            .done(function (results) {
+                $('#output').append(`POST: ${results.message} <br>`);
+            })
+            .fail(function (xhr, textStatus, errorThrown) {
+                console.log('ajax通信に失敗しました');
+            })
+            .always(function (xhr) { });
+    });
 
-                const newContent = document.createTextNode(resultMessage);
-                newElm.appendChild(newContent);
-                const parentElm = document.getElementById("messageArea");
-                parentElm.insertBefore(newElm, parentElm.firstChild);
-            });
-        });
-    };
+
+    // const getRequest = () => {
+    //     const distinction = document.getElementById("distinction").value; //distinction取得
+    //     const birthday = document.getElementById("birthday").value; //birthday取得
+    //     const name = document.getElementById("name").value; //name取得
+    //     const phone_number = document.getElementById("phone_number").value; //phone_number取得
+    //     const address = document.getElementById("address").value; //address取得
+    //     const password = document.getElementById("password").value; //password取得
+    //     fetch(`/user/signup/${id}`).then((res) => {
+    //         res.json().then((data) => {
+    //             const newElm = document.createElement("p");
+    //             let resultMessage = "GET：";
+    //             for (let i = 0; i < data.length; i++) {
+    //                 resultMessage += data[i]["distinction"];
+    //                 resultMessage += data[i]["name"];
+    //                 resultMessage += data[i]["phone_number"];
+    //                 resultMessage += data[i]["address"];
+    //                 resultMessage += data[i]["password"];
+    //             }
+
+    //             const newContent = document.createTextNode(resultMessage);
+    //             newElm.appendChild(newContent);
+    //             const parentElm = document.getElementById("messageArea");
+    //             parentElm.insertBefore(newElm, parentElm.firstChild);
+    //         });
+    //     });
+    // };
 </script>
