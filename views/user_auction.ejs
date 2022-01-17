@@ -14,12 +14,33 @@
         <p>名前</p>
     </header>
 
+
+    <button onclick=getRequest()">はは</button>
     <div>
         <img src="" alt="車両画像">
-        <p>値段</p>
+        <p>値段:</p>
     </div>
 </body>
 
 </html>
 
-<p>user_auction.ejs</p>
+<script src="/socket.io/socket.io.js"></script>
+<script>
+    const SocketIo = io();
+
+    const getRequest = () => {
+        fetch(`/car/1`).then((res) => {
+            res.json().then((data) => {
+                const newElm = document.createElement('p')
+                for (let i = 0; i < data.length; i++) {
+                    resultMessage += data[i]['purchace_price']
+                }
+
+                const newContent = document.createTextNode(resultMessage)
+                newElm.appendChild(newContent)
+                const parentElm = document.getElementById('messageArea')
+                parentElm.insertBefore(newElm, parentElm.firstChild)
+            })
+        })
+    }
+</script>
