@@ -88,6 +88,16 @@
     a {
       color: black;
     }
+    table {
+      border: solid 1px black;
+    }
+    tr {
+      border: solid 1px black;
+    }
+    th {
+      border: solid 2px black;
+      background-color: rgb(192, 159, 159);
+    }
   </style>
   <body>
     <header>
@@ -109,7 +119,7 @@
 
       <% for (var i = 0; i < values.length; i++) { %>
       <div class="main_img">
-        <table border="1">
+        <table>
           <tr>
             <th>車両プロジェクトID</th>
             <td><%= values[i].project_id %></td>
@@ -185,4 +195,28 @@
 
     <footer></footer>
   </body>
+  <script>
+    const putRequestCancel = () => {
+      const param = {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json; charset=utf-8",
+        },
+        body: JSON.stringify({
+          email: email,
+          username: username,
+          password: password,
+        }),
+      };
+      fetch(`/users/${id}`, param).then((res) => {
+        res.json().then((data) => {
+          const newElm = document.createElement("p");
+          const newContent = document.createTextNode(`PUT：${data.message}`);
+          newElm.appendChild(newContent);
+          const parentElm = document.getElementById("messageArea");
+          parentElm.insertBefore(newElm, parentElm.firstChild);
+        });
+      });
+    };
+  </script>
 </html>
