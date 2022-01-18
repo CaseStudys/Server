@@ -12,7 +12,7 @@ router.route(USER_END_POINT).get((req, res) => {
     // const body = req.body;
     // const userId = body.user_id;
 
-    const userId = 1;
+    const userId = 2;
 
     //sql文生成
     //ユーザー情報取得
