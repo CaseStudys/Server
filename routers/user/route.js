@@ -33,7 +33,7 @@ router.route(USER_END_POINT).get((req, res) => {
             return res.status("200").render("user_mypage.ejs", {values: result});
 
             //テスト用
-            // return res.status(200).json(result);//値確認
+            //return res.status(200).json(result);//値確認
             // return res.status("200").render("get_test.ejs", {values: result});//ejs確認
         }
         );
