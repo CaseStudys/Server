@@ -11,7 +11,6 @@ router.route(FLG_END_POINT).put(async (req, res) => {
   const body = req.body;
   const keyList = Object.keys(body);//キーだけ取得
 
-
   if (keyList[0] == "user_id") {//usersテーブル[(会員)PUT信用フラグのみ]
 
     const userId = body.user_id;
@@ -109,7 +108,12 @@ router.route(FLG_END_POINT).put(async (req, res) => {
       );
     });
   }
+});
 
+
+////スーパーフラグページを表示するGETのAPI
+router.route(FLG_END_POINT).get((req, res) => {
+  res.status("200").render("super_flg.ejs");
 });
 
 module.exports = router;
