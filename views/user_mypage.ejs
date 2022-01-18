@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>購入確定画面</title>
+    <title>マイページ</title>
 </head>
 <style>
     * {
@@ -32,7 +32,6 @@
     body {
         width: 100%;
         height: 100%;
-        text-align: center;
     }
 
     header {
@@ -94,13 +93,63 @@
         color: black;
     }
 
-    h1 {
-        margin-top: 40px;
-        margin-bottom: 40px;
+    /* ボタン */
+    .button {
+        display: flex;
+        justify-content: space-around;
+        margin: 20px;
     }
 
-    .buttonLink {
-        margin-top: 40px;
+    .main_button>li {
+        margin: 5px;
+    }
+
+    .main_button>li>button {
+        width: 120px;
+        height: 30px;
+    }
+
+    .title {
+        text-align: center;
+    }
+
+    .bigBox {
+        padding-top: 40px;
+        padding-bottom: 40px;
+        width: 80%;
+        margin: 0 auto;
+        display: flex;
+    }
+
+    .box {
+        width: 50%;
+        text-align: center;
+    }
+
+    /* 項目エリア */
+    .content_area {
+        margin: 20px auto;
+        /* background-color: #eb6100; */
+    }
+
+    .card_flex {
+        width: 100%;
+        display: flex;
+    }
+
+    /* 車両のカードレイアウト */
+    .card {
+        width: 300px;
+        height: 300px;
+        margin: 20px;
+        background-color: aquamarine;
+        border-radius: 8px;
+    }
+
+    .card_img {
+        width: 300px;
+        height: 200px;
+        background-color: black;
     }
 </style>
 
@@ -120,12 +169,33 @@
         </ul>
     </header>
 
-    <h1>購入確定画面</h1>
-    <p>ご落札誠にありがとうございます！！！</p>
+    <h1 class="title">マイページ</h1>
+    <div class="bigBox">
+        <div class="box">
+            <p>名前<%= values[0][0].name %>
+            </p>
+            <p>電話番号:<%= values[0][0].phone_number %>
+            </p>
+        </div>
+        <div class="box">
+            <button>ログアウトする</button>
+        </div>
+    </div>
 
-    <p>落札金額は〇〇円です。</p>
-    <p>担当者から連絡を差し上げますので、それまでしばらくお待ちください</p>
-    <button class="buttonLink"><a href="/user">マイページに戻る</a></button>
+
+    <h2 class="title">取引車両</h2>
+
+    <div class="content_area">
+        <div class="crad_flex">
+            <div class="card">
+                <img src="" alt="車両画像" class="card_img">
+                <p>支払い状況</p>
+                <p>値段</p>
+                <button>キャンセルボタン</button>
+            </div>
+        </div>
+    </div>
+
 </body>
 
 </html>

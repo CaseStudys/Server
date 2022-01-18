@@ -9,8 +9,10 @@ const USER_END_POINT = "/user";
 //ユーザー情報と取引車両情報を渡す
 router.route(USER_END_POINT).get((req, res) => {
     //データ取得
-    const body = req.body;
-    const userId = body.user_id;
+    // const body = req.body;
+    // const userId = body.user_id;
+
+    const userId = 1;
 
     //sql文生成
     //ユーザー情報取得
@@ -31,8 +33,8 @@ router.route(USER_END_POINT).get((req, res) => {
             return res.status("200").render("user_mypage.ejs", {values: result});
 
             //テスト用
-            //return res.status(200).json(result);//値確認
-            //return res.status("200").render("get_test.ejs", {values: result});//ejs確認
+            // return res.status(200).json(result);//値確認
+            // return res.status("200").render("get_test.ejs", {values: result});//ejs確認
         }
         );
     });

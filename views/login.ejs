@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>購入確定画面</title>
+    <title>ログイン画面</title>
 </head>
 <style>
     * {
@@ -32,7 +32,6 @@
     body {
         width: 100%;
         height: 100%;
-        text-align: center;
     }
 
     header {
@@ -95,12 +94,37 @@
     }
 
     h1 {
+        text-align: center;
         margin-top: 40px;
         margin-bottom: 40px;
     }
 
+    .box {
+        border: solid 1px;
+        border-color: black;
+        border-radius: 40px;
+        margin: 0 auto;
+        width: 40%;
+        padding-top: 40px;
+        padding-bottom: 40px;
+        text-align: center;
+    }
+
     .buttonLink {
-        margin-top: 40px;
+        text-align: center;
+        padding-top: 20px;
+    }
+
+    dl dt {
+        width: 165px;
+        padding: 10px 0;
+        margin-left: 60px;
+        float: left;
+        clear: both;
+    }
+
+    dl dd {
+        padding: 10px 0;
     }
 </style>
 
@@ -109,23 +133,19 @@
         <p class="logo">
             <a href="/management"> LOGO 社名 </a>
         </p>
-
-        <ul class="header_r">
-            <li>
-                <button>
-                    <a href="/car"> 車両登録 </a>
-                </button>
-            </li>
-            <li class="login_name">ログイン指名</li>
-        </ul>
     </header>
-
-    <h1>購入確定画面</h1>
-    <p>ご落札誠にありがとうございます！！！</p>
-
-    <p>落札金額は〇〇円です。</p>
-    <p>担当者から連絡を差し上げますので、それまでしばらくお待ちください</p>
-    <button class="buttonLink"><a href="/user">マイページに戻る</a></button>
+    <h1>ログイン</h1>
+    <div class="box">
+        <dl>
+            <dt>ID:</dt>
+            <dd><input type="text" name="id" id="id"></dd>
+            <dt>パスワード:</dt>
+            <dd><input type="text" name="password" id="password"></dd>
+        </dl>
+        <div class="buttonLink">
+            <button type="submit">ログインする</button>
+        </div>
+    </div>
 </body>
 
 </html>

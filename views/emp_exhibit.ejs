@@ -78,9 +78,9 @@
       /* background-color: red; */
     }
     /* ボタン */
-    .main_button {
+    .button {
       display: flex;
-      justify-content: right;
+      justify-content: space-around;
       margin: 20px;
     }
 
@@ -103,8 +103,13 @@
     .title_name {
       font-size: 20px;
       font-weight: bold;
+      text-align: center;
+      padding: 30px;
     }
-
+    .price {
+      text-align: right;
+      margin-right: 5px;
+    }
     .card_flex {
       width: 100%;
       display: flex;
@@ -121,9 +126,6 @@
       width: 300px;
       height: 200px;
       background-color: black;
-    }
-    a{
-      color: black;
     }
   </style>
   <body>
@@ -143,75 +145,26 @@
     </header>
     <main>
       <div>
-        <ul class="main_button">
-          <li><button>
-            <a href='/car'>車両登録</a>
-          </button></li>
-          <li><button>
-            <a href='/exhibit'>車両出品</a>
-            </button></li>
-            <li><button>
-              <a href='/ledger'>台帳管理</a>
-              </button></li>
-        </ul>
+        <h1><%= console.log(values) %>様の</h1>
 
-        <!-- <h1><%= console.log(values[0].length) %>様の</h1> -->
+
         <div class="content_area">
-          <p class="title_name">取引中</p>
+          <p class="title_name">車両登録一覧</p>
           <div class="card_flex">
             <!-- 1枚目 -->
-            <% for (var i = 0; i < values[0].length; i++) { %>
+            <% for (var i = 0; i < values.length; i++) { %>
             <div class="card">
-              <a href='/management/detail/<%= values[0][i].car_id %>'>
               <img
                 class="card_img"
-                src="<%= values[0][i].picture_path %>"
+                src="<%= values[i].picture_path %>"
                 alt=""
               />
-              <p>番号<%= values[0][i].car_id %></p>
-              <p><%= values[0][i].type_name %></p>
-              <p><%= values[0][i].price %>円</p>
-            </div>
-            <% } %>
-          </a>
-          </div>
-        </div>
+              <button>カレンダー</button>
+              <button>出品予約</button>
+              <p>車両ID:<%= values[i].car_id %></p>
+              <p>車種名:<%= values[i].type_name %></p>
+              <p>仕入れ金額:<%= values[i].purchace_price %>円</p>
 
-        <div class="content_area">
-          <p class="title_name">オークション登録車両</p>
-          <div class="card_flex">
-            <% for (var i = 0; i < values[1].length; i++) { %>
-            <div class="card">
-              <a href='/management/detail/<%= values[1][i].car_id %>'>
-              <img
-                class="card_img"
-                src="<%= values[0][i].picture_path %>"
-                alt=""
-              />
-              <p>番号<%= values[1][i].car_id %></p>
-              <p><%= values[1][i].type_name %></p>
-              <p><%= values[1][i].purchace_price %>円</p>
-            </div>
-            <% } %>
-          </a>
-          </div>
-        </div>
-        <div class="content_area">
-          <p class="title_name">車両登録</p>
-          <div class="card_flex">
-            <!-- 1枚目 -->
-            <% for (var i = 0; i < values[2].length; i++) { %>
-            <div class="card">
-              <a href='/management/detail/<%= values[2][i].car_id %>'>
-
-              <img
-                class="card_img"
-                src="<%= values[2][i].picture_path %>"
-                alt=""
-              />
-              <p>番号<%= values[2][i].car_id %></p>
-              <p><%= values[2][i].type_name %></p>
-              <p><%= values[2][i].purchace_price %>円</p>
             </div>
             <% } %>
           </a>
