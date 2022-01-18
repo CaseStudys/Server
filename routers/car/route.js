@@ -89,7 +89,7 @@ router.route(CAR_END_POINT).post(multer({ storage: storage }).array('files', 10)
                   return res.status(500).json({ code: 500, message: err });
                 }
                 //画像を一時保存フォルダから移動
-                fex.copySync("tmp","picture/"+newId);
+                fex.copySync("tmp","pictures/"+newId);
                 //tmp内の画像全削除
                 fs.readdir("tmp", (err, files)=> {
                   if (err) throw err;
