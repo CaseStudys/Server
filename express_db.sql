@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- ホスト: mysql:3306
--- 生成日時: 2022 年 1 月 18 日 06:55
+-- 生成日時: 2022 年 1 月 18 日 09:50
 -- サーバのバージョン： 5.7.36
 -- PHP のバージョン: 7.4.20
 
@@ -155,16 +155,17 @@ CREATE TABLE `projects` (
   `cancel_flg` tinyint(1) NOT NULL,
   `illegal_action_flg` tinyint(1) NOT NULL,
   `payment_flg` tinyint(1) NOT NULL,
-  `receipt_contact_flg` tinyint(1) NOT NULL
+  `receipt_contact_flg` tinyint(1) NOT NULL,
+  `total_price` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- テーブルのデータのダンプ `projects`
 --
 
-INSERT INTO `projects` (`project_id`, `exhibit_id`, `buyer_id`, `purchase_date`, `price`, `due_date`, `repair_service_flg`, `car_inspection_service_flg`, `documents_flg`, `shipped_flg`, `delivered_flg`, `deposit_apply_flg`, `reminder_flg`, `cancel_flg`, `illegal_action_flg`, `payment_flg`, `receipt_contact_flg`) VALUES
-(1, 1, 2, '2021-12-20', 5800000, '2021-12-27', 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1),
-(2, 2, 2, '2021-12-21', 4000000, '2021-12-31', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
+INSERT INTO `projects` (`project_id`, `exhibit_id`, `buyer_id`, `purchase_date`, `price`, `due_date`, `repair_service_flg`, `car_inspection_service_flg`, `documents_flg`, `shipped_flg`, `delivered_flg`, `deposit_apply_flg`, `reminder_flg`, `cancel_flg`, `illegal_action_flg`, `payment_flg`, `receipt_contact_flg`, `total_price`) VALUES
+(1, 1, 2, '2021-12-20', 5800000, '2021-12-27', 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, NULL),
+(2, 2, 2, '2021-12-21', 4000000, '2021-12-31', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, NULL);
 
 -- --------------------------------------------------------
 
