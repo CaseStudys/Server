@@ -188,10 +188,19 @@
     <div class="content_area">
         <div class="crad_flex">
             <div class="card">
-                <img src="" alt="車両画像" class="card_img">
-                <p>支払い状況</p>
-                <p>値段</p>
-                <button>キャンセルボタン</button>
+                <% for (var i=0; i < values[1].length; i++) { %>
+                    <h1>
+                        <%= console.log(values[1][i]) %>様の
+                    </h1>
+                    <img src="" alt="車両画像" class="card_img">
+                    <p>車両名:<%= values[1][i].type_name %>
+                    </p>
+                    <p>支払い状況<%= values[1][i] %>
+                    </p>
+                    <p>値段:<%= values[1][i].price %>
+                            円</p>
+                    <button>キャンセルボタン</button>
+                    <% } %>
             </div>
         </div>
     </div>
