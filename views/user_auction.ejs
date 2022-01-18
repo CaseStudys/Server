@@ -92,6 +92,32 @@
     a {
         color: black;
     }
+
+    /* 項目エリア */
+    .content_area {
+        margin: 20px auto;
+        /* background-color: #eb6100; */
+    }
+
+    .card_flex {
+        width: 100%;
+        display: flex;
+    }
+
+    /* 車両のカードレイアウト */
+    .card {
+        width: 300px;
+        height: 300px;
+        margin: 20px;
+        background-color: aquamarine;
+        border-radius: 8px;
+    }
+
+    .card_img {
+        width: 300px;
+        height: 200px;
+        background-color: black;
+    }
 </style>
 
 <body>
@@ -110,18 +136,23 @@
         </ul>
     </header>
 
-    <% for (var i=0; i < values.length; i++) { %>
-        <div>
-            <p>車体番号:<%= values[i].car_id %>
-            </p>
-            <p>
-                車名:<%= values[i].type_name %>
-            </p>
-            <p>
-                金額:<%= values[i].purchace_price %>円
-            </p>
+    <div class="content_area">
+        <div class="card_flex">
+            <% for (var i=0; i < values.length; i++) { %>
+                <div class="card">
+                    <img src="<%= values[i].picture_path　%>" alt="車両画像">
+                    <p>車体番号:<%= values[i].car_id %>
+                    </p>
+                    <p>
+                        車名:<%= values[i].type_name %>
+                    </p>
+                    <p>
+                        金額:<%= values[i].purchace_price %>円
+                    </p>
+                </div>
+                <% } %>
         </div>
-        <% } %>
+    </div>
 </body>
 
 </html>
