@@ -92,6 +92,65 @@
     a {
         color: black;
     }
+
+    /* ボタン */
+    .button {
+        display: flex;
+        justify-content: space-around;
+        margin: 20px;
+    }
+
+    .main_button>li {
+        margin: 5px;
+    }
+
+    .main_button>li>button {
+        width: 120px;
+        height: 30px;
+    }
+
+    .title {
+        text-align: center;
+    }
+
+    .bigBox {
+        padding-top: 40px;
+        padding-bottom: 40px;
+        width: 80%;
+        margin: 0 auto;
+        display: flex;
+    }
+
+    .box {
+        width: 50%;
+        text-align: center;
+    }
+
+    /* 項目エリア */
+    .content_area {
+        margin: 20px auto;
+        /* background-color: #eb6100; */
+    }
+
+    .card_flex {
+        width: 100%;
+        display: flex;
+    }
+
+    /* 車両のカードレイアウト */
+    .card {
+        width: 300px;
+        height: 300px;
+        margin: 20px;
+        background-color: aquamarine;
+        border-radius: 8px;
+    }
+
+    .card_img {
+        width: 300px;
+        height: 200px;
+        background-color: black;
+    }
 </style>
 
 <body>
@@ -110,21 +169,33 @@
         </ul>
     </header>
 
-    <h1>マイページ</h1>
-    <p>名前<%= values[0][0].name %>
-    </p>
-    <p>電話番号:<%= values[0][0].phone_number %>
-    </p>
-    <button>ログアウトする</button>
-
-    <h2>取引車両</h2>
-
-    <div>
-        <img src="" alt="車両画像"><br>
-        <p>支払い状況</p>
-        <p>値段</p>
-        <button>キャンセルボタン</button>
+    <h1 class="title">マイページ</h1>
+    <div class="bigBox">
+        <div class="box">
+            <p>名前<%= values[0][0].name %>
+            </p>
+            <p>電話番号:<%= values[0][0].phone_number %>
+            </p>
+        </div>
+        <div class="box">
+            <button>ログアウトする</button>
+        </div>
     </div>
+
+
+    <h2 class="title">取引車両</h2>
+
+    <div class="content_area">
+        <div class="crad_flex">
+            <div class="card">
+                <img src="" alt="車両画像" class="card_img">
+                <p>支払い状況</p>
+                <p>値段</p>
+                <button>キャンセルボタン</button>
+            </div>
+        </div>
+    </div>
+
 </body>
 
 </html>
