@@ -1,61 +1,78 @@
-<h1>登録</h1>
+<!DOCTYPE html>
+<html lang="ja">
 
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
 
-<label for="distinction">
-    <input type="radio" name="distinction" id="distinction" required>業者
-    <input type="radio" name="distinction" id="distinction" required>個人
-</label><br>
-<label for="name">
-    氏名：<input type="text" name="name" required>
-</label><br>
-<label for="phone_number">
-    電話番号：<input type="phone_number" name="phone_number" size="12" required>
-</label><br>
-<label for="address">
-    住所：<input type="text" name="address" required>
-</label><br>
-<label for="password">
-    パスワード：<input type="password" name="password" required>
-</label><br>
+<body>
+    <header>
+        <p>ロゴ</p>
+        <p>ログイン者</p>
+    </header>
+    <h1>登録</h1>
 
-<input type="submit" value="登録する" required>
+    <!-- <form action="" method="POST"> -->
+    <label for="distinction">
+        <input type="radio" name="distinction" id="distinction" value="0" required>業者
+        <input type="radio" name="distinction" id="distinction" value="0" required>個人
+    </label><br>
+    <label for="name">
+        氏名：<input type="text" name="name" id="name" required>
+    </label><br>
+    <label for="birthday">
+        誕生日:<input type="date" name="birthday" id="birthday" required>
+    </label>
+    <label for="phone_number">
+        電話番号：<input type="number" id="phone_number" name="phone_number" size="12" required>
+    </label><br>
+    <label for="address">
+        住所：<input type="text" id="address" name="address" required>
+    </label><br>
+    <label for="password">
+        パスワード：<input type="password" id="password" name="password" required>
+    </label><br>
+    <label for="trust_flg">
+        trust_flg <input type="text" name="trust_flg" id="trust_flg" value="0">
+    </label>
+    <button type="submit" onclick="postRequest()">登録する</button>
+    <!-- </form> -->
+    <div id="messageArea"></div>
 
-<!-- <script src="/socket.io/socket.io.js"></script> -->
+</body>
+
+</html>
+
 <script>
-    // const SocketIo = io();
+    const postRequest = () => {
+        const distinction = document.getElementById("distinction").value; //distinction取得
+        const birthday = document.getElementById("birthday").value; //birthday取得
+        const name = document.getElementById("name").value; //name取得
+        const phone_number = document.getElementById("phone_number").value; //phone_number取得
+        const address = document.getElementById("address").value; //address取得
+        const password = document.getElementById("password").value; //password取得
+        const trust_flg = document.getElementById("trust_flg").value;//trust_flg取得
 
-    // const getRequest = () => {
-    //     const name = document.getElementById('name').value//name取得
-    //     const phone_number = document.getElementById('phone_number').value//phone_number取得
-    //     const address = document.getElementById('address').value//address取得
-    //     const password = document.getElementById('password').value//password取得
-    //     fetch(`/user/signup/${id}`).then((res) => {
-    //         res.json().then((data) => {
-    //             const newElm = document.createElement('p')
-    //             let resultMessage = "GET："
-    //             for (let i = 0; i < data.length; i++) {
+        const param = {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json; charset=utf-8"
+            },
+            body: JSON.stringify({
+                distinction: distinction,
+                birthday: birthday,
+                name: name,
+                phone_number: phone_number,
+                address: address,
+                password: password,
+                trust_flg: trust_flg
+            })
+        }
 
-    //                 resultMessage += data[i]['name']
-    //                 resultMessage += data[i]['phone_number']
-    //                 resultMessage += data[i]['address']
-    //                 resultMessage += data[i]['password']
-    //             }
-
-    //             const newContent = document.createTextNode(resultMessage)
-    //             newElm.appendChild(newContent)
-    //             const parentElm = document.getElementById('messageArea')
-    //             parentElm.insertBefore(newElm, parentElm.firstChild)
-    //         })
-    //     })
-    // }
-
-
-    // SocketIo.on('test3', (msg) => {
-    //     console.log(msg)
-    // })
-
-    // SocketIo.on('test7', (msg) => {
-    //     console.log(msg)
-    // })
+        fetch('/user/signup', param);
+    }
 
 </script>
