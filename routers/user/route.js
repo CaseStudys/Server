@@ -9,10 +9,8 @@ const USER_END_POINT = "/user";
 //ユーザー情報と取引車両情報を渡す
 router.route(USER_END_POINT).get((req, res) => {
     //データ取得
-    // const body = req.body;
-    // const userId = body.user_id;
-
-    const userId = 2;
+    const body = req.body;
+    const userId = body.user_id;
 
     //sql文生成
     //ユーザー情報取得
@@ -61,8 +59,11 @@ router.route(USER_END_POINT).put((req, res) => {
     const updateProjectCancel = "UPDATE projects SET cancel_flg = 1 WHERE project_id = ?;";
     //キャンセル日時を設定
     const updateUserCalcel = "UPDATE users SET cancel_date = ? WHERE user_id = ?;";
-    // console.log(updateUserCalcel);
-    // return res.status(200).json({"ok":1});
+    //project_idからcar_id取得
+    const selectCarid = "SELECT e.car_id FROM projects p LEFT JOIN exhibits e ON p.exhibit_id = e.exhibit_id WHERE p.project_id = ?;";
+
+    //carsのregister_flgを0にする(オークション登録解除)
+    const updateRegisterCancel = "UPDATE cars SET register_flg = 0 WHERE car_id = ?;";
     //ユーザー情報取得
     const selectUser = "SELECT name,phone_number FROM users WHERE user_id = ?;";
     //取引車両情報取得
@@ -70,23 +71,36 @@ router.route(USER_END_POINT).put((req, res) => {
 
     //DB処理
     db.mysql_connection.connect((err) => {
-        const placeHolder = [projectId, cancelDate, userId, userId, userId];
+        const placeHolder = [projectId, cancelDate, userId, projectId];
         db.mysql_connection.query(
-        updateProjectCancel+updateUserCalcel+selectUser+selectTransaction,
+        updateProjectCancel+updateUserCalcel+selectCarid,
         placeHolder,
         (err, result) => {
             if (err) {
                 return res.status(500).json({ code: 500, message: err });
             }
-            //いらないデータ削除しuser_GET時と同じ形式に整形
-            result.shift();//updateProjectCancel分を削除
-            result.shift();//updateUserCalcel分を削除
+            //取得したcar_idを代入
+            const carID = result[2][0].car_id;
+            //return res.status(200).json(result[2][0].car_id);//値確認
+            db.mysql_connection.connect((err) => {
+                const placeHolder = [carID, userId, userId];
+                db.mysql_connection.query(
+                updateRegisterCancel+selectUser+selectTransaction,
+                placeHolder,
+                (err, result) => {
+                    if (err) {
+                        return res.status(500).json({ code: 500, message: err });
+                    }
+                    //いらないデータ削除しuser_GET時と同じ形式に整形
+                    result.shift();//updateRegisterCancel分を削除
 
-            return res.status("200").render("user_mypage.ejs", {values: result});
-
-            //テスト用
-            //return res.status(200).json(result);//値確認
-            //return res.status("200").render("get_test.ejs", {values: result});//ejs確認
+                    return res.status("200").render("user_mypage.ejs", {values: result});
+                    //テスト用
+                    //return res.status(200).json(result);//値確認
+                    //return res.status("200").render("get_test.ejs", {values: result});//ejs確認
+                }
+                );
+            });
         }
         );
     });
