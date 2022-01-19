@@ -1,30 +1,32 @@
 /*/car*/
 const express = require("express");
-const fs = require('fs');
-const path = require('path');
-const fex = require('fs-extra');
-const multer = require('multer');
+const fs = require("fs");
+const path = require("path");
+const fex = require("fs-extra");
+const multer = require("multer");
 const db = require("../../db");
 const router = express.Router();
 const CAR_END_POINT = "/car";
+const auth = require("../../authentication");
 
 //画像の一時保存先指定
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
-    cb(null, 'tmp/')
+    cb(null, "tmp/");
   },
   filename: function (req, file, cb) {
-    cb(null, file.originalname)
-  }
-})
-
+    cb(null, file.originalname);
+  },
+});
 
 //車両登録するPOSTのAPI
-router.route(CAR_END_POINT).post(multer({ storage: storage }).array('files', 10), async (req, res) => {
-
+router
+  .route(CAR_END_POINT)
+  .post(multer({ storage: storage }).array("files", 10), async (req, res) => {
     //sql文生成
     //＊＊＊＊カラムをプレースホルダーで入れるとSQL文にシングルクォーテーションが付いてしまう為、暫定的に手打ち＊＊＊＊＊＊＊＊
-    var sqlSentence = "INSERT INTO cars(employee_id,register_flg,age,type_name,maker,displacement,model_age,grade,model,repair,capacity,door_number,shape,loading_capacity,milage,transmission,drive_system,inspection_deadline,manual,evaluation,handle,exterior_color,exterior_color_number,interior_color,purchace_price,supplier,comment) VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?);";
+    var sqlSentence =
+      "INSERT INTO cars(employee_id,register_flg,age,type_name,maker,displacement,model_age,grade,model,repair,capacity,door_number,shape,loading_capacity,milage,transmission,drive_system,inspection_deadline,manual,evaluation,handle,exterior_color,exterior_color_number,interior_color,purchace_price,supplier,comment) VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?);";
 
     //db登録に必要なデータをbodyから取得。
     const body = req.body;
@@ -71,73 +73,70 @@ router.route(CAR_END_POINT).post(multer({ storage: storage }).array('files', 10)
     //DB処理
     db.mysql_connection.connect((err) => {
       //車両登録
-      db.mysql_connection.query(
-        sqlSentence,
-        valueList,
-        (err, result) => {
-          if (err) {
-            return res.status(500).json({ code: 500, message: err });
-          }
-          //登録したcar_IDでpicture_pathを登録
-          const newId = result.insertId;
-          const updatePath = "UPDATE cars SET picture_path = 'pictures/?' WHERE car_id = ?;";
-          db.mysql_connection.connect((err) => {
-            db.mysql_connection.query(
-              updatePath,[newId,newId],
-              (err, result) => {
-                if (err) {
-                  return res.status(500).json({ code: 500, message: err });
-                }
-                //画像を一時保存フォルダから移動
-                fex.copySync("tmp","picture/"+newId);
-                //tmp内の画像全削除
-                fs.readdir("tmp", (err, files)=> {
-                  if (err) throw err;
-                  for (const file of files) {
-                    fs.unlink(path.join("tmp", file), err=> {
-                      if (err) throw err;
-                    });
-                  }
-                });
-
-                return res.status(200).json({ result: true });
-                //return res.status(200).json(result);
-              }
-            );
-          });
+      db.mysql_connection.query(sqlSentence, valueList, (err, result) => {
+        if (err) {
+          return res.status(500).json({ code: 500, message: err });
         }
-      );
+        //登録したcar_IDでpicture_pathを登録
+        const newId = result.insertId;
+        const updatePath =
+          "UPDATE cars SET picture_path = 'pictures/?' WHERE car_id = ?;";
+        db.mysql_connection.connect((err) => {
+          db.mysql_connection.query(
+            updatePath,
+            [newId, newId],
+            (err, result) => {
+              if (err) {
+                return res.status(500).json({ code: 500, message: err });
+              }
+              //画像を一時保存フォルダから移動
+              fex.copySync("tmp", "picture/" + newId);
+              //tmp内の画像全削除
+              fs.readdir("tmp", (err, files) => {
+                if (err) throw err;
+                for (const file of files) {
+                  fs.unlink(path.join("tmp", file), (err) => {
+                    if (err) throw err;
+                  });
+                }
+              });
+
+              return res.status(200).json({ result: true });
+              //return res.status(200).json(result);
+            }
+          );
+        });
+      });
     });
-   });
-
-
+  });
 
 //オークション登録フラグをたてるPUTのAPI
 router.route(CAR_END_POINT).put(async (req, res) => {
-    //値取得
-    const body = req.body;
-    const carId = body.car_id;
+  //値取得
+  const body = req.body;
+  const carId = body.car_id;
 
-    //DB処理
-    //UPDATEしてからSELECT
-    db.mysql_connection.connect((err) => {
-      db.mysql_connection.query(
-        "UPDATE cars SET register_flg = 1 WHERE car_id = ?;SELECT car_id,picture_path,type_name,purchace_price,register_flg FROM cars;",
-        [carId],
-        (err, result) => {
-          if (err) {
-            return res.status(500).json({ code: 500, message: err });
-          }
-          return res.status(200).json(result[1]);
+  //DB処理
+  //UPDATEしてからSELECT
+  db.mysql_connection.connect((err) => {
+    db.mysql_connection.query(
+      "UPDATE cars SET register_flg = 1 WHERE car_id = ?;SELECT car_id,picture_path,type_name,purchace_price,register_flg FROM cars;",
+      [carId],
+      (err, result) => {
+        if (err) {
+          return res.status(500).json({ code: 500, message: err });
         }
+        return res.status(200).json(result[1]);
+      }
     );
   });
 });
 
 //車両登録画面を表示するGETのAPI
-router.route(CAR_END_POINT).get((req, res) => {
-  res.status("200").render("emp_car_register.ejs");
-  // res.status("200").render("mae_test.ejs");
+router.route(CAR_END_POINT).get(async (req, res) => {
+  return !(await auth(req))
+    ? res.status("200").redirect("/login")
+    : res.status("200").render("emp_car_register.ejs");
 });
 
 module.exports = router;

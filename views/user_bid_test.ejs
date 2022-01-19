@@ -18,7 +18,7 @@ price:<input type="text" name="" id="price">
 <script src="/socket.io/socket.io.js"></script>
 <script>
     const SocketIo = io();
-    let userId = 1//qookieからuserIdを取得　今は任意のidに変えてテストしてね
+    let userId = 1//cookieからuserIdを取得　今は任意のidに変えてテストしてね
     //test用ユーザーID
     const changeUserId = () => {
         userId = document.getElementById('uid').value

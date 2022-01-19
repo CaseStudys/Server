@@ -3,7 +3,7 @@ const app = express();
 const PORT = process.env.PORT || 8080;
 const cors = require("cors");
 const db = require("./db");
-//const cron = require("node-cron");
+
 const employeeRouter = require("./routers/employee/route.js");
 const exhibitRouter = require("./routers/exhibit/route.js");
 const testRouter = require("./routers/test/route.js");
