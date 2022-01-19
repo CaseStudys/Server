@@ -3,6 +3,7 @@ const express = require("express");
 const db = require("../../db"); //db処理で使う。
 const router = express.Router(); //api定義で使う。これを使えばファイル分割してapi作れる。
 const BID_END_POINT = "/bid"; //APIのURL
+const auth = require("../../authentication");
 
 const selectExhibit =
   "SELECT * FROM cars c LEFT JOIN exhibits e ON c.car_id = e.car_id where e.car_id = ?;";
@@ -10,6 +11,8 @@ const selectHighestBid =
   "SELECT * FROM bids WHERE exhibit_id = (SELECT exhibit_id FROM exhibits WHERE car_id = ? LIMIT 1) ORDER BY price DESC LIMIT 1;";
 
 router.route(`${BID_END_POINT}/:car_id`).get(async (req, res) => {
+  if (!(await auth(req))) return res.redirect("/login"); //cookie認証に失敗した場合「/login」にリダイレクト
+
   const carId = req.params.car_id;
   //DB処理
   db.mysql_connection.connect(async (err) => {
