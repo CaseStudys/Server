@@ -12,17 +12,24 @@ router.route(USER_END_POINT).get((req, res) => {
     const body = req.body;
     const userId = body.user_id;
 
+    //一つ前の月を取得
+    const date = new Date();
+    const lastMounth = new Date(date.getFullYear(), date.getMonth()-1, date.getDate());
+    const requestMounth = lastMounth.getFullYear()+"-"+(lastMounth.getMonth()+1)+'%';
+
     //sql文生成
     //ユーザー情報取得
     const selectUser = "SELECT name,phone_number FROM users WHERE user_id = ?;";
     //取引車両情報取得
-    const selectTransaction = "SELECT c.car_id,c.type_name,p.price,p.due_date,p.deposit_apply_flg,p.payment_flg,c.picture_path FROM users u LEFT JOIN projects p ON u.user_id = p.buyer_id LEFT JOIN exhibits e ON p.exhibit_id = e.exhibit_id LEFT JOIN cars c ON e.car_id = c.car_id WHERE p.buyer_id = ? AND p.cancel_flg = 0;";
+    const selectTransaction = "SELECT p.project_id,c.car_id,c.type_name,p.price,p.due_date,p.deposit_apply_flg,p.payment_flg,c.picture_path FROM users u LEFT JOIN projects p ON u.user_id = p.buyer_id LEFT JOIN exhibits e ON p.exhibit_id = e.exhibit_id LEFT JOIN cars c ON e.car_id = c.car_id WHERE p.buyer_id = ? AND p.cancel_flg = 0;";
+    //先月１ヶ月間の購入台数と総額
+    const lastProjects = "SELECT COUNT(*) AS NumOfunits,SUM(total_price) AS total_price FROM projects WHERE purchase_date LIKE ? AND cancel_flg = 0;";
 
     //DB処理
     db.mysql_connection.connect((err) => {
-        const placeHolder = [userId, userId];
+        const placeHolder = [userId, userId, requestMounth];
         db.mysql_connection.query(
-        selectUser+selectTransaction,
+        selectUser+selectTransaction+lastProjects,
         placeHolder,
         (err, result) => {
             if (err) {
@@ -32,7 +39,7 @@ router.route(USER_END_POINT).get((req, res) => {
 
             //テスト用
             //return res.status(200).json(result);//値確認
-            // return res.status("200").render("get_test.ejs", {values: result});//ejs確認
+            //return res.status("200").render("get_test.ejs", {values: result});//ejs確認
         }
         );
     });
@@ -47,12 +54,16 @@ router.route(USER_END_POINT).put((req, res) => {
     const userId = body.user_id;
     const projectId = body.project_id;
 
-    //日時取得
+    //現在の日時取得
     var date = new Date();
     var year = date.getFullYear();
     var month = date.getMonth()+1;
     var day = date.getDate();
     const cancelDate = year+"-"+month+"-"+day;
+
+    //一つ前の月を取得
+    const lastMounth = new Date(date.getFullYear(), date.getMonth()-1, date.getDate());
+    const requestMounth = lastMounth.getFullYear()+"-"+(lastMounth.getMonth()+1)+'%';
 
     //sql文生成
     //取引キャンセルフラグをたてる
@@ -67,7 +78,9 @@ router.route(USER_END_POINT).put((req, res) => {
     //ユーザー情報取得
     const selectUser = "SELECT name,phone_number FROM users WHERE user_id = ?;";
     //取引車両情報取得
-    const selectTransaction = "SELECT c.car_id,c.type_name,p.price,p.due_date,p.deposit_apply_flg,p.payment_flg,c.picture_path FROM users u LEFT JOIN projects p ON u.user_id = p.buyer_id LEFT JOIN exhibits e ON p.exhibit_id = e.exhibit_id LEFT JOIN cars c ON e.car_id = c.car_id WHERE p.buyer_id = ? AND p.cancel_flg = 0;";
+    const selectTransaction = "SELECT p.project_id,c.car_id,c.type_name,p.price,p.due_date,p.deposit_apply_flg,p.payment_flg,c.picture_path FROM users u LEFT JOIN projects p ON u.user_id = p.buyer_id LEFT JOIN exhibits e ON p.exhibit_id = e.exhibit_id LEFT JOIN cars c ON e.car_id = c.car_id WHERE p.buyer_id = ? AND p.cancel_flg = 0;";
+    //先月１ヶ月間の購入台数と総額
+    const lastProjects = "SELECT COUNT(*) AS NumOfunits,SUM(total_price) AS total_price FROM projects WHERE purchase_date LIKE ? AND cancel_flg = 0;";
 
     //DB処理
     db.mysql_connection.connect((err) => {
@@ -83,9 +96,9 @@ router.route(USER_END_POINT).put((req, res) => {
             const carID = result[2][0].car_id;
             //return res.status(200).json(result[2][0].car_id);//値確認
             db.mysql_connection.connect((err) => {
-                const placeHolder = [carID, userId, userId];
+                const placeHolder = [carID, userId, userId, requestMounth];
                 db.mysql_connection.query(
-                updateRegisterCancel+selectUser+selectTransaction,
+                updateRegisterCancel+selectUser+selectTransaction+lastProjects,
                 placeHolder,
                 (err, result) => {
                     if (err) {
