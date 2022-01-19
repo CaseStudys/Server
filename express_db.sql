@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- ホスト: mysql:3306
--- 生成日時: 2022 年 1 月 18 日 09:50
+-- 生成日時: 2022 年 1 月 19 日 09:11
 -- サーバのバージョン： 5.7.36
 -- PHP のバージョン: 7.4.20
 
@@ -70,14 +70,14 @@ CREATE TABLE `cars` (
   `purchace_price` int(8) NOT NULL,
   `supplier` varchar(30) NOT NULL,
   `comment` text NOT NULL,
-  `picture_pass` varchar(50) DEFAULT NULL
+  `picture_path` varchar(50) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- テーブルのデータのダンプ `cars`
 --
 
-INSERT INTO `cars` (`car_id`, `employee_id`, `register_flg`, `age`, `type_name`, `maker`, `displacement`, `model_age`, `grade`, `model`, `repair`, `capacity`, `door_number`, `shape`, `loading_capacity`, `milage`, `transmission`, `drive_system`, `inspection_deadline`, `manual`, `evaluation`, `handle`, `exterior_color`, `exterior_color_number`, `interior_color`, `purchace_price`, `supplier`, `comment`, `picture_pass`) VALUES
+INSERT INTO `cars` (`car_id`, `employee_id`, `register_flg`, `age`, `type_name`, `maker`, `displacement`, `model_age`, `grade`, `model`, `repair`, `capacity`, `door_number`, `shape`, `loading_capacity`, `milage`, `transmission`, `drive_system`, `inspection_deadline`, `manual`, `evaluation`, `handle`, `exterior_color`, `exterior_color_number`, `interior_color`, `purchace_price`, `supplier`, `comment`, `picture_path`) VALUES
 (1, 1, 0, 2020, 'スープラ', 'トヨタ', 3000, 2019, 'RZ', '3BA-DB02', 0, 2, 3, 'クーペ・スポーツ・スペシャリティ', 0, 17000, '8AT', 'FR', '2023-10-01', 1, '4.5', '右', '灰Ｍ', 'D02', '黒', 5600000, 'AAモータース', 'ＲＺ　フルセグ　ＨＤＤナビ　ミュージックプレイヤー接続可　衝突被害軽減システム　ＥＴＣ　ＬＥＤヘッドランプ　フルエアロ', 'pictures/1'),
 (2, 2, 1, 2016, 'アルファード', 'トヨタ', 3500, 2015, '3.5SA', 'DBA-GGH35W', 0, 7, 5, 'ミニバン・ワンボックス', 0, 95000, '6AT', '4WD', '2023-01-01', 1, '3.5', '右', '黒', '202', '黒', 2420000, 'BB自動車工業', '', 'pictures/2'),
 (3, 1, 1, 2017, 'プリウス', 'トヨタ', 1800, 2015, 'S ツーリングセレクション', 'DAA-ZVW50', 0, 5, 5, 'セダン', 0, 31000, 'CVT', 'FF', '2024-03-01', 1, '4', '右', '赤', '3T7', 'グレー', 1642000, 'CC自動車工業', '【クルーズコントロール】高速道路もラクラク走行。アクセルを離しても一定速度で走行ができ、長距離運転時の負担を軽減！加速・減速も簡単なスイッチ操作で調整できます。\r\n【シートヒーター】寒い日に重宝するシートヒーター！エアコンより早く温まってくれるので寒がりの人も安心ですね♪エアコンの温風は乾燥するから苦手、という方にもをおすすめです。\r\n【純正アルミホイール】外観にマッチした純正アルミホイールを装着しております。各種社外アルミホイールや、スタッドレスタイヤも取扱いしております。是非ご相談ください♪', 'pictures/3'),
@@ -191,7 +191,7 @@ CREATE TABLE `users` (
 
 INSERT INTO `users` (`user_id`, `distinction`, `name`, `birthday`, `address`, `phone_number`, `password`, `trust_flg`, `cancel_date`) VALUES
 (1, '0', 'テスト１', '2021-11-01', '大阪府大阪市北区wwww-aaaa', '07011112222', '11111', 0, NULL),
-(2, '0', 'テスト２', '2021-08-09', '奈良県奈良市xxxx-7777', '08011112222', '22222', 0, '2021-12-24'),
+(2, '0', 'テスト２', '2021-08-09', '奈良県奈良市xxxx-7777', '08011112222', '22222', 0, '2022-01-19'),
 (3, '0', 'テスト３', '2015-03-04', '北海道札幌市xxxx-aaa', '09011112222', '33333', 0, NULL),
 (8, '0', '前田test', '2000-05-12', 'Osaka', '07022221111', 'pass', 0, NULL);
 
