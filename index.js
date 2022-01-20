@@ -300,6 +300,7 @@ const closingReservation = () => {
         for (let f of result) {
           traderIds.push(f.user_id);
         }
+        if (traderIds.length === 0) return;
         db.mysql_connection.query(
           "UPDATE projects SET payment_flg = 1,deposit_apply_flg = 1 WHERE buyer_id IN (?)",
           [traderIds],
