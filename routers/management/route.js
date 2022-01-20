@@ -14,12 +14,12 @@ router.route(MANAGEMENT_END_POINT).get(async (req, res) => {
   //取引中
   const nowProject =
     "SELECT c.car_id,c.picture_path,c.type_name,p.price FROM cars c LEFT JOIN exhibits e ON c.car_id = e.car_id LEFT JOIN projects p ON e.exhibit_id = p.exhibit_id WHERE p.project_id IS NOT NULL;";
-  //出品中
+  //オークション登録中
   const nowExhibit =
-    "SELECT c.car_id,c.picture_path,c.type_name,c.purchace_price FROM cars c LEFT JOIN exhibits e ON c.car_id = e.car_id LEFT JOIN projects p ON e.exhibit_id = p.exhibit_id WHERE e.exhibit_id IS NOT NULL AND p.project_id IS NULL;";
-  //取引中と出品中を除いた全車両
+    "SELECT c.car_id,c.picture_path,c.type_name,c.purchace_price FROM cars c LEFT JOIN exhibits e ON c.car_id = e.car_id WHERE register_flg = 1 AND e.exhibit_id IS NULL;"
+  //取引中とオークション登録中を除いた全車両
   const withoutProEx =
-    "SELECT c.car_id,c.picture_path,c.type_name,c.purchace_price,c.register_flg FROM cars c LEFT JOIN exhibits e ON c.car_id = e.car_id LEFT JOIN projects p ON e.exhibit_id = p.exhibit_id WHERE e.exhibit_id IS NULL AND p.project_id IS NULL;";
+    "SELECT car_id,picture_path,type_name,purchace_price,register_flg FROM cars WHERE register_flg =0;";
   //全車両
   //const allCars = "SELECT car_id,picture_path,type_name,purchace_price,register_flg FROM cars";
 
@@ -31,9 +31,7 @@ router.route(MANAGEMENT_END_POINT).get(async (req, res) => {
         if (err) {
           return res.status(500).json({ code: 500, message: err });
         }
-        return res
-          .status("200")
-          .render("emp_exhibit_management.ejs", { values: result });
+        return res.status("200").render("emp_exhibit_management.ejs", { values: result });
 
         //テスト用
         //return res.status(200).json(result);//データ確認
