@@ -47,6 +47,7 @@
 </html>
 
 <script>
+
     const postRequest = () => {
         const distinction = document.getElementById("distinction").value; //distinction取得
         const birthday = document.getElementById("birthday").value; //birthday取得
@@ -72,7 +73,9 @@
             })
         }
 
-        fetch('/user/signup', param);
+        fetch('/user/signup', param).then((res) => {
+            res.json().then(data => data.result ? window.location.href='http://localhost:8080/auction' : alert('ユーザー登録に失敗しました'))
+        })
     }
 
 </script>
