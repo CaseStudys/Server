@@ -35,6 +35,7 @@ router.route(FLG_END_POINT).put(async (req, res) => {
     const projectId = body.project_id;
     var cullumName = "";
     var flgValue = null;
+    var addFee = 0;
 
     switch (keyList[1]) {//代入処理
 
@@ -48,12 +49,14 @@ router.route(FLG_END_POINT).put(async (req, res) => {
       case "repair_service_flg":
         cullumName = keyList[1];
         flgValue = body.repair_service_flg;
+        addFee = 50000;
         break;
 
       //(会員)PUT車検フラグ
       case "car_inspection_service_flg":
         cullumName = keyList[1];
         flgValue = body.car_inspection_service_flg;
+        addFee = 100000;
         break;
 
       //(会員)PUT支払いフラグ
@@ -93,11 +96,17 @@ router.route(FLG_END_POINT).put(async (req, res) => {
         break;
     }
 
+    //sql文生成
+    //フラグたてる
+    const updateFlg = "UPDATE projects SET "+cullumName+" = ? WHERE project_id = ?;";
+    //料金加算
+    const addTotal = "UPDATE projects SET total_price = total_price + ? WHERE project_id = ?;";
+
     //DB処理
     db.mysql_connection.connect((err) => {
-      const placeholder = [flgValue, projectId];
+      const placeholder = [flgValue, projectId, addFee, projectId];
       db.mysql_connection.query(
-        "UPDATE projects SET "+cullumName+" = ? WHERE project_id = ?;",
+        updateFlg+addTotal,
         placeholder,
         (err, result) => {
           if (err) {
