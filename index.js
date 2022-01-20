@@ -3,6 +3,7 @@ const app = express();
 const PORT = process.env.PORT || 8080;
 const cors = require("cors");
 const db = require("./db");
+const cronJob = require("cron").CronJob;
 
 const employeeRouter = require("./routers/employee/route.js");
 const exhibitRouter = require("./routers/exhibit/route.js");
@@ -114,14 +115,13 @@ io_socket.on("connection", async (socket) => {
   });
 });
 
-/*------------------- 定時処理一括 -------------------- */
+/*------------------- 落札定時処理一括 -------------------- */
 //毎週土曜日当日に終了するオークション全ての落札処理を予約する。
-const cronJob = require("cron").CronJob;
 //毎週土曜深夜三時に実行;
-const cronTime = "0 3 * * 1";
+const endCronTime = "0 3 * * 1";
 //↑テストする場合 例 "5 15 * * 2"月曜にテストする場合、昼三時五分に実行されるようにする。
 new cronJob({
-  cronTime: cronTime,
+  cronTime: endCronTime,
   context: {},
   //アロー記法だと動きません。
   onTick: function () {
@@ -167,7 +167,7 @@ const createEndReservations = () => {
             endDate.setSeconds(endDate.getSeconds() + 5)
           );
           //定時処理を予約
-          createReservation(reservationDate, result);
+          createEndReservation(reservationDate, result);
         }
       }
     );
@@ -178,13 +178,12 @@ const createEndReservations = () => {
 その出品物の最高額入札者とその入札情報を取得し、projectsに登録
 入札者がいなかった場合、出品データを削除する。
 */
-const createReservation = (date, result) => {
-  const cronTime = date;
+const createEndReservation = (date, result) => {
+  const endCronTime = date;
   const data = result;
-  console.log("createReservation", date, data);
   //落札時の定時処理を予約
   new cronJob({
-    cronTime: cronTime,
+    cronTime: endCronTime,
     context: {
       data: data,
     },
@@ -263,3 +262,54 @@ const createReservation = (date, result) => {
 /*
 SELECT exhibits.exhibit_id,COALESCE(a.user_id,0) as user_id,COALESCE(b.price,0) as price,exhibits.start_date from bids a INNER JOIN (SELECT exhibit_id,MAX(price) AS price FROM bids GROUP BY exhibit_id) b ON a.price = b.price RIGHT JOIN exhibits ON b.exhibit_id = exhibits.exhibit_id WHERE DATE_FORMAT(exhibits.start_date, '%Y-%m-%d') = DATE_FORMAT(${fullDate}, '%Y-%m-%d')
 */
+
+/*------------------- 業者月末締め翌月払い定時処理一括 -------------------- */
+//月初めに...
+//select user_id,total_id from Project where 先月分　かつ　従業員　かつ総額にして取得して...
+//usersのtotal_priceに入れる。
+
+const closingCronTime = "0 3 1 * *"; //毎月1日の深夜3時に実行
+new cronJob({
+  cronTime: closingCronTime,
+  context: {},
+  //アロー記法だと動きません。
+  onTick: function () {
+    console.log("月締予約実行！！！");
+    closingReservation();
+  },
+  //動きません。。。なぜ？？（必要ないから大丈夫）
+  onComplete: function () {
+    console.log("done!!!!");
+  },
+  start: true,
+});
+
+const closingReservation = () => {
+  const nowDate = new Date();
+  const date = new Date();
+  const beforeDate = new Date(date.setMonth(date.getMonth() - 1));
+  const placeholder = [nowDate, beforeDate];
+  const test = ["2021-12-01", "2022-12-31"];
+  db.mysql_connection.connect((err) => {
+    db.mysql_connection.query(
+      "SELECT users.user_id from users LEFT JOIN projects ON users.user_id = projects.buyer_id WHERE projects.purchase_date >= ? and projects.purchase_date < ? and users.distinction = 1 GROUP BY users.user_id",
+      placeholder,
+      (err, result) => {
+        if (err) throw err;
+        const traderIds = [];
+        for (let f of result) {
+          traderIds.push(f.user_id);
+        }
+        db.mysql_connection.query(
+          "UPDATE projects SET payment_flg = 1,deposit_apply_flg = 1 WHERE buyer_id IN (?)",
+          [traderIds],
+          (err, result) => {
+            if (err) throw err;
+          }
+        );
+      }
+    );
+  });
+};
+
+closingReservation();
