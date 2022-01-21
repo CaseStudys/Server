@@ -114,10 +114,42 @@
     催促フラグ<input type="checkbox" name="reminder_flg" id="reminder_flg" value="1"><br>
     法的措置フラグ<input type="checkbox" name="illegal_action_flg" id="illegal_action_flg" value="1"><br>
 
-    <button type="submit">フラグ登録する</button>
+    <button type="submit" onclick="postRequest()">フラグ登録する</button>
   </main>
 
   <footer></footer>
 </body>
 
 </html>
+
+<script>
+  const postRequest = () => {
+    const distinction = document.getElementById("distinction").value; //distinction取得
+    const birthday = document.getElementById("birthday").value; //birthday取得
+    const name = document.getElementById("name").value; //name取得
+    const phone_number = document.getElementById("phone_number").value; //phone_number取得
+    const address = document.getElementById("address").value; //address取得
+    const password = document.getElementById("password").value; //password取得
+    const trust_flg = document.getElementById("trust_flg").value;//trust_flg取得
+
+    const param = {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json; charset=utf-8"
+      },
+      body: JSON.stringify({
+        distinction: distinction,
+        birthday: birthday,
+        name: name,
+        phone_number: phone_number,
+        address: address,
+        password: password,
+        trust_flg: trust_flg
+      })
+    }
+
+    fetch('/user/signup', param).then((res) => {
+      res.json().then(data => data.result ? window.location.href = 'http://localhost:8080/auction' : alert('ユーザー登録に失敗しました'))
+    })
+  }
+</script>
