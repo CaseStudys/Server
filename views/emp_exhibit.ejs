@@ -1,178 +1,219 @@
 <!DOCTYPE html>
 <html lang="ja">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>出品者 管理一覧ページ</title>
-  </head>
-  <style>
-    * {
-      margin: 0px;
-      padding: 0px;
-      list-style-type: none;
-      box-sizing: border-box;
-      text-decoration: none;
-    }
-    .none {
-      display: none;
-      /* ボックスごと非表示 */
-    }
-    .hidden {
-      text-indent: 100%;
-      white-space: nowrap; /* 改行せずに表示 */
-      overflow: hidden;
-      /* ボックスの中身が不可視 */
-    }
-    body {
-      width: 100%;
-      height: 100%;
-    }
-    header {
-      width: 100%;
-      height: 80px;
-      display: flex;
-      font-size: 25px;
-      align-items: center;
-      background-color: aqua;
-      text-align: center;
-      margin: 0 auto;
-    }
 
-    .logo {
-      width: 55%;
-      text-align: right;
-    }
-    .header_r {
-      width: 40%;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-    }
-    .header_r > li {
-      margin: 15px;
-    }
-    .header_r > li > button {
-      color: #fff;
-      background-color: #eb6100;
-      border: 1px solid gray;
-      width: 100px;
-      height: 40px;
-    }
-    .login_name {
-      font-size: 20px;
-    }
-    .login_box {
-      width: 40%;
-      height: 300px;
-      background-color: rgb(225, 222, 222);
-      border-radius: 8px;
-    }
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>出品者 管理一覧ページ</title>
+</head>
+<style>
+  * {
+    margin: 0px;
+    padding: 0px;
+    list-style-type: none;
+    box-sizing: border-box;
+    text-decoration: none;
+  }
 
-    /* ---- main ---- */
-    main {
-      width: 80%;
-      display: flex;
-      justify-content: center;
-      margin: 0 auto;
-      /* background-color: red; */
-    }
-    /* ボタン */
-    .button {
-      display: flex;
-      justify-content: space-around;
-      margin: 20px;
-    }
+  .none {
+    display: none;
+    /* ボックスごと非表示 */
+  }
 
-    .main_button > li {
-      margin: 5px;
-    }
+  .hidden {
+    text-indent: 100%;
+    white-space: nowrap;
+    /* 改行せずに表示 */
+    overflow: hidden;
+    /* ボックスの中身が不可視 */
+  }
 
-    .main_button > li > button {
-      width: 120px;
-      height: 30px;
-    }
+  body {
+    width: 100%;
+    height: 100%;
+  }
 
-    /* 項目エリア */
-    .content_area {
-      margin: 20px auto;
-      /* background-color: #eb6100; */
-    }
+  header {
+    width: 100%;
+    height: 80px;
+    display: flex;
+    font-size: 25px;
+    align-items: center;
+    background-color: aqua;
+    text-align: center;
+    margin: 0 auto;
+  }
 
-    /* 項目名 */
-    .title_name {
-      font-size: 20px;
-      font-weight: bold;
-      text-align: center;
-      padding: 30px;
-    }
-    .price {
-      text-align: right;
-      margin-right: 5px;
-    }
-    .card_flex {
-      width: 100%;
-      display: flex;
-    }
-    /* 車両のカードレイアウト */
-    .card {
-      width: 300px;
-      height: 300px;
-      margin: 20px;
-      background-color: aquamarine;
-      border-radius: 8px;
-    }
-    .card_img {
-      width: 300px;
-      height: 200px;
-      background-color: black;
-    }
-  </style>
-  <body>
-    <header>
-      <p class="logo">
-        <a href="/management"> LOGO 社名 </a>
-      </p>
+  .logo {
+    width: 55%;
+    text-align: right;
+  }
 
-      <ul class="header_r">
-        <li>
-          <button>
-            <a href="/car"> 車両登録</a>
-          </button>
-        </li>
-        <li class="login_name">ログイン指名</li>
-      </ul>
-    </header>
-    <main>
-      <div>
-        <h1><%= console.log(values) %>様の</h1>
+  .header_r {
+    width: 40%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .header_r>li {
+    margin: 15px;
+  }
+
+  .header_r>li>button {
+    color: #fff;
+    background-color: #eb6100;
+    border: 1px solid gray;
+    width: 100px;
+    height: 40px;
+  }
+
+  .login_name {
+    font-size: 20px;
+  }
+
+  .login_box {
+    width: 40%;
+    height: 300px;
+    background-color: rgb(225, 222, 222);
+    border-radius: 8px;
+  }
+
+  /* ---- main ---- */
+  main {
+    width: 80%;
+    display: flex;
+    justify-content: center;
+    margin: 0 auto;
+    /* background-color: red; */
+  }
+
+  /* ボタン */
+  .button {
+    display: flex;
+    justify-content: space-around;
+    margin: 20px;
+  }
+
+  .main_button>li {
+    margin: 5px;
+  }
+
+  .main_button>li>button {
+    width: 120px;
+    height: 30px;
+  }
+
+  /* 項目エリア */
+  .content_area {
+    margin: 20px auto;
+    /* background-color: #eb6100; */
+  }
+
+  /* 項目名 */
+  .title_name {
+    font-size: 20px;
+    font-weight: bold;
+    text-align: center;
+    padding: 30px;
+  }
+
+  .price {
+    text-align: right;
+    margin-right: 5px;
+  }
+
+  .card_flex {
+    width: 100%;
+    display: flex;
+  }
+
+  /* 車両のカードレイアウト */
+  .card {
+    width: 300px;
+    height: 300px;
+    margin: 20px;
+    background-color: aquamarine;
+    border-radius: 8px;
+  }
+
+  .card_img {
+    width: 300px;
+    height: 200px;
+    background-color: black;
+  }
+</style>
+
+<body>
+  <header>
+    <p class="logo">
+      <a href="/management"> LOGO 社名 </a>
+    </p>
+
+    <ul class="header_r">
+      <li>
+        <button>
+          <a href="/car"> 車両登録</a>
+        </button>
+      </li>
+      <li class="login_name">ログイン指名</li>
+    </ul>
+  </header>
+  <main>
+    <div>
+      <h1>
+        <%= console.log(values) %>様の
+      </h1>
 
 
-        <div class="content_area">
-          <p class="title_name">車両登録一覧</p>
-          <div class="card_flex">
-            <!-- 1枚目 -->
-            <% for (var i = 0; i < values.length; i++) { %>
+      <div class="content_area">
+        <p class="title_name">車両登録一覧</p>
+        <div class="card_flex">
+          <!-- 1枚目 -->
+          <% for (var i=0; i < values.length; i++) { %>
             <div class="card">
-              <img
-                class="card_img"
-                src="<%= values[i].picture_path %>"
-                alt=""
-              />
-              <button>カレンダー</button>
-              <button>出品予約</button>
-              <p>車両ID:<%= values[i].car_id %></p>
-              <p>車種名:<%= values[i].type_name %></p>
+              <img class="card_img" src="<%= values[i].picture_path %>" alt="" />
+              <input type="date" name="start_date" id="start_date<%= values[i].car_id %>" required>
+              <input type="hidden" id="car_id" name="car_id" value="<%= values[i].car_id %>">
+              <button onclick="requestExhibit_post('<%= values[i].car_id %>')">出品予約</button>
+              <p>車両ID:<%= values[i].car_id %>
+              </p>
+              <p>車種名:<%= values[i].type_name %>
+              </p>
               <p>仕入れ金額:<%= values[i].purchace_price %>円</p>
 
             </div>
             <% } %>
-          </a>
-          </div>
+              </a>
         </div>
       </div>
-    </main>
+    </div>
+  </main>
 
-    <footer></footer>
-  </body>
+  <footer></footer>
+</body>
+
 </html>
+
+<script>
+  //exhibitのPOST
+  const requestExhibit_post = (car_id) => {
+    const startDate = document.getElementById(`start_date${car_id}`).value;
+
+    const param = {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json; charset=utf-8"
+      },
+      body: JSON.stringify({
+        car_id: car_id,
+        start_date: startDate
+      })
+    }
+
+    fetch('/exhibit', param).then(() => {
+      window.location.href = 'http://localhost:8080/exhibit';
+    })
+  }
+</script>
