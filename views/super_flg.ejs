@@ -97,25 +97,21 @@
     </ul>
   </header>
   <main>
-    <p>
-      <% console.log(values) %>
-    </p>
-
     ユーザーID：<input type="text" id="user_id" name="user_id"><br>
-    信用フラグ<button type="submit" name="trust_flg" id="trust_flg"><br>
-      <hr>
-      プロジェクトID：<button type="text" name="project_id" id="project_id" value="1"><br>
-        書類フラグ<button type="button" name="documents_flg" id="documents_flg" value="1"><br>
-          修理フラグ<button type="button" name="repair_service_id" id="repair_service_id" value="1"><br>
-            車検フラグ<button type="button" name="car_inspection_service_id" id="car_inspection_service_id" value="1"><br>
-              支払いフラグ<button type="button" name="payment_flg" id="payment_flg" value="1"><br>
-                受け取り連絡フラグ<button type="button" name="receipt_contact_flg" id="receipt_contact_flg" value="1"><br>
-                  消込フラグ<button type="button" name="deposit_apply_flg" id="deposit_apply_flg" value="1"><br>
-                    出荷フラグ<button type="button" name="shipped_flg" id="shipped_flg" value="1"><br>
-                      催促フラグ<button type="button" name="reminder_flg" id="reminder_flg" value="1"><br>
-                        法的措置フラグ<button type="button" name="illegal_action_flg" id="illegal_action_flg" value="1"><br>
+    <button type="submit" name="trust_flg" id="trust_flg" value="1">信用フラグ</button><br>
+    <hr>
+    プロジェクトID：<input type="text" name="project_id" id="project_id"><br>
+    <button type="submit" name="documents_flg" id="documents_flg" value="1">書類フラグ</button><br>
+    <button type="submit" name="repair_service_id" id="repair_service_id" value="1">修理フラグ</button><br>
+    <button type="submit" name="car_inspection_service_id" id="car_inspection_service_id" value="1">車検フラグ</button><br>
+    <button type="submit" name="payment_flg" id="payment_flg" value="1">支払いフラグ</button><br>
+    <button type="submit" name="receipt_contact_flg" id="receipt_contact_flg" value="1">受け取り連絡フラグ</button><br>
+    <button type="submit" name="deposit_apply_flg" id="deposit_apply_flg" value="1">消込フラグ</button><br>
+    <button type="submit" name="shipped_flg" id="shipped_flg" value="1">出荷フラグ</button><br>
+    <button type="submit" name="reminder_flg" id="reminder_flg" value="1">催促フラグ</button><br>
+    <button type="submit" name="illegal_action_flg" id="illegal_action_flg" value="1">法的措置フラグ</button><br>
 
-                          <button type="submit" onclick="postRequest()">フラグ登録する</button>
+    <button type="submit" onclick="postRequest()">フラグ登録する</button>
   </main>
 
   <footer></footer>
