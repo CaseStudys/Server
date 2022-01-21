@@ -1,255 +1,229 @@
 <!DOCTYPE html>
 <html lang="ja">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>車両情報登録</title>
-  </head>
-  <style>
-    * {
-      margin: 0px;
-      padding: 0px;
-      list-style-type: none;
-      box-sizing: border-box;
-      text-decoration: none;
-    }
-    .none {
-      display: none;
-      /* ボックスごと非表示 */
-    }
-    .hidden {
-      text-indent: 100%;
-      white-space: nowrap; /* 改行せずに表示 */
-      overflow: hidden;
-      /* ボックスの中身が不可視 */
-    }
-    body {
-      width: 100%;
-      height: 100%;
-    }
-    header {
-      width: 100%;
-      height: 80px;
-      display: flex;
-      font-size: 25px;
-      align-items: center;
-      background-color: aqua;
-      text-align: center;
-      margin: 0 auto;
-    }
 
-    .logo {
-      width: 55%;
-      text-align: right;
-    }
-    .header_r {
-      width: 40%;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-    }
-    .header_r > li {
-      margin: 15px;
-    }
-    .header_r > li > button {
-      color: #fff;
-      background-color: #eb6100;
-      border: 1px solid gray;
-      width: 100px;
-      height: 40px;
-    }
-    .login_name {
-      font-size: 20px;
-    }
-    .login_box {
-      width: 40%;
-      height: 300px;
-      background-color: rgb(225, 222, 222);
-      border-radius: 8px;
-    }
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>車両情報登録</title>
+</head>
+<style>
+  * {
+    margin: 0px;
+    padding: 0px;
+    list-style-type: none;
+    box-sizing: border-box;
+    text-decoration: none;
+  }
 
-    /* ---- main ---- */
-    main {
-      width: 80%;
-      display: flex;
-      justify-content: center;
-      margin: 0 auto;
-      /* background-color: red; */
-    }
-    a {
-      color: black;
-    }
-  </style>
-  <body>
-    <header>
-      <p class="logo">
-        <a href="/management"> LOGO 社名 </a>
-      </p>
+  .none {
+    display: none;
+    /* ボックスごと非表示 */
+  }
 
-      <ul class="header_r">
-        <li>
-          <button>
-            <a href="/car"> 車両登録 </a>
-          </button>
-        </li>
-        <li class="login_name">ログイン指名</li>
-      </ul>
-    </header>
+  .hidden {
+    text-indent: 100%;
+    white-space: nowrap;
+    /* 改行せずに表示 */
+    overflow: hidden;
+    /* ボックスの中身が不可視 */
+  }
 
-    <h1>車両登録</h1>
+  body {
+    width: 100%;
+    height: 100%;
+  }
 
-    <!-- 登録者ID employee_id -->
+  header {
+    width: 100%;
+    height: 80px;
+    display: flex;
+    font-size: 25px;
+    align-items: center;
+    background-color: aqua;
+    text-align: center;
+    margin: 0 auto;
+  }
 
-    <!-- オークション登録フラグ -->
-    <label for="registerFlg">
-      オークション登録フラグ:<input
-        type="text"
-        name="registerFlg"
-        id="registerFlg"
-      /> </label
-    ><br />
+  .logo {
+    width: 55%;
+    text-align: right;
+  }
 
-    <!-- 年式 -->
-    <label for="age"> 年式:<input name="age" id="age" /></label><br />
+  .header_r {
+    width: 40%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
 
-    <!-- 車両名 -->
-    <label for="type_name">
-      車両名:<input type="text" name="type_name" id="type_name" /> </label
-    ><br />
+  .header_r>li {
+    margin: 15px;
+  }
 
-    <!-- メーカー -->
-    <label for="maker">
-      メーカー:<input type="text" name="maker" id="maker" /> </label
-    ><br />
+  .header_r>li>button {
+    color: #fff;
+    background-color: #eb6100;
+    border: 1px solid gray;
+    width: 100px;
+    height: 40px;
+  }
 
-    <!-- 排気量 -->
-    <label for="displacement">
-      排気量:<input type="text" name="displacement" id="displacement" /> </label
-    ><br />
+  .login_name {
+    font-size: 20px;
+  }
 
-    <!-- モデル年式 -->
-    <label for="model_age">
-      モデル年式:<input name="model_age" id="model_age" /></label
-    ><br />
+  .login_box {
+    width: 40%;
+    height: 300px;
+    background-color: rgb(225, 222, 222);
+    border-radius: 8px;
+  }
 
-    <!-- グレード -->
-    <label for="grade">
-      グレード:<input type="text" name="grade" id="grade" /> </label
-    ><br />
+  /* ---- main ---- */
+  main {
+    width: 80%;
+    display: flex;
+    justify-content: center;
+    margin: 0 auto;
+    /* background-color: red; */
+  }
 
-    <!-- 型式 -->
-    <label for="model">
-      型式:<input type="text" name="model" id="model" />
-    </label>
-    <br />
+  a {
+    color: black;
+  }
+</style>
 
-    <!-- 修復歴 -->
-    <label for="repair"> 修復歴:<input name="repair" id="repair" /> </label
-    ><br />
+<body>
+  <header>
+    <p class="logo">
+      <a href="/management"> LOGO 社名 </a>
+    </p>
 
-    <!-- 定員 -->
-    <label for="capacity"> 定員:<input name="capacity" id="capacity" /> </label>
-    <br />
+    <ul class="header_r">
+      <li>
+        <button>
+          <a href="/car"> 車両登録 </a>
+        </button>
+      </li>
+      <li class="login_name">ログイン指名</li>
+    </ul>
+  </header>
 
-    <!-- ドア数 -->
-    <label for="door_number">
-      ドア数:<input name="door_number" id="door_number" /> </label
-    ><br />
+  <h1>車両登録</h1>
 
-    <!-- 形状 -->
-    <label for="shape">
-      形状:<input type="text" name="shape" id="shape" /> </label
-    ><br />
+  <!-- 登録者ID employee_id -->
 
-    <!-- 最大積載量 -->
-    <label for="loading_capacity">
-      最大積載量:<input
-        type="text"
-        name="loading_capacity"
-        id="loading_capacity"
-      /> </label
-    ><br />
+  <!-- オークション登録フラグ -->
+  <label for="registerFlg">
+    オークション登録フラグ:<input type="text" name="registerFlg" id="registerFlg" /> </label><br />
 
-    <!-- 走行距離 -->
-    <label for="milage">
-      走行距離:<input type="text" name="milage" id="milage" /><br />
-    </label>
+  <!-- 年式 -->
+  <label for="age"> 年式:<input name="age" id="age" /></label><br />
 
-    <!-- トランスミッション -->
-    <label for="transmission">
-      トランスミッション:<input
-        type="text"
-        name="transmission"
-        id="transmission"
-      />
-    </label>
-    <br />
+  <!-- 車両名 -->
+  <label for="type_name">
+    車両名:<input type="text" name="type_name" id="type_name" /> </label><br />
 
-    <!-- 駆動方式 -->
-    <label for="drive_system">
-      駆動方式:<input name="drive_system" id="drive_system" /> </label
-    ><br />
+  <!-- メーカー -->
+  <label for="maker">
+    メーカー:<input type="text" name="maker" id="maker" /> </label><br />
 
-    <!-- 検査期限 -->
-    <label for="inspection_deadline">
-      検査期限:<input
-        name="inspection_deadline"
-        id="inspection_deadline" /></label
-    ><br />
+  <!-- 排気量 -->
+  <label for="displacement">
+    排気量:<input type="text" name="displacement" id="displacement" /> </label><br />
 
-    <!-- 取扱説明書 -->
-    <label for="manual"> 取扱説明書:<input name="manual" id="manual" /></label
-    ><br />
-    <!-- 評価点 -->
+  <!-- モデル年式 -->
+  <label for="model_age">
+    モデル年式:<input name="model_age" id="model_age" /></label><br />
 
-    <!-- 外装色 -->
-    <label for="exterior_color">
-      外装色:<input
-        type="text"
-        name="exterior_color"
-        id="exterior_color"
-      /> </label
-    ><br />
+  <!-- グレード -->
+  <label for="grade">
+    グレード:<input type="text" name="grade" id="grade" /> </label><br />
 
-    <!-- 外装カラーナンバー -->
-    <label for="exterior_color_number">
-      外装カラーナンバー:<input
-        type="text"
-        name="exterior_color_number"
-        id="exterior_color_number"
-      /> </label
-    ><br />
+  <!-- 型式 -->
+  <label for="model">
+    型式:<input type="text" name="model" id="model" />
+  </label>
+  <br />
 
-    <!-- ハンドル -->
-    <label for="handle"> ハンドル:<input name="handle" id="handle" /> </label>
-    <br />
+  <!-- 修復歴 -->
+  <label for="repair"> 修復歴:<input name="repair" id="repair" /> </label><br />
 
-    <!-- 内装色 -->
-    <label for="interior_color">
-      内装色：<input
-        type="text"
-        name="interior_color"
-        id="interior_color"
-      /> </label
-    ><br />
+  <!-- 定員 -->
+  <label for="capacity"> 定員:<input name="capacity" id="capacity" /> </label>
+  <br />
 
-    <!-- 仕入れ金額 -->
-    <label for="purchace_price">
-      仕入れ金額:<input name="purchace_price" id="purchace_price" />
-    </label>
-    <br />
+  <!-- ドア数 -->
+  <label for="door_number">
+    ドア数:<input name="door_number" id="door_number" /> </label><br />
 
-    <!-- 仕入れ先　-->
-    <label for="supplier">
-      仕入れ先　:<input name="supplier" id="supplier" /> </label
-    ><br />
+  <!-- 形状 -->
+  <label for="shape">
+    形状:<input type="text" name="shape" id="shape" /> </label><br />
 
-    <!-- コメント -->
-    <label for="comment">
-      コメント:<input type="text" name="comment" id="comment" /> </label
-    ><br />
+  <!-- 最大積載量 -->
+  <label for="loading_capacity">
+    最大積載量:<input type="text" name="loading_capacity" id="loading_capacity" /> </label><br />
 
-    <button type="submit">登録する</button>
-  </body>
+  <!-- 走行距離 -->
+  <label for="milage">
+    走行距離:<input type="text" name="milage" id="milage" /><br />
+  </label>
+
+  <!-- トランスミッション -->
+  <label for="transmission">
+    トランスミッション:<input type="text" name="transmission" id="transmission" />
+  </label>
+  <br />
+
+  <!-- 駆動方式 -->
+  <label for="drive_system">
+    駆動方式:<input name="drive_system" id="drive_system" /> </label><br />
+
+  <!-- 検査期限 -->
+  <label for="inspection_deadline">
+    検査期限:<input name="inspection_deadline" id="inspection_deadline" /></label><br />
+
+  <!-- 取扱説明書 -->
+  <label for="manual"> 取扱説明書:<input name="manual" id="manual" /></label><br />
+  <!-- 評価点 -->
+
+  <!-- 外装色 -->
+  <label for="exterior_color">
+    外装色:<input type="text" name="exterior_color" id="exterior_color" /> </label><br />
+
+  <!-- 外装カラーナンバー -->
+  <label for="exterior_color_number">
+    外装カラーナンバー:<input type="text" name="exterior_color_number" id="exterior_color_number" /> </label><br />
+
+  <!-- ハンドル -->
+  <label for="handle"> ハンドル:<input name="handle" id="handle" /> </label>
+  <br />
+
+  <!-- 内装色 -->
+  <label for="interior_color">
+    内装色：<input type="text" name="interior_color" id="interior_color" /> </label><br />
+
+  <!-- 仕入れ金額 -->
+  <label for="purchace_price">
+    仕入れ金額:<input name="purchace_price" id="purchace_price" />
+  </label>
+  <br />
+
+  <!-- 仕入れ先　-->
+  <label for="supplier">
+    仕入れ先　:<input name="supplier" id="supplier" /> </label><br />
+
+  <!-- コメント -->
+  <label for="comment">
+    コメント:<input type="text" name="comment" id="comment" /> </label><br />
+
+  <!-- 画像登録 -->
+  <label for="picture_path">
+    車両登録:<input type="file" name="picture_path" id="picture_path">
+  </label>
+  <button type="submit">登録する</button>
+</body>
+
 </html>
