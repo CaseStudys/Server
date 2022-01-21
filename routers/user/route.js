@@ -28,7 +28,7 @@ router.route(USER_END_POINT).get(async (req, res) => {
   const selectUser = "SELECT name,phone_number FROM users WHERE user_id = ?;";
   //取引車両情報取得
   const selectTransaction =
-    "SELECT p.project_id,c.car_id,c.type_name,p.price,p.due_date,p.deposit_apply_flg,p.payment_flg,c.picture_path FROM users u LEFT JOIN projects p ON u.user_id = p.buyer_id LEFT JOIN exhibits e ON p.exhibit_id = e.exhibit_id LEFT JOIN cars c ON e.car_id = c.car_id WHERE p.buyer_id = ? AND p.cancel_flg = 0;";
+    "SELECT p.project_id,c.car_id,c.type_name,p.price,p.due_date,p.deposit_apply_flg,p.payment_flg,c.picture_path FROM users u LEFT JOIN projects p ON u.user_id = p.buyer_id LEFT JOIN exhibits e ON p.exhibit_id = e.exhibit_id LEFT JOIN cars c ON e.car_id = c.car_id WHERE p.cancel_flg = 0 AND p.deposit_apply_flg = 0 AND p.buyer_id = ?;";
   //先月１ヶ月間の購入台数と総額
   const lastProjects =
     "SELECT COUNT(*) AS NumOfunits,SUM(total_price) AS total_price FROM projects WHERE purchase_date LIKE ? AND cancel_flg = 0;";
@@ -94,7 +94,7 @@ router.route(USER_END_POINT).put((req, res) => {
   const selectUser = "SELECT name,phone_number FROM users WHERE user_id = ?;";
   //取引車両情報取得
   const selectTransaction =
-    "SELECT p.project_id,c.car_id,c.type_name,p.price,p.due_date,p.deposit_apply_flg,p.payment_flg,c.picture_path FROM users u LEFT JOIN projects p ON u.user_id = p.buyer_id LEFT JOIN exhibits e ON p.exhibit_id = e.exhibit_id LEFT JOIN cars c ON e.car_id = c.car_id WHERE p.buyer_id = ? AND p.cancel_flg = 0;";
+    "SELECT p.project_id,c.car_id,c.type_name,p.price,p.due_date,p.deposit_apply_flg,p.payment_flg,c.picture_path FROM users u LEFT JOIN projects p ON u.user_id = p.buyer_id LEFT JOIN exhibits e ON p.exhibit_id = e.exhibit_id LEFT JOIN cars c ON e.car_id = c.car_id WHERE p.cancel_flg = 0 AND p.deposit_apply_flg = 0 AND p.buyer_id = ?;";
   //先月１ヶ月間の購入台数と総額
   const lastProjects =
     "SELECT COUNT(*) AS NumOfunits,SUM(total_price) AS total_price FROM projects WHERE purchase_date LIKE ? AND cancel_flg = 0;";
