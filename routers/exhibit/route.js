@@ -20,9 +20,9 @@ router.route(EXHIBIT_END_POINT).post(async (req, res) => {
     "%' ORDER BY start_date desc;";
   //車両登録
   var insertExhibit = "";
-  //まだ出品登録されていない車両情報を取得
+  //オークション登録されていて出品登録されていない車両データをすべて返す
   const selectCars =
-    "SELECT c.car_id,c.picture_path,c.type_name,c.purchace_price FROM cars c LEFT JOIN exhibits e ON c.car_id = e.car_id WHERE e.exhibit_id IS NULL;";
+    "SELECT c.car_id,c.picture_path,c.type_name,c.purchace_price FROM cars c LEFT JOIN exhibits e ON c.car_id = e.car_id WHERE c.register_flg = 1 AND e.exhibit_id IS NULL;";
 
   //DB処理
   db.mysql_connection.connect((err) => {
@@ -83,14 +83,14 @@ router.route(EXHIBIT_END_POINT).post(async (req, res) => {
 });
 
 //(従業員)登録者出品ページを表示するGETのAPI
-//出品登録されていない車両データをすべて返す
+//オークション登録されていて出品登録されていない車両データをすべて返す
 router.route(EXHIBIT_END_POINT).get(async (req, res) => {
   if (!(await auth(req))) return res.redirect("/login"); //cookie認証に失敗した場合「/login」にリダイレクト
 
   //DB処理
   db.mysql_connection.connect((err) => {
     db.mysql_connection.query(
-      "SELECT c.car_id,c.picture_path,c.type_name,c.purchace_price FROM cars c LEFT JOIN exhibits e ON c.car_id = e.car_id WHERE e.exhibit_id IS NULL;",
+      "SELECT c.car_id,c.picture_path,c.type_name,c.purchace_price FROM cars c LEFT JOIN exhibits e ON c.car_id = e.car_id WHERE c.register_flg = 1 AND e.exhibit_id IS NULL;",
       (err, result) => {
         if (err) {
           return res.status(500).json({ code: 500, message: err });
