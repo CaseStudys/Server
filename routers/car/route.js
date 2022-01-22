@@ -127,6 +127,7 @@ router.route(CAR_END_POINT).put(async (req, res) => {
         if (err) {
           return res.status(500).json({ code: 500, message: err });
         }
+        //フロントのPUT処理でmanagementのGET叩いてるからリザルトいらんけどなかったらうまく動かんから使わんけど返してる
         return res.status(200).json(result[1]);
       }
     );
