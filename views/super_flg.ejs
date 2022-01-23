@@ -114,6 +114,8 @@
     <button type="submit" name="deposit_apply_flg" id="deposit_apply_flg" value="1"
       onclick="depositApplyPutRequest()">消込フラグ</button><br>
     <button type="submit" name="shipped_flg" id="shipped_flg" value="1" onclick="shippedPutRequest()">出荷フラグ</button><br>
+    <button type="submit" name="delivered_flg" id="delivered_flg" value="1"
+      onclick="deliveredPutRequest()">配達完了フラグ</button><br>
     <button type="submit" name="reminder_flg" id="reminder_flg" value="1"
       onclick="reminderPutRequest()">催促フラグ</button><br>
     <button type="submit" name="illegal_action_flg" id="illegal_action_flg" value="1"
@@ -279,6 +281,24 @@
     })
   }
 
+  //配達完了フラグ
+  const deliveredPutRequest = () => {
+    const project_id = document.getElementById('project_id').value
+    const delivered_flg = document.getElementById('delivered_flg').value
+
+    const param = {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json; charset=utf-8"
+      },
+      body: JSON.stringify({
+        project_id: project_id,
+        delivered_flg: delivered_flg,
+      })
+    }
+    fetch('/flg', param).then((res) => {
+    })
+  }
   //催促フラグ
   const reminderPutRequest = () => {
     const project_id = document.getElementById('project_id').value
