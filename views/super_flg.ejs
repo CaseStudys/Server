@@ -104,7 +104,7 @@
     <button type="submit" name="documents_flg" id="documents_flg" value="1"
       onclick="documentsPutRequest()">書類フラグ</button><br>
     <button type="submit" name="repair_service_flg" id="repair_service_flg" value="1"
-      onclick="documentsPutRequest()">修理フラグ</button><br>
+      onclick="repairServicePutRequest()">修理フラグ</button><br>
     <button type="submit" name="car_inspection_service_flg" id="car_inspection_service_flg" value="1"
       onclick="carInspectionServicePutRequest()">車検フラグ</button><br>
     <button type="submit" name="payment_flg" id="payment_flg" value="1"
@@ -125,6 +125,8 @@
 </html>
 
 <script>
+
+  //信用フラグ処理
   const trustPutRequest = () => {
     const user_id = document.getElementById('user_id').value
     const trust_flg = document.getElementById('trust_flg').value
@@ -143,6 +145,7 @@
     })
   }
 
+  //書類フラグ処理
   const documentsPutRequest = () => {
     const project_id = document.getElementById('project_id').value
     const documents_flg = document.getElementById('documents_flg').value
@@ -160,4 +163,22 @@
     fetch('/flg', param).then((res) => {
     })
   }
-</script>
+
+  //修理フラグ
+  const repairServicePutRequest = () => {
+    const project_id = document.getElementById('project_id').value
+    const repair_service_flg = document.getElementById('repair_service_flg').value
+
+    const param = {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json; charset=utf-8"
+      },
+      body: JSON.stringify({
+        project_id: project_id,
+        repair_service_flg: repair_service_flg,
+      })
+    }
+    fetch('/flg', param).then((res) => {
+    })
+  }</script>
