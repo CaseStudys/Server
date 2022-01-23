@@ -143,10 +143,9 @@
     })
   }
 
-  const trustPutRequest = () => {
+  const documentsPutRequest = () => {
     const project_id = document.getElementById('project_id').value
     const documents_flg = document.getElementById('documents_flg').value
-    const repair_service_flg = document.getElementById('repair_service_flg').value
 
     const param = {
       method: "PUT",
@@ -156,7 +155,6 @@
       body: JSON.stringify({
         project_id: project_id,
         documents_flg: documents_flg,
-        repair_service_flg: repair_service_flg
       })
     }
     fetch('/flg', param).then((res) => {
