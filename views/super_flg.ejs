@@ -98,27 +98,26 @@
   </header>
   <main>
     ユーザーID：<input type="text" id="user_id" name="user_id"><br>
-    <button type="submit" name="trust_flg" id="trust_flg" value="1" onclick="trustPostRequest()">信用フラグ</button><br>
+    <button type="submit" name="trust_flg" id="trust_flg" value="1" onclick="trustPutRequest()">信用フラグ</button><br>
     <hr>
     プロジェクトID：<input type="text" name="project_id" id="project_id"><br>
     <button type="submit" name="documents_flg" id="documents_flg" value="1"
-      onclick="documentsPostRequest()">書類フラグ</button><br>
+      onclick="documentsPutRequest()">書類フラグ</button><br>
     <button type="submit" name="repair_service_flg" id="repair_service_flg" value="1"
-      onclick="repairPostRequest()">修理フラグ</button><br>
+      onclick="repairPutRequest()">修理フラグ</button><br>
     <button type="submit" name="car_inspection_service_flg" id="car_inspection_service_flg" value="1"
-      onclick="carInspectionServicePostRequest()">車検フラグ</button><br>
+      onclick="carInspectionServicePutRequest()">車検フラグ</button><br>
     <button type="submit" name="payment_flg" id="payment_flg" value="1"
-      onclick="paymentPostRequest()">支払いフラグ</button><br>
+      onclick="paymentPutRequest()">支払いフラグ</button><br>
     <button type="submit" name="receipt_contact_flg" id="receipt_contact_flg" value="1"
-      onclick="receiptContactPostRequest()">受け取り連絡フラグ</button><br>
+      onclick="receiptContactPutRequest()">受け取り連絡フラグ</button><br>
     <button type="submit" name="deposit_apply_flg" id="deposit_apply_flg" value="1"
-      onclick="depositApplyPostRequest()">消込フラグ</button><br>
-    <button type="submit" name="shipped_flg" id="shipped_flg" value="1"
-      onclick="shippedPostRequest()">出荷フラグ</button><br>
+      onclick="depositApplyPutRequest()">消込フラグ</button><br>
+    <button type="submit" name="shipped_flg" id="shipped_flg" value="1" onclick="shippedPutRequest()">出荷フラグ</button><br>
     <button type="submit" name="reminder_flg" id="reminder_flg" value="1"
-      onclick="reminderPostRequest()">催促フラグ</button><br>
+      onclick="reminderPutRequest()">催促フラグ</button><br>
     <button type="submit" name="illegal_action_flg" id="illegal_action_flg" value="1"
-      onclick="illegalActionPostRequest()">法的措置フラグ</button><br>
+      onclick="illegalActionPutRequest()">法的措置フラグ</button><br>
   </main>
   <div id="messageArea"></div>
 </body>
@@ -126,7 +125,7 @@
 </html>
 
 <script>
-  const trustPostRequest = () => {
+  const trustPutRequest = () => {
     const user_id = document.getElementById('user_id').value
     const trust_flg = document.getElementById('trust_flg').value
 
