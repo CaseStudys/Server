@@ -181,4 +181,44 @@
     }
     fetch('/flg', param).then((res) => {
     })
-  }</script>
+  }
+
+  //車検フラグ
+  const carInspectionServicePutRequest = () => {
+    const project_id = document.getElementById('project_id').value
+    const car_inspection_service_flg = document.getElementById('car_inspection_service_flg').value
+
+    const param = {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json; charset=utf-8"
+      },
+      body: JSON.stringify({
+        project_id: project_id,
+        car_inspection_service_flg: car_inspection_service_flg,
+      })
+    }
+    fetch('/flg', param).then((res) => {
+    })
+  }
+
+  //支払いフラグ
+  const paymentPutRequest = () => {
+    const project_id = document.getElementById('project_id').value
+    const payment_flg = document.getElementById('payment_flg').value
+
+    const param = {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json; charset=utf-8"
+      },
+      body: JSON.stringify({
+        project_id: project_id,
+        payment_flg: payment_flg,
+      })
+    }
+    fetch('/flg', param).then((res) => {
+    })
+  }
+
+</script>
