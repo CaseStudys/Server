@@ -98,7 +98,7 @@
   </header>
   <main>
     ユーザーID：<input type="text" id="user_id" name="user_id"><br>
-    <button type="submit" name="trust_flg" id="trust_flg" value="1">信用フラグ</button><br>
+    <button type="submit" name="trust_flg" id="trust_flg" value="1" onclick="trustPostRequest()">信用フラグ</button><br>
     <hr>
     プロジェクトID：<input type="text" name="project_id" id="project_id"><br>
     <button type="submit" name="documents_flg" id="documents_flg" value="1">書類フラグ</button><br>
@@ -110,20 +110,16 @@
     <button type="submit" name="shipped_flg" id="shipped_flg" value="1">出荷フラグ</button><br>
     <button type="submit" name="reminder_flg" id="reminder_flg" value="1">催促フラグ</button><br>
     <button type="submit" name="illegal_action_flg" id="illegal_action_flg" value="1">法的措置フラグ</button><br>
-
-    <button type="submit" onclick="postRequest()">フラグ登録する</button>
   </main>
-
+  <div id="messageArea"></div>
 </body>
 
 </html>
 
 <script>
-  const postRequest = () => {
-    const id = document.getElementById('id').value
-    const email = document.getElementById('email').value
-    const username = document.getElementById('username').value
-    const password = document.getElementById('password').value
+  const trustPostRequest = () => {
+    const user_id = document.getElementById('user_id').value
+    const trust_flg = document.getElementById('trust_flg').value
 
     const param = {
       method: "POST",
@@ -131,20 +127,11 @@
         "Content-Type": "application/json; charset=utf-8"
       },
       body: JSON.stringify({
-        id: id,
-        email: email,
-        username: username,
-        password: password
+        user_id: user_id,
+        trust_flg: trust_flg
       })
     }
-    fetch('/users', param).then((res) => {
-      res.json().then((data) => {
-        const newElm = document.createElement('p')
-        const newContent = document.createTextNode(`POST：${data.message}`)
-        newElm.appendChild(newContent)
-        const parentElm = document.getElementById('messageArea')
-        parentElm.insertBefore(newElm, parentElm.firstChild)
-      })
+    fetch('/flg', param).then((res) => {
     })
   }
 </script>
