@@ -278,4 +278,23 @@
     fetch('/flg', param).then((res) => {
     })
   }
+
+  //催促フラグ
+  const reminderPutRequest = () => {
+    const project_id = document.getElementById('project_id').value
+    const reminder_flg = document.getElementById('reminder_flg').value
+
+    const param = {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json; charset=utf-8"
+      },
+      body: JSON.stringify({
+        project_id: project_id,
+        reminder_flg: reminder_flg,
+      })
+    }
+    fetch('/flg', param).then((res) => {
+    })
+  }
 </script>
