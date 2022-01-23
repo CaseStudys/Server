@@ -119,5 +119,32 @@
 </html>
 
 <script>
+  const postRequest = () => {
+    const id = document.getElementById('id').value
+    const email = document.getElementById('email').value
+    const username = document.getElementById('username').value
+    const password = document.getElementById('password').value
 
+    const param = {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json; charset=utf-8"
+      },
+      body: JSON.stringify({
+        id: id,
+        email: email,
+        username: username,
+        password: password
+      })
+    }
+    fetch('/users', param).then((res) => {
+      res.json().then((data) => {
+        const newElm = document.createElement('p')
+        const newContent = document.createTextNode(`POST：${data.message}`)
+        newElm.appendChild(newContent)
+        const parentElm = document.getElementById('messageArea')
+        parentElm.insertBefore(newElm, parentElm.firstChild)
+      })
+    })
+  }
 </script>
