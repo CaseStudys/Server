@@ -102,6 +102,7 @@
     .card_flex {
         width: 100%;
         display: flex;
+        flex-wrap: wrap;
     }
 
     /* 車両のカードレイアウト */
@@ -126,18 +127,19 @@
             <a href="/management"> オークション </a>
         </p>
 
-        <ul class="header_r">
-            <!-- <li>
+        <button onclick="requestUser_get()">
+            マイページ
+        </button>
+        <!-- <li>
           <button>
             <a href="/car"> 車両登録 </a>
           </button>
         </li> -->
-            <li class="login_name"></li>
+        <li class="login_name"></li>
         </ul>
     </header>
 
     <div class="content_area">
-        <button onclick="requestUser_get()">マイページ(test)</button>
         <div class="card_flex">
             <% for (var i=0; i < values.length; i++) { %>
                 <a href="bid/<%=values[i].car_id %>">
