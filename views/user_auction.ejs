@@ -119,6 +119,38 @@
         height: 200px;
         background-color: black;
     }
+
+
+    .button {
+        display: inline-block;
+        border-radius: 50%;
+        /* 角丸       */
+        font-size: 18pt;
+        /* 文字サイズ */
+        text-align: center;
+        /* 文字位置   */
+        cursor: pointer;
+        /* カーソル   */
+        padding: 9px 27px;
+        /* 余白       */
+        background: #eb6100;
+        /* 背景色     */
+        color: #ffffff;
+        /* 文字色     */
+        line-height: 1em;
+        /* 1行の高さ  */
+        transition: 0.3s;
+        /* なめらか変化 */
+        border: 2px solid #eb6100;
+        /* 枠の指定 */
+    }
+
+    .button:hover {
+        color: #eb6100;
+        /* 背景色     */
+        background: #ffffff;
+        /* 文字色     */
+    }
 </style>
 
 <body>
@@ -127,9 +159,7 @@
             <a href="/management"> オークション </a>
         </p>
 
-        <button onclick="requestUser_get()">
-            マイページ
-        </button>
+
         <!-- <li>
           <button>
             <a href="/car"> 車両登録 </a>
@@ -138,7 +168,9 @@
         <li class="login_name"></li>
         </ul>
     </header>
-
+    <button onclick="requestUser_get()" class="button">
+        マイページへ
+    </button>
     <div class="content_area">
         <div class="card_flex">
             <% for (var i=0; i < values.length; i++) { %>
