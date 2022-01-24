@@ -1,184 +1,184 @@
 <!DOCTYPE html>
 <html lang="ja">
-
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>ログイン画面</title>
-</head>
-<style>
+  </head>
+  <style>
     * {
-        margin: 0px;
-        padding: 0px;
-        list-style-type: none;
-        box-sizing: border-box;
-        text-decoration: none;
+      margin: 0px;
+      padding: 0px;
+      list-style-type: none;
+      box-sizing: border-box;
+      text-decoration: none;
     }
 
     .none {
-        display: none;
-        /* ボックスごと非表示 */
+      display: none;
+      /* ボックスごと非表示 */
     }
 
     .hidden {
-        text-indent: 100%;
-        white-space: nowrap;
-        /* 改行せずに表示 */
-        overflow: hidden;
-        /* ボックスの中身が不可視 */
+      text-indent: 100%;
+      white-space: nowrap;
+      /* 改行せずに表示 */
+      overflow: hidden;
+      /* ボックスの中身が不可視 */
     }
 
     body {
-        width: 100%;
-        height: 100%;
+      width: 100%;
+      height: 100%;
     }
 
     header {
-        width: 100%;
-        height: 80px;
-        display: flex;
-        font-size: 25px;
-        align-items: center;
-        background-color: aqua;
-        text-align: center;
-        margin: 0 auto;
+      width: 100%;
+      height: 80px;
+      display: flex;
+      font-size: 25px;
+      align-items: center;
+      background-color: aqua;
+      text-align: center;
+      margin: 0 auto;
     }
 
     .logo {
-        width: 55%;
-        text-align: right;
+      width: 55%;
+      text-align: right;
     }
 
     .header_r {
-        width: 40%;
-        display: flex;
-        justify-content: center;
-        align-items: center;
+      width: 40%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
     }
 
-    .header_r>li {
-        margin: 15px;
+    .header_r > li {
+      margin: 15px;
     }
 
-    .header_r>li>button {
-        color: #fff;
-        background-color: #eb6100;
-        border: 1px solid gray;
-        width: 100px;
-        height: 40px;
+    .header_r > li > button {
+      color: #fff;
+      background-color: #eb6100;
+      border: 1px solid gray;
+      width: 100px;
+      height: 40px;
     }
 
     .login_name {
-        font-size: 20px;
+      font-size: 20px;
     }
 
     .login_box {
-        width: 40%;
-        height: 300px;
-        background-color: rgb(225, 222, 222);
-        border-radius: 8px;
+      width: 40%;
+      height: 300px;
+      background-color: rgb(225, 222, 222);
+      border-radius: 8px;
     }
 
     /* ---- main ---- */
     main {
-        width: 80%;
-        display: flex;
-        justify-content: center;
-        margin: 0 auto;
-        /* background-color: red; */
+      width: 80%;
+      display: flex;
+      justify-content: center;
+      margin: 0 auto;
+      /* background-color: red; */
     }
 
     a {
-        color: black;
+      color: black;
     }
 
     h1 {
-        text-align: center;
-        margin-top: 40px;
-        margin-bottom: 40px;
+      text-align: center;
+      margin-top: 40px;
+      margin-bottom: 40px;
     }
 
     .box {
-        border: solid 1px;
-        border-color: black;
-        border-radius: 40px;
-        margin: 0 auto;
-        width: 40%;
-        padding-top: 40px;
-        padding-bottom: 40px;
-        text-align: center;
+      border: solid 1px;
+      border-color: black;
+      border-radius: 40px;
+      margin: 0 auto;
+      width: 40%;
+      padding-top: 40px;
+      padding-bottom: 40px;
+      text-align: center;
     }
 
     .buttonLink {
-        text-align: center;
-        padding-top: 20px;
+      text-align: center;
+      padding-top: 20px;
     }
 
     dl dt {
-        width: 165px;
-        padding: 10px 0;
-        margin-left: 60px;
-        float: left;
-        clear: both;
+      width: 165px;
+      padding: 10px 0;
+      margin-left: 60px;
+      float: left;
+      clear: both;
     }
 
     dl dd {
-        padding: 10px 0;
+      padding: 10px 0;
     }
 
     .link {
-        margin-bottom: 40px;
+      margin-bottom: 40px;
     }
-</style>
+  </style>
 
-<body>
+  <body>
     <header>
-        <p class="logo">
-            <a href="/management"> LOGO 社名 </a>
-        </p>
+      <p class="logo">
+        <a href="/management"> オークション </a>
+      </p>
     </header>
     <h1>ログイン</h1>
     <div class="box">
-        <dl>
-            <dt>ID:</dt>
-            <dd><input type="text" name="name" id="name"></dd>
-            <dt>パスワード:</dt>
-            <dd><input type="text" name="password" id="password"></dd>
-        </dl>
-        <div class="buttonLink">
-            <button onclick="requestlogin_put()" class="link">ログインする</button>
-        </div>
+      <dl>
+        <dt>ID:</dt>
+        <dd><input type="text" name="name" id="name" /></dd>
+        <dt>パスワード:</dt>
+        <dd><input type="text" name="password" id="password" /></dd>
+      </dl>
+      <div class="buttonLink">
+        <button onclick="requestlogin_put()" class="link">ログインする</button>
+      </div>
 
-        <a href="/user/signup">サインアップページへ</a>
+      <a href="/user/signup">サインアップページへ</a>
     </div>
-</body>
-
+  </body>
 </html>
 <script>
-    //
-    //loginのPUT
-    const requestlogin_put = () => {
-        const name = document.getElementById("name").value;
-        const password = document.getElementById("password").value;
+  //
+  //loginのPUT
+  const requestlogin_put = () => {
+    const name = document.getElementById("name").value;
+    const password = document.getElementById("password").value;
 
-        const param = {
-            method: "PUT",
-            headers: {
-                "Content-Type": "application/json; charset=utf-8"
-            },
-            body: JSON.stringify({
-                name: name,
-                password: password
-            })
-        }
+    const param = {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json; charset=utf-8",
+      },
+      body: JSON.stringify({
+        name: name,
+        password: password,
+      }),
+    };
 
-        fetch('/login', param).then((data) => {
-            console.log('ログイン処理')
-            data.json().then((data) => {
-                if (data.result === 2) return alert('ログインに失敗しました')
-                data.result === 1 ? window.location.href = 'http://localhost:8080/employee' : window.location.href = 'http://localhost:8080/auction'
-            })
-        })
-    }
+    fetch("/login", param).then((data) => {
+      console.log("ログイン処理");
+      data.json().then((data) => {
+        if (data.result === 2) return alert("ログインに失敗しました");
+        data.result === 1
+          ? (window.location.href = "http://localhost:8080/employee")
+          : (window.location.href = "http://localhost:8080/auction");
+      });
+    });
+  };
 </script>

@@ -2,9 +2,9 @@
 <html lang="ja">
 
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>マイページ</title>
 </head>
 <style>
@@ -135,6 +135,7 @@
     .card_flex {
         width: 100%;
         display: flex;
+        flex-wrap: wrap;
     }
 
     /* 車両のカードレイアウト */
@@ -156,16 +157,16 @@
 <body>
     <header>
         <p class="logo">
-            <a href="/management"> LOGO 社名 </a>
+            <a href="/management"> オークション </a>
         </p>
 
         <ul class="header_r">
             <li>
-                <button>
-                    <a href="/car"> 車両登録 </a>
-                </button>
-            </li>
-            <li class="login_name">ログイン指名</li>
+                <!-- <button>
+            <a href="/car"> 車両登録 </a>
+          </button>
+        </li> -->
+            <li class="login_name"></li>
         </ul>
     </header>
 
@@ -182,32 +183,26 @@
         </div>
     </div>
 
-
     <h2 class="title">取引車両</h2>
 
     <div class="content_area">
-        <div class="crad_flex">
-
-                <% for (var i=0; i < values[1].length; i++) { %>
-                    <div class="card">
-                        <img src="<%= values[1][i].picture_path %>" alt="車両画像" class="card_img">
-                        <p>車両名:<%= values[1][i].type_name %>
-                        </p>
-                        <p>
-                            支払い状況:
-                            <% if(values[1][i].payment_flg==0){ %>
-                                未払い
-                                <% } %>
-                        </p>
-                        <p>値段:<%= values[1][i].price %>
-                                円</p>
-                        <button onclick="requestUser_put('<%= values[1][i].project_id %>')">キャンセルボタン</button>
-                    </div>
-                    <% } %>
-
+        <div class="card_flex">
+            <% for (var i=0; i < values[1].length; i++) { %>
+                <div class="card">
+                    <img src="<%= values[1][i].picture_path %>" alt="車両画像" class="card_img" />
+                    <p>車両名:<%= values[1][i].type_name %>
+                    </p>
+                    <p>
+                        支払い状況: <% if(values[1][i].payment_flg==0){ %> 未払い <% } %>
+                    </p>
+                    <p>値段:<%= values[1][i].price %> 円</p>
+                    <button onclick="requestUser_put('<%= values[1][i].project_id %>')">
+                        キャンセルボタン
+                    </button>
+                </div>
+                <% } %>
         </div>
     </div>
-
 </body>
 
 </html>
@@ -216,8 +211,7 @@
     //logouのGET
     const requestLogout_get = () => {
         window.location.href = "http://localhost:8080/logout";
-    }
-
+    };
 
     //userのPUT
     //取引キャンセル
@@ -227,26 +221,27 @@
         const param = {
             method: "PUT",
             headers: {
-                "Content-Type": "application/json; charset=utf-8"
+                "Content-Type": "application/json; charset=utf-8",
             },
             body: JSON.stringify({
                 user_id: user_id,
-                project_id: project_id
-            })
-        }
+                project_id: project_id,
+            }),
+        };
 
-        fetch('/user', param).then(() => {
+        fetch("/user", param).then(() => {
             window.location.href = `http://localhost:8080/user/${user_id}`;
-        })
-    }
+        });
+    };
 
     const getCookieData = (keyName) => {
-        if (keyName !== 'user_id' && keyName !== 'name' && keyName !== 'password') {
-            throw '関数getCookieDataの引数keyNameには文字列"user_id"か"name"か"password"を指定してください'
+        if (keyName !== "user_id" && keyName !== "name" && keyName !== "password") {
+            throw '関数getCookieDataの引数keyNameには文字列"user_id"か"name"か"password"を指定してください';
         }
-        return document.cookie.split(";")
-            .map((cookieData) => cookieData.trim()).find((cookieData) =>
-                cookieData.startsWith("user_id=")
-            ).split("=")[1]
-    }
+        return document.cookie
+            .split(";")
+            .map((cookieData) => cookieData.trim())
+            .find((cookieData) => cookieData.startsWith("user_id="))
+            .split("=")[1];
+    };
 </script>

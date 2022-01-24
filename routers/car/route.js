@@ -68,7 +68,6 @@ router
     valueList.push(body.purchace_price);
     valueList.push(body.supplier);
     valueList.push(body.comment);
-    valueList.push(body.picture_path);
 
     //DB処理
     db.mysql_connection.connect((err) => {
@@ -93,14 +92,14 @@ router
               //画像を一時保存フォルダから移動
               fex.copySync("tmp", "pictures/" + newId);
               //tmp内の画像全削除
-              fs.readdir("tmp", (err, files) => {
-                if (err) throw err;
-                for (const file of files) {
-                  fs.unlink(path.join("tmp", file), (err) => {
-                    if (err) throw err;
-                  });
-                }
-              });
+              // fs.readdir("tmp", (err, files) => {
+              //   if (err) throw err;
+              //   for (const file of files) {
+              //     fs.unlink(path.join("tmp", file), (err) => {
+              //       if (err) throw err;
+              //     });
+              //   }
+              // });
 
               return res.status(200).json({ result: true });
               //return res.status(200).json(result);
