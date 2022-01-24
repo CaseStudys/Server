@@ -1,245 +1,246 @@
 <!DOCTYPE html>
 <html lang="ja">
-  <head>
+
+<head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>マイページ</title>
-  </head>
-  <style>
+</head>
+<style>
     * {
-      margin: 0px;
-      padding: 0px;
-      list-style-type: none;
-      box-sizing: border-box;
-      text-decoration: none;
+        margin: 0px;
+        padding: 0px;
+        list-style-type: none;
+        box-sizing: border-box;
+        text-decoration: none;
     }
 
     .none {
-      display: none;
-      /* ボックスごと非表示 */
+        display: none;
+        /* ボックスごと非表示 */
     }
 
     .hidden {
-      text-indent: 100%;
-      white-space: nowrap;
-      /* 改行せずに表示 */
-      overflow: hidden;
-      /* ボックスの中身が不可視 */
+        text-indent: 100%;
+        white-space: nowrap;
+        /* 改行せずに表示 */
+        overflow: hidden;
+        /* ボックスの中身が不可視 */
     }
 
     body {
-      width: 100%;
-      height: 100%;
+        width: 100%;
+        height: 100%;
     }
 
     header {
-      width: 100%;
-      height: 80px;
-      display: flex;
-      font-size: 25px;
-      align-items: center;
-      background-color: aqua;
-      text-align: center;
-      margin: 0 auto;
+        width: 100%;
+        height: 80px;
+        display: flex;
+        font-size: 25px;
+        align-items: center;
+        background-color: aqua;
+        text-align: center;
+        margin: 0 auto;
     }
 
     .logo {
-      width: 55%;
-      text-align: right;
+        width: 55%;
+        text-align: right;
     }
 
     .header_r {
-      width: 40%;
-      display: flex;
-      justify-content: center;
-      align-items: center;
+        width: 40%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
     }
 
-    .header_r > li {
-      margin: 15px;
+    .header_r>li {
+        margin: 15px;
     }
 
-    .header_r > li > button {
-      color: #fff;
-      background-color: #eb6100;
-      border: 1px solid gray;
-      width: 100px;
-      height: 40px;
+    .header_r>li>button {
+        color: #fff;
+        background-color: #eb6100;
+        border: 1px solid gray;
+        width: 100px;
+        height: 40px;
     }
 
     .login_name {
-      font-size: 20px;
+        font-size: 20px;
     }
 
     .login_box {
-      width: 40%;
-      height: 300px;
-      background-color: rgb(225, 222, 222);
-      border-radius: 8px;
+        width: 40%;
+        height: 300px;
+        background-color: rgb(225, 222, 222);
+        border-radius: 8px;
     }
 
     /* ---- main ---- */
     main {
-      width: 80%;
-      display: flex;
-      justify-content: center;
-      margin: 0 auto;
-      /* background-color: red; */
+        width: 80%;
+        display: flex;
+        justify-content: center;
+        margin: 0 auto;
+        /* background-color: red; */
     }
 
     a {
-      color: black;
+        color: black;
     }
 
     /* ボタン */
     .button {
-      display: flex;
-      justify-content: space-around;
-      margin: 20px;
+        display: flex;
+        justify-content: space-around;
+        margin: 20px;
     }
 
-    .main_button > li {
-      margin: 5px;
+    .main_button>li {
+        margin: 5px;
     }
 
-    .main_button > li > button {
-      width: 120px;
-      height: 30px;
+    .main_button>li>button {
+        width: 120px;
+        height: 30px;
     }
 
     .title {
-      text-align: center;
+        text-align: center;
     }
 
     .bigBox {
-      padding-top: 40px;
-      padding-bottom: 40px;
-      width: 80%;
-      margin: 0 auto;
-      display: flex;
+        padding-top: 40px;
+        padding-bottom: 40px;
+        width: 80%;
+        margin: 0 auto;
+        display: flex;
     }
 
     .box {
-      width: 50%;
-      text-align: center;
+        width: 50%;
+        text-align: center;
     }
 
     /* 項目エリア */
     .content_area {
-      margin: 20px auto;
-      /* background-color: #eb6100; */
+        margin: 20px auto;
+        /* background-color: #eb6100; */
     }
 
     .card_flex {
-      width: 100%;
-      display: flex;
+        width: 100%;
+        display: flex;
     }
 
     /* 車両のカードレイアウト */
     .card {
-      width: 300px;
-      height: 300px;
-      margin: 20px;
-      background-color: aquamarine;
-      border-radius: 8px;
+        width: 300px;
+        height: 300px;
+        margin: 20px;
+        background-color: aquamarine;
+        border-radius: 8px;
     }
 
     .card_img {
-      width: 300px;
-      height: 200px;
-      background-color: black;
+        width: 300px;
+        height: 200px;
+        background-color: black;
     }
-  </style>
+</style>
 
-  <body>
+<body>
     <header>
-      <p class="logo">
-        <a href="/management"> オークション </a>
-      </p>
+        <p class="logo">
+            <a href="/management"> オークション </a>
+        </p>
 
-      <ul class="header_r">
-        <li>
-          <button>
+        <ul class="header_r">
+            <li>
+                <!-- <button>
             <a href="/car"> 車両登録 </a>
           </button>
-        </li>
-        <li class="login_name"></li>
-      </ul>
+        </li> -->
+            <li class="login_name"></li>
+        </ul>
     </header>
 
     <h1 class="title">マイページ</h1>
     <div class="bigBox">
-      <div class="box">
-        <p>名前<%= values[0][0].name %></p>
-        <p>電話番号:<%= values[0][0].phone_number %></p>
-      </div>
-      <div class="box">
-        <button onclick="requestLogout_get()">ログアウトする</button>
-      </div>
+        <div class="box">
+            <p>名前<%= values[0][0].name %>
+            </p>
+            <p>電話番号:<%= values[0][0].phone_number %>
+            </p>
+        </div>
+        <div class="box">
+            <button onclick="requestLogout_get()">ログアウトする</button>
+        </div>
     </div>
 
     <h2 class="title">取引車両</h2>
 
     <div class="content_area">
-      <div class="crad_flex">
-        <% for (var i=0; i < values[1].length; i++) { %>
-        <div class="card">
-          <img
-            src="<%= values[1][i].picture_path %>"
-            alt="車両画像"
-            class="card_img"
-          />
-          <p>車両名:<%= values[1][i].type_name %></p>
-          <p>
-            支払い状況: <% if(values[1][i].payment_flg==0){ %> 未払い <% } %>
-          </p>
-          <p>値段:<%= values[1][i].price %> 円</p>
-          <button onclick="requestUser_put('<%= values[1][i].project_id %>')">
-            キャンセルボタン
-          </button>
+        <div class="crad_flex">
+            <% for (var i=0; i < values[1].length; i++) { %>
+                <div class="card">
+                    <img src="<%= values[1][i].picture_path %>" alt="車両画像" class="card_img" />
+                    <p>車両名:<%= values[1][i].type_name %>
+                    </p>
+                    <p>
+                        支払い状況: <% if(values[1][i].payment_flg==0){ %> 未払い <% } %>
+                    </p>
+                    <p>値段:<%= values[1][i].price %> 円</p>
+                    <button onclick="requestUser_put('<%= values[1][i].project_id %>')">
+                        キャンセルボタン
+                    </button>
+                </div>
+                <% } %>
         </div>
-        <% } %>
-      </div>
     </div>
-  </body>
+</body>
+
 </html>
 <script>
-  //ログアウト
-  //logouのGET
-  const requestLogout_get = () => {
-    window.location.href = "http://localhost:8080/logout";
-  };
-
-  //userのPUT
-  //取引キャンセル
-  const requestUser_put = (project_id) => {
-    const user_id = getCookieData("user_id");
-
-    const param = {
-      method: "PUT",
-      headers: {
-        "Content-Type": "application/json; charset=utf-8",
-      },
-      body: JSON.stringify({
-        user_id: user_id,
-        project_id: project_id,
-      }),
+    //ログアウト
+    //logouのGET
+    const requestLogout_get = () => {
+        window.location.href = "http://localhost:8080/logout";
     };
 
-    fetch("/user", param).then(() => {
-      window.location.href = `http://localhost:8080/user/${user_id}`;
-    });
-  };
+    //userのPUT
+    //取引キャンセル
+    const requestUser_put = (project_id) => {
+        const user_id = getCookieData("user_id");
 
-  const getCookieData = (keyName) => {
-    if (keyName !== "user_id" && keyName !== "name" && keyName !== "password") {
-      throw '関数getCookieDataの引数keyNameには文字列"user_id"か"name"か"password"を指定してください';
-    }
-    return document.cookie
-      .split(";")
-      .map((cookieData) => cookieData.trim())
-      .find((cookieData) => cookieData.startsWith("user_id="))
-      .split("=")[1];
-  };
+        const param = {
+            method: "PUT",
+            headers: {
+                "Content-Type": "application/json; charset=utf-8",
+            },
+            body: JSON.stringify({
+                user_id: user_id,
+                project_id: project_id,
+            }),
+        };
+
+        fetch("/user", param).then(() => {
+            window.location.href = `http://localhost:8080/user/${user_id}`;
+        });
+    };
+
+    const getCookieData = (keyName) => {
+        if (keyName !== "user_id" && keyName !== "name" && keyName !== "password") {
+            throw '関数getCookieDataの引数keyNameには文字列"user_id"か"name"か"password"を指定してください';
+        }
+        return document.cookie
+            .split(";")
+            .map((cookieData) => cookieData.trim())
+            .find((cookieData) => cookieData.startsWith("user_id="))
+            .split("=")[1];
+    };
 </script>
