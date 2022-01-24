@@ -120,99 +120,97 @@
 
         <!-- グレード -->
         <label for="grade">
-            グレード:
+            グレード:<%=values.grade %>
         </label>
 
         <!-- メーカー -->
         <label for="maker">
-            メーカー:
+            メーカー:<%=values.maker %>
         </label>
 
         <!-- 年式 -->
         <label for="age">
-            年式:
+            年式:<%=values.age %>
         </label>
 
         <!-- モデル年式 -->
         <label for="model_age">
-            モデル年式:
+            モデル年式:<%=values.model_age %>
         </label><br>
 
         <!-- 型式 -->
         <label for="model">
-            型式:
+            型式:<%=values.model %>
         </label>
 
         <!-- 排気量 -->
         <label for="displacement">
-            排気量:
+            排気量:<%=values.displacement %>
         </label><br>
 
         <!-- 走行距離 -->
         <label for="milage">
-            走行距離:
+            走行距離:<%=values.milage %>
         </label>
 
         <!-- 形状 -->
         <label for="shape">
-            形状:
+            形状:<%=values.shape %>
         </label><br>
 
         <!-- トランスミッション -->
         <label for="transmission">
-            トランスミッション:
+            トランスミッション:<%=values.transmission %>
         </label>
 
         <!-- 駆動方式 -->
         <label for="drive_system">
-            駆動方式:
-
-            </select>
+            駆動方式:<%=values.drive_system %>
         </label><br>
 
         <!-- 定員 -->
         <label for="capacity">
-            定員:
+            定員:<%=values.capacity %>
         </label>
 
         <!-- ドア数 -->
         <label for="door_number">
-            ドア数:
+            ドア数:<%=values.door_number %>
         </label><br>
 
         <!-- ハンドル向き -->
         <label for="handle">
-            ハンドル向き:
+            ハンドル向き:<%=values.handle %>
         </label>
 
         <!-- 評価点 -->
         <label for="evaluation">
-            評価点:
+            評価点:<%=values.evaluation %>
         </label><br>
 
         <!-- 外装色 -->
         <label for="exterior_color">
-            外装色:
+            外装色:<%=values.type_name %>
         </label>
 
         <!-- 内装色 -->
         <label for="interior_color">
-            内装色:
+            内装色:<%=values.interior_color %>
         </label><br>
 
         <!-- 車検 -->
         <label for="vehicleInspection">
-            車検:
+            車検:<%=values.vehicleInspection %>
         </label>
 
         <!-- 修復歴 -->
         <label for="repair">
-            修復歴:
+            修復歴:<%=values.repair %>
         </label><br>
 
         <!-- コメント -->
         <label for="comment">
-            コメント:
+            コメント:<%=values.comment %>
         </label>
     </div>
     <p id="attention"></p>
@@ -220,7 +218,9 @@
     <p>終了まで：<span id="endRemaining"></span></p>
     <p>開催まで：<span id="startRemaining"></span></p>
     <br />
-    現在価格：<p id="now_price"><%=values.price %></p>
+    現在価格：<p id="now_price">
+        <%=values.price %>
+    </p>
 
     <label for="bid">
         <input type="text" name="bid" id="price">円
@@ -237,7 +237,7 @@
     //user_idを取得
     const userId = document.cookie.split(";")
         .map((cookieData) => cookieData.trim()).find((cookieData) =>
-        cookieData.startsWith("user_id=")
+            cookieData.startsWith("user_id=")
         ).split("=")[1]
     //test用ユーザーID
     const changeUserId = () => {
@@ -247,19 +247,19 @@
 
     //自身が最高入札者か判定
     const attentionUserId = "<%=values.user_id %>"//最高入札者
-    console.log('userId',userId)
-    console.log('attentionUserId',attentionUserId)
-    if(userId == attentionUserId){//自身が最高入札者ならそのメッセージを表示
-            document.getElementById('attention').innerHTML='あなたが現在の最高額入札者です。'
-        }else{
-            document.getElementById('attention').innerHTML=''
-        }
+    console.log('userId', userId)
+    console.log('attentionUserId', attentionUserId)
+    if (userId == attentionUserId) {//自身が最高入札者ならそのメッセージを表示
+        document.getElementById('attention').innerHTML = 'あなたが現在の最高額入札者です。'
+    } else {
+        document.getElementById('attention').innerHTML = ''
+    }
 
     //タイマーのセット
     const startDate = new Date("<%=values.start_date %>")
     const endDate = new Date(new Date("<%=values.start_date %>").setMinutes(startDate.getMinutes() + 5))
 
-/*------------------- 関数 --------------------*/
+    /*------------------- 関数 --------------------*/
 
     const countDownTimer = () => {
         const startRemaining = getRemaining(startDate)
@@ -275,35 +275,35 @@
         bidButton.disabled = !startRemaining && endRemaining ? false : true
         const date1 = new Date()
         const date2 = date1.getFullYear() + "年" +
-				(date1.getMonth() + 1)  + "月" +
-				date1.getDate() + "日" +
-				date1.getHours() + ":" +
-				date1.getMinutes() + ":" +
-				date1.getSeconds() + ":"
+            (date1.getMonth() + 1) + "月" +
+            date1.getDate() + "日" +
+            date1.getHours() + ":" +
+            date1.getMinutes() + ":" +
+            date1.getSeconds() + ":"
         document.getElementById('nowDate').innerHTML = date2
-        setTimeout(countDownTimer,250)
+        setTimeout(countDownTimer, 250)
     }
 
 
     const bidRequest = () => {
         const price = document.getElementById("price").value;
         const nowPrice = "<%=values.price %>"
-        console.log('ffff',nowPrice + 1000 )
-        if(price < Number(nowPrice) + 1000){
+        console.log('ffff', nowPrice + 1000)
+        if (price < Number(nowPrice) + 1000) {
             alert('入札可能額は現在価格＋1000円以上です。')
             return
         }
-        SocketIo.emit('c2s_bid',{
-            exhibitId:exhibitId,
-            userId:userId,
-            price:price
+        SocketIo.emit('c2s_bid', {
+            exhibitId: exhibitId,
+            userId: userId,
+            price: price
         })
     }
     //現在日時との差を返す。差が負の場合falseを返す
     const getRemaining = (targetDate) => {
         const nowDate = new Date()
         let difference = targetDate - nowDate
-        if(difference >= 0){
+        if (difference >= 0) {
             const hour = Math.floor(difference / (1000 * 60 * 60))
             difference -= (hour * (1000 * 60 * 60))
             const minutes = Math.floor(difference / (1000 * 60))
@@ -311,25 +311,25 @@
             const second = Math.floor(difference / 1000)
 
             return `${hour}：${minutes}：${second}`
-        }else{
+        } else {
             return false
         }
     }
 
     countDownTimer()
-/*------------------- WebSocket --------------------*/
+    /*------------------- WebSocket --------------------*/
     //入札通知
-    SocketIo.on('s2c_bid',(msg) => {
-        document.getElementById('now_price').innerHTML= msg.price
-        if(userId == msg.userId){
-            document.getElementById('attention').innerHTML='あなたが現在の最高額入札者です。'
-        }else{
-            document.getElementById('attention').innerHTML=''
+    SocketIo.on('s2c_bid', (msg) => {
+        document.getElementById('now_price').innerHTML = msg.price
+        if (userId == msg.userId) {
+            document.getElementById('attention').innerHTML = 'あなたが現在の最高額入札者です。'
+        } else {
+            document.getElementById('attention').innerHTML = ''
         }
     })
     //落札通知。（落札者のみに送信される）
-    SocketIo.on(`success_${userId}`,(msg) => {
+    SocketIo.on(`success_${userId}`, (msg) => {
         window.location.href = 'http://localhost:8080/user_payment';
-})
+    })
 
 </script>
