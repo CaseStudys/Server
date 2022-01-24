@@ -142,7 +142,8 @@
             <% for (var i=0; i < values.length; i++) { %>
                 <a href="bid/<%=values[i].car_id %>">
                     <div class="card">
-                        <img src="<%= values[i].picture_path　%>" alt="車両画像" />
+                        <!-- <img src="<%= values[i].picture_path　%>" alt="車両画像" /> -->
+                        <img class="card_img" src='/1/U00036466024_5_001.jpg' alt=''>
                         <p>車体番号:<%= values[i].car_id %>
                         </p>
                         <p>車名:<%= values[i].type_name %>
