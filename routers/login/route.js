@@ -3,7 +3,7 @@ const express = require("express");
 const db = require("../../db");
 const router = express.Router();
 const LOGIN_END_POINT = "/login";
-
+console.log("経過テスト");
 //ログイン画面を表示するGETのAPI
 router.route(LOGIN_END_POINT).get((req, res) => {
   res.status("200").render("login.ejs");
