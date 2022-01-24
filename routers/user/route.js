@@ -7,11 +7,11 @@ const USER_END_POINT = "/user";
 
 //マイページを表示するGETのAPI
 //ユーザー情報と取引車両情報を渡す
-router.route(USER_END_POINT).get(async (req, res) => {
+router.route(`${USER_END_POINT}/:user_id`).get(async (req, res) => {
   if (!(await auth(req))) return res.redirect("/login"); //cookie認証に失敗した場合「/login」にリダイレクト
   //データ取得
-  const body = req.body;
-  const userId = body.user_id;
+  const userId = req.params.user_id;
+  console.log(userId);
 
   //一つ前の月を取得
   const date = new Date();

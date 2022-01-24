@@ -178,7 +178,7 @@
             </p>
         </div>
         <div class="box">
-            <button>ログアウトする</button>
+            <button onclick="requestLogout_get()">ログアウトする</button>
         </div>
     </div>
 
@@ -200,7 +200,7 @@
                     </p>
                     <p>値段:<%= values[1][i].price %>
                             円</p>
-                    <button>キャンセルボタン</button>
+                    <button onclick="requestUser_put('<%= values[1][i].project_id %>')">キャンセルボタン</button>
                     <% } %>
             </div>
         </div>
@@ -209,3 +209,42 @@
 </body>
 
 </html>
+<script>
+    //ログアウト
+    //logouのGET
+    const requestLogout_get = () => {
+        window.location.href = "http://localhost:8080/logout";
+    }
+
+
+    //userのPUT
+    //取引キャンセル
+    const requestUser_put = (project_id) => {
+        const user_id = getCookieData("user_id");
+
+        const param = {
+            method: "PUT",
+            headers: {
+                "Content-Type": "application/json; charset=utf-8"
+            },
+            body: JSON.stringify({
+                user_id: user_id,
+                project_id: project_id
+            })
+        }
+
+        fetch('/user', param).then(() => {
+            window.location.href = `http://localhost:8080/user/${user_id}`;
+        })
+    }
+
+    const getCookieData = (keyName) => {
+        if (keyName !== 'user_id' && keyName !== 'name' && keyName !== 'password') {
+            throw '関数getCookieDataの引数keyNameには文字列"user_id"か"name"か"password"を指定してください'
+        }
+        return document.cookie.split(";")
+            .map((cookieData) => cookieData.trim()).find((cookieData) =>
+                cookieData.startsWith("user_id=")
+            ).split("=")[1]
+    }
+</script>
