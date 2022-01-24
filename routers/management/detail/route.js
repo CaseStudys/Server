@@ -22,6 +22,7 @@ router.route(`${MANAGEMENT_DETAIL_END_POINT}/:car_id`).get(async (req, res) => {
         if (err) {
           return res.status(500).json({ code: 500, message: err });
         }
+        console.log("cars!!!", result);
         return res
           .status("200")
           .render("emp_management_details.ejs", { values: result });

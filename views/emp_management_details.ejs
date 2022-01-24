@@ -125,7 +125,8 @@
         <a class="blue" href="/employee">マイページリンク</a>
         <img src="<% values[0].picture_path %>" alt="" class="card_img" />
 
-        <div class="images">
+        <div class="images" id = images>
+          <!--
           <img src="<% values[0].picture_path %>" alt="" class="card_img" />
           <img src="<% values[0].picture_path %>" alt="" class="card_img" />
           <img src="<% values[0].picture_path %>" alt="" class="card_img" />
@@ -134,7 +135,7 @@
           <img src="<% values[0].picture_path %>" alt="" class="card_img" />
           <img src="<% values[0].picture_path %>" alt="" class="card_img" />
           <img src="<% values[0].picture_path %>" alt="" class="card_img" />
-          <img src="<% values[0].picture_path %>" alt="" class="card_img" />
+          <img src="<% values[0].picture_path %>" alt="" class="card_img" /> -->
         </div>
 
         <table border="1">
@@ -248,7 +249,27 @@
     </main>
 
     <footer></footer>
+
   </body>
 </html>
 
-<script></script>
+<script>
+const carId = "<%=values[0].car_id %>"
+
+fetch(`http://localhost:8080/car/picture/${carId}`).then((data) => {
+  data.json().then((data) => {
+    const paths = data.paths
+    for(let i = 0;i < paths.length;i++) {
+      console.log('ff',paths[i])
+      const newElm = document.createElement('img')//imgタグ作成
+      newElm.src = paths[i].picture_path//作成したimgタグのsrc属性にパスを追加
+      newElm.alt = ''//作成したimgタグにaltを追加
+      //後は作成したimgタグをidがimagesのdivの中に挿入↓
+      const parentElm = document.getElementById('images')
+      parentElm.insertBefore(newElm,parentElm.firstChild)
+    };
+
+  })
+})
+
+</script>

@@ -18,6 +18,7 @@ const storage = multer.diskStorage({
 //urlのcar_idに関する画像のパスを全て返す。（一車両の全画像パスを返す）
 //
 router.route(CAR_PICTURE_END_POINT).get(async (req, res) => {
+  console.log("ffffdfdfdfdfdfdfdfdf");
   if (!(await auth(req))) return res.redirect("/login"); //cookie認証に失敗した場合「/login」にリダイレクト
 
   const carId = req.params.carId;
@@ -30,6 +31,7 @@ router.route(CAR_PICTURE_END_POINT).get(async (req, res) => {
         if (err) {
           return res.status(500).json({ code: 500, message: err });
         }
+        console.log("path!!!", result);
         return res.status(200).json({ paths: result });
         //return res.status(200).json(result);
       }
