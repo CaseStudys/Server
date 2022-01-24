@@ -168,6 +168,7 @@
         }
 
         fetch('/login', param).then((data) => {
+            console.log('ログイン処理')
             data.json().then((data) => {
                 if(data.result === 2) return alert('ログインに失敗しました')
                 data.result === 1 ? window.location.href='http://localhost:8080/employee'  : window.location.href='http://localhost:8080/auction'
