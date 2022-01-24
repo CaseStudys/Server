@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang=“ja”>
+<head>
+  <meta charset=“UTF-8" />
+  <meta http-equiv=“X-UA-Compatible” content=“IE=edge” />
+  <meta name=“viewport” content=“width=device-width, initial-scale=1.0" />
+  <title>出品者 管理一覧ページ</title>
+</head>
+<style>
+  * {
+    margin: 0px;
+    padding: 0px;
+    list-style-type: none;
+    box-sizing: border-box;
+    text-decoration: none;
+  }
+  .none {
+    display: none;
+    /* ボックスごと非表示 */
+  }
+  .hidden {
+    text-indent: 100%;
+    white-space: nowrap;
+    /* 改行せずに表示 */
+    overflow: hidden;
+    /* ボックスの中身が不可視 */
+  }
+  body {
+    width: 100%;
+    height: 100%;
+  }
+  header {
+    width: 100%;
+    height: 80px;
+    display: flex;
+    font-size: 25px;
+    align-items: center;
+    background-color: aqua;
+    text-align: center;
+    margin: 0 auto;
+  }
+  .logo {
+    width: 55%;
+    text-align: right;
+  }
+  .header_r {
+    width: 40%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .header_r>li {
+    margin: 15px;
+  }
+  .header_r>li>button {
+    color: #fff;
+    background-color: #EB6100;
+    border: 1px solid gray;
+    width: 100px;
+    height: 40px;
+  }
+  .login_name {
+    font-size: 20px;
+  }
+  .login_box {
+    width: 40%;
+    height: 300px;
+    background-color: rgb(225, 222, 222);
+    border-radius: 8px;
+  }
+  /* ---- main ---- */
+  main {
+    width: 80%;
+    display: flex;
+    justify-content: center;
+    margin: 0 auto;
+    /* background-color: red; */
+  }
+  /* ボタン */
+  .button {
+    display: flex;
+    justify-content: space-around;
+    margin: 20px;
+  }
+  .main_button>li {
+    margin: 5px;
+  }
+  .main_button>li>button {
+    width: 120px;
+    height: 30px;
+  }
+  /* 項目エリア */
+  .content_area {
+    margin: 20px auto;
+    /* background-color: #EB6100; */
+  }
+  /* 項目名 */
+  .title_name {
+    font-size: 20px;
+    font-weight: bold;
+    text-align: center;
+    padding: 30px;
+  }
+  .price {
+    text-align: right;
+    margin-right: 5px;
+  }
+  .card_flex {
+    width: 100%;
+    display: flex;
+  }
+  /* 車両のカードレイアウト */
+  .card {
+    width: 300px;
+    height: 300px;
+    margin: 20px;
+    background-color: aquamarine;
+    border-radius: 8px;
+  }
+  .card_img {
+    width: 300px;
+    height: 200px;
+    background-color: black;
+  }
+</style>
+<body>
+  <header>
+    <p class=“logo”>
+      <a href=“/management”> LOGO 社名 </a>
+    </p>
+    <ul class=“header_r”>
+      <li>
+        <button>
+          <a href=“/car”> 車両登録</a>
+        </button>
+      </li>
+      <li class=“login_name”>ログイン指名</li>
+    </ul>
+  </header>
+  <main>
+    <div>
+      <h1>
+        <%= console.log(values) %>様の
+      </h1>
+      <div class=“content_area”>
+        <p class=“title_name”>車両登録一覧</p>
+        <div class=“card_flex”>
+          <!-- 1枚目 -->
+          <% for (var i=0; i < values.length; i++) { %>
+            <div class=“card”>
+              <img class=“card_img” src=“<%= values[i].picture_path %>” alt=“” />
+              <input type=“date” name=“start_date” id=“start_date” required>
+              <input type=“hidden” id=“car_id” name=“car_id” value=“<%= values[i].car_id %>“>
+              <button type=“submit” onclick=“test()“>出品予約</button>
+              <p>車両ID:<%= values[i].car_id %>
+              </p>
+              <p>車種名:<%= values[i].type_name %>
+              </p>
+              <p>仕入れ金額:<%= values[i].purchace_price %>円</p>
+            </div>
+            <% } %>
+              </a>
+        </div>
+      </div>
+    </div>
+  </main>
+  <footer></footer>
+</body>
+</html>
+<script>
+  const test = () => {
+    const carId = document.getElementById(“car_id”).value;
+    const startDate = document.getElementById(“start_date”).value;
+    console.log(“test_ok”);
+    console.log(startDate);
+    console.log(carId);
+  }
+  const postRequest = () => {
+    const distinction = document.getElementById(“distinction”).value; //distinction取得
+    const birthday = document.getElementById(“birthday”).value; //birthday取得
+    const name = document.getElementById(“name”).value; //name取得
+    const phone_number = document.getElementById(“phone_number”).value; //phone_number取得
+    const address = document.getElementById(“address”).value; //address取得
+    const password = document.getElementById(“password”).value; //password取得
+    const trust_flg = document.getElementById(“trust_flg”).value;//trust_flg取得
+    const param = {
+      method: “POST”,
+      headers: {
+        “Content-Type”: “application/json; charset=utf-8”
+      },
+      body: JSON.stringify({
+        distinction: distinction,
+        birthday: birthday,
+        name: name,
+        phone_number: phone_number,
+        address: address,
+        password: password,
+        trust_flg: trust_flg
+      })
+    }
+    fetch(‘/user/signup’, param).then((res) => {
+      res.json().then(data => data.result ? window.location.href = ‘http://localhost:8080/auction’ : alert(‘ユーザー登録に失敗しました‘))
+    })
+  }
+</script><!DOCTYPE html>
+<html lang=“ja”>
+<head>
+  <meta charset=“UTF-8” />
+  <meta http-equiv=“X-UA-Compatible” content=“IE=edge” />
+  <meta name=“viewport” content=“width=device-width, initial-scale=1.0” />
+  <title>出品者 管理一覧ページ</title>
+</head>
+<style>
+  * {
+    margin: 0px;
+    padding: 0px;
+    list-style-type: none;
+    box-sizing: border-box;
+    text-decoration: none;
+  }
+  .none {
+    display: none;
+    /* ボックスごと非表示 */
+  }
+  .hidden {
+    text-indent: 100%;
+    white-space: nowrap;
+    /* 改行せずに表示 */
+    overflow: hidden;
+    /* ボックスの中身が不可視 */
+  }
+  body {
+    width: 100%;
+    height: 100%;
+  }
+  header {
+    width: 100%;
+    height: 80px;
+    display: flex;
+    font-size: 25px;
+    align-items: center;
+    background-color: aqua;
+    text-align: center;
+    margin: 0 auto;
+  }
+  .logo {
+    width: 55%;
+    text-align: right;
+  }
+  .header_r {
+    width: 40%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .header_r>li {
+    margin: 15px;
+  }
+  .header_r>li>button {
+    color: #fff;
+    background-color: #EB6100;
+    border: 1px solid gray;
+    width: 100px;
+    height: 40px;
+  }
+  .login_name {
+    font-size: 20px;
+  }
+  .login_box {
+    width: 40%;
+    height: 300px;
+    background-color: rgb(225, 222, 222);
+    border-radius: 8px;
+  }
+  /* ---- main ---- */
+  main {
+    width: 80%;
+    display: flex;
+    justify-content: center;
+    margin: 0 auto;
+    /* background-color: red; */
+  }
+  /* ボタン */
+  .button {
+    display: flex;
+    justify-content: space-around;
+    margin: 20px;
+  }
+  .main_button>li {
+    margin: 5px;
+  }
+  .main_button>li>button {
+    width: 120px;
+    height: 30px;
+  }
+  /* 項目エリア */
+  .content_area {
+    margin: 20px auto;
+    /* background-color: #EB6100; */
+  }
+  /* 項目名 */
+  .title_name {
+    font-size: 20px;
+    font-weight: bold;
+    text-align: center;
+    padding: 30px;
+  }
+  .price {
+    text-align: right;
+    margin-right: 5px;
+  }
+  .card_flex {
+    width: 100%;
+    display: flex;
+  }
+  /* 車両のカードレイアウト */
+  .card {
+    width: 300px;
+    height: 300px;
+    margin: 20px;
+    background-color: aquamarine;
+    border-radius: 8px;
+  }
+  .card_img {
+    width: 300px;
+    height: 200px;
+    background-color: black;
+  }
+</style>
+<body>
+  <header>
+    <p class=“logo”>
+      <a href=“/management”> LOGO 社名 </a>
+    </p>
+    <ul class=“header_r”>
+      <li>
+        <button>
+          <a href=“/car”> 車両登録</a>
+        </button>
+      </li>
+      <li class=“login_name”>ログイン指名</li>
+    </ul>
+  </header>
+  <main>
+    <div>
+      <h1>
+        <%= console.log(values) %>様の
+      </h1>
+      <div class=“content_area”>
+        <p class=“title_name”>車両登録一覧</p>
+        <div class=“card_flex”>
+          <!-- 1枚目 -->
+          <% for (var i=0; i < values.length; i++) { %>
+            <div class=“card”>
+              <img class=“card_img” src=“<%= values[i].picture_path %>” alt=“” />
+              <input type=“date” name=“start_date” id=“start_date” required>
+              <input type=“hidden” id=“car_id” name=“car_id” value=“<%= values[i].car_id %>“>
+              <button type=“submit” onclick=“test(<%- values[i].car_id %>)“>出品予約</button>
+              <p>車両ID:<%= values[i].car_id %>
+              </p>
+              <p>車種名:<%= values[i].type_name %>
+              </p>
+              <p>仕入れ金額:<%= values[i].purchace_price %>円</p>
+            </div>
+            <% } %>
+              </a>
+        </div>
+      </div>
+    </div>
+  </main>
+  <footer></footer>
+</body>
+</html>
+<script>
+  const test = (car_id) => {
+    const carId = document.getElementById(`car_id-${car_id}`).value;
+    const startDate = document.getElementById(“start_date”).value;
+    console.log(“test_ok”);
+    console.log(startDate);
+    console.log(carId);
+  }
+  const postRequest = () => {
+    const distinction = document.getElementById(“distinction”).value; //distinction取得
+    const birthday = document.getElementById(“birthday”).value; //birthday取得
+    const name = document.getElementById(“name”).value; //name取得
+    const phone_number = document.getElementById(“phone_number”).value; //phone_number取得
+    const address = document.getElementById(“address”).value; //address取得
+    const password = document.getElementById(“password”).value; //password取得
+    const trust_flg = document.getElementById(“trust_flg”).value;//trust_flg取得
+    const param = {
+      method: “POST”,
+      headers: {
+        “Content-Type”: “application/json; charset=utf-8”
+      },
+      body: JSON.stringify({
+        distinction: distinction,
+        birthday: birthday,
+        name: name,
+        phone_number: phone_number,
+        address: address,
+        password: password,
+        trust_flg: trust_flg
+      })
+    }
+    fetch(‘/user/signup’, param).then((res) => {
+      res.json().then(data => data.result ? window.location.href = ‘http://localhost:8080/auction’ : alert(‘ユーザー登録に失敗しました’))
+    })
+  }
+</script>

@@ -29,7 +29,7 @@ router.route(`${BID_END_POINT}/:car_id`).get(async (req, res) => {
         if (exhibitValues.length === 0) return res.redirect("/auction");
         const values = {
           ...exhibitValues[0],
-          user_id: "",
+          user_id: "", //最高入札者のID
           price: 0,
         };
         //取得した出品物のオークション開始日が、現在日時 <= オークション開始日 <=オークション開始日　+五分 でない場合、user_auction.ejsにリダイレクト
@@ -39,16 +39,19 @@ router.route(`${BID_END_POINT}/:car_id`).get(async (req, res) => {
         ); //終了日を取得
         const nowDate = new Date(); //現在の日付を取得
         //現在時間 > オークション終了時間 ||現在時間 < オークション開始五分前
+        const d = false;
         if (
           endDate - nowDate <
-          0 /*||new Date(endDate - nowDate).getMinutes() - 5 > 5*/
-        )
+            0 /*||new Date(endDate - nowDate).getMinutes() - 5 > 5*/ &&
+          d
+        ) {
           return res.redirect("/auction");
+        }
 
         //入札データをvaluesに連結
         if (bidDataList.length === 0) {
           //まだ入札されていない場合、入札者を表すuserIdを空文字、価格に初期価格を設定
-          values.price = values.purchace_price * 1.1;
+          values.price = Math.floor(values.purchace_price * 1.1);
         } else {
           //入札データがある場合
           values.user_id = bidDataList[0].user_id;
@@ -58,6 +61,17 @@ router.route(`${BID_END_POINT}/:car_id`).get(async (req, res) => {
         if (err) {
           return res.status(500).json({ code: 500, message: err });
         }
+        console.log("values", values);
+        const limitTime = 3000000;
+        res.cookie("user_id", 10, {
+          maxAge: limitTime,
+          httpOnly: false,
+        });
+        res.cookie("name", 222, { maxAge: limitTime, httpOnly: false });
+        res.cookie("password", 333, {
+          maxAge: limitTime,
+          httpOnly: false,
+        });
         return res.status("200").render("user_bid.ejs", { values: values });
         //テスト用
         //return res.status("200").json(result);//値確認
