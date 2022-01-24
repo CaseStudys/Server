@@ -69,9 +69,7 @@ router.route(LOGIN_END_POINT).put((req, res) => {
           });
 
           //render
-          return res
-            .status("200")
-            .render("user_auction.ejs", { values: result[2] });
+          return res.status("200").json({ result: 0 });
           //テスト用
           //return res.status(200).json(result[2]);//値確認
           //return res.status("200").render("get_test.ejs", {values: result[1]});//ejs確認
@@ -98,7 +96,7 @@ router.route(LOGIN_END_POINT).put((req, res) => {
               httpOnly: false,
             });
 
-            return res.status(200).render("emp_mypage.ejs");
+            return res.status(200).json({ result: 1 });
             //テスト用
             return res.status(200).json(result[1][0]); //値確認
           }
