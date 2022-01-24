@@ -43,11 +43,12 @@ router.route(`${USER_END_POINT}/:user_id`).get(async (req, res) => {
         if (err) {
           return res.status(500).json({ code: 500, message: err });
         }
+        console.log("result", result[3]);
         return res.status("200").render("user_mypage.ejs", { values: result });
 
         //テスト用
         //return res.status(200).json(result);//値確認
-        //return res.status("200").render("get_test.ejs", {values: result});//ejs確認
+        //return res.status("200").render("get_test.ejs", {values: result})\;//ejs確認
       }
     );
   });

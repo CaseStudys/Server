@@ -187,22 +187,24 @@
 
     <div class="content_area">
         <div class="crad_flex">
-            <div class="card">
+
                 <% for (var i=0; i < values[1].length; i++) { %>
-                    <img src="<%= values[1][i].picture_path %>" alt="車両画像" class="card_img">
-                    <p>車両名:<%= values[1][i].type_name %>
-                    </p>
-                    <p>
-                        支払い状況:
-                        <% if(values[1][i].payment_flg==0){ %>
-                            未払い
-                            <% } %>
-                    </p>
-                    <p>値段:<%= values[1][i].price %>
-                            円</p>
-                    <button onclick="requestUser_put('<%= values[1][i].project_id %>')">キャンセルボタン</button>
+                    <div class="card">
+                        <img src="<%= values[1][i].picture_path %>" alt="車両画像" class="card_img">
+                        <p>車両名:<%= values[1][i].type_name %>
+                        </p>
+                        <p>
+                            支払い状況:
+                            <% if(values[1][i].payment_flg==0){ %>
+                                未払い
+                                <% } %>
+                        </p>
+                        <p>値段:<%= values[1][i].price %>
+                                円</p>
+                        <button onclick="requestUser_put('<%= values[1][i].project_id %>')">キャンセルボタン</button>
+                    </div>
                     <% } %>
-            </div>
+
         </div>
     </div>
 
