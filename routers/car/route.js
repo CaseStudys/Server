@@ -23,6 +23,7 @@ const storage = multer.diskStorage({
 router
   .route(CAR_END_POINT)
   .post(multer({ storage: storage }).array("files", 10), async (req, res) => {
+
     //sql文生成
     //＊＊＊＊カラムをプレースホルダーで入れるとSQL文にシングルクォーテーションが付いてしまう為、暫定的に手打ち＊＊＊＊＊＊＊＊
     var sqlSentence =
@@ -91,7 +92,7 @@ router
 
               //画像を一時保存フォルダから移動
               fex.copySync("tmp", "pictures/" + newId);
-              tmp内の画像全削除
+              //tmp内の画像全削除
               fs.readdir("tmp", (err, files) => {
                 if (err) throw err;
                 for (const file of files) {
@@ -141,9 +142,9 @@ router.route(CAR_END_POINT).get(async (req, res) => {
 });
 
 
-//車両登録画面を表示するGETのAPI
-router.route(CAR_END_POINT).delete(multer({ storage: storage }).array("files", 10), async (req, res) => {
-  console.log(req.files);
-});
+// //車両登録画面を表示するGETのAPI
+// router.route(CAR_END_POINT).delete(multer({ storage: storage }).array("files", 10), async (req, res) => {
+//   console.log(req.files);
+// });
 
 module.exports = router;
