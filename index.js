@@ -118,7 +118,7 @@ io_socket.on("connection", async (socket) => {
 /*------------------- 落札定時処理一括 -------------------- */
 //毎週土曜日当日に終了するオークション全ての落札処理を予約する。
 //毎週土曜深夜三時に実行;
-const endCronTime = "21 14 * * 1";
+const endCronTime = "43 17 * * 1";
 //"0 3 * * 1"
 //↑テストする場合 例 "5 15 * * 2"月曜にテストする場合、昼三時五分に実行されるようにする。
 //プレゼンは、"分 時 日 月 2""
@@ -183,6 +183,7 @@ const createEndReservations = () => {
 */
 const createEndReservation = (date, result) => {
   const endCronTime = date;
+  if (new Date() > endCronTime) return;
   console.log("endCronTime", endCronTime);
   const data = result;
   //落札時の定時処理を予約
@@ -272,7 +273,8 @@ SELECT exhibits.exhibit_id,COALESCE(a.user_id,0) as user_id,COALESCE(b.price,0) 
 //select user_id,total_id from Project where 先月分　かつ　従業員　かつ総額にして取得して...
 //usersのtotal_priceに入れる。
 
-const closingCronTime = "0 3 1 * *"; //毎月1日の深夜3時に実行
+const closingCronTime = "31 18 * * 1"; //
+//本番はこっち。毎月1日の深夜3時に実行"0 3 1 * *"
 new cronJob({
   cronTime: closingCronTime,
   context: {},
@@ -293,11 +295,11 @@ const closingReservation = () => {
   const date = new Date();
   const beforeDate = new Date(date.setMonth(date.getMonth() - 1));
   const placeholder = [nowDate, beforeDate];
-  const test = ["2021-12-01", "2022-12-31"];
+  const test = ["2022-01-24", "2022-02-01"]; //プレゼンはこっち
   db.mysql_connection.connect((err) => {
     db.mysql_connection.query(
       "SELECT users.user_id from users LEFT JOIN projects ON users.user_id = projects.buyer_id WHERE projects.purchase_date >= ? and projects.purchase_date < ? and users.distinction = 1 GROUP BY users.user_id",
-      placeholder,
+      test,
       (err, result) => {
         if (err) throw err;
         const traderIds = [];
