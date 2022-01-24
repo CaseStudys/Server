@@ -43,7 +43,7 @@ router.route(LOGIN_END_POINT).put((req, res) => {
             password: Password,
             message: "ログイン失敗",
           };
-          return res.status("200").render("login.ejs", { values: returnVals });
+          return res.status("200").json({ result: 2 });
           //テスト用
           //return res.status(200).json(returnVals);//値確認
           //return res.status("200").render("get_test.ejs", {values: returnVals});//ejs確認
@@ -107,9 +107,7 @@ router.route(LOGIN_END_POINT).put((req, res) => {
               password: Password,
               message: "ログイン失敗",
             };
-            return res
-              .status("200")
-              .render("login.ejs", { values: returnVals });
+            return res.status("200").json({ result: 2 });
             //テスト用
             //return res.status(200).json(returnVals);//値確認
           }
