@@ -82,7 +82,7 @@
 
   /* ---- main ---- */
   main {
-    width: 80%;
+    /* width: 80%; */
     display: flex;
     justify-content: center;
     margin: 0 auto;
@@ -115,11 +115,14 @@
   .title_name {
     font-size: 20px;
     font-weight: bold;
+    padding-left: 25px;
   }
 
   .card_flex {
     width: 100%;
+
     display: flex;
+    flex-wrap:wrap;
   }
 
   /* 車両のカードレイアウト */
@@ -134,9 +137,11 @@
   .card_img {
     width: 300px;
     height: 200px;
-    background-color: black;
+    /* background-color: black; */
   }
-
+.ddd{
+width: 300px;
+}
   a {
     color: black;
   }
@@ -145,16 +150,15 @@
 <body>
   <header>
     <p class="logo">
-      <a href="/management"> LOGO 社名 </a>
+      <a href="/management"> オークション </a>
     </p>
-
     <ul class="header_r">
       <li>
         <button>
           <a href="/car"> 車両登録</a>
         </button>
       </li>
-      <li class="login_name">ログイン指名</li>
+      <li class="login_name"></li>
     </ul>
   </header>
   <main>
@@ -171,6 +175,8 @@
           </button></li>
       </ul>
 
+      <img class="ddd" src='img/1.jpg' alt=''>
+
       <!-- <h1><%= console.log(values[0].length) %>様の</h1> -->
       <div class="content_area">
         <p class="title_name">取引中</p>
@@ -180,6 +186,7 @@
             <div class="card">
               <a href='/management/detail/<%= values[0][i].car_id %>'>
                 <img class="card_img" src="<%= values[0][i].picture_path %>" alt="" />
+                <% console.log(values[0][i].picture_path) %>
                 <p>番号<%= values[0][i].car_id %>
                 </p>
                 <p>
