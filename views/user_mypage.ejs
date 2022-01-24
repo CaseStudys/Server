@@ -178,7 +178,7 @@
             </p>
         </div>
         <div class="box">
-            <button>ログアウトする</button>
+            <button onclick="requestLogout_get()">ログアウトする</button>
         </div>
     </div>
 
@@ -210,7 +210,15 @@
 
 </html>
 <script>
+    //ログアウト
+    //logouのGET
+    const requestLogout_get = () => {
+        window.location.href = "http://localhost:8080/logout";
+    }
+
+
     //userのPUT
+    //取引キャンセル
     const requestUser_put = (project_id) => {
         const user_id = getCookieData("user_id");
 
