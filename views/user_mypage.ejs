@@ -135,6 +135,7 @@
     .card_flex {
         width: 100%;
         display: flex;
+        flex-wrap: wrap;
     }
 
     /* 車両のカードレイアウト */
@@ -185,7 +186,7 @@
     <h2 class="title">取引車両</h2>
 
     <div class="content_area">
-        <div class="crad_flex">
+        <div class="card_flex">
             <% for (var i=0; i < values[1].length; i++) { %>
                 <div class="card">
                     <img src="<%= values[1][i].picture_path %>" alt="車両画像" class="card_img" />
