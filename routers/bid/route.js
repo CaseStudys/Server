@@ -61,7 +61,6 @@ router.route(`${BID_END_POINT}/:car_id`).get(async (req, res) => {
         if (err) {
           return res.status(500).json({ code: 500, message: err });
         }
-        console.log("values", values);
 
         return res.status("200").render("user_bid.ejs", { values: values });
         //テスト用
