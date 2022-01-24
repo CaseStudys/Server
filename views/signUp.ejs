@@ -135,35 +135,45 @@
             <li class="login_name">ログイン指名</li>
         </ul>
     </header>
-    <h1>登録</h1>
-
-    <!-- <form action="" method="POST"> -->
-    <label for="distinction">
-        <input type="radio" name="distinction" id="distinction" value="0" required>業者
-        <input type="radio" name="distinction" id="distinction" value="0" required>個人
-    </label><br>
-    <label for="name">
-        氏名：<input type="text" name="name" id="name" required>
-    </label><br>
-    <label for="birthday">
-        誕生日:<input type="date" name="birthday" id="birthday" required>
-    </label><br>
-    <label for="phone_number">
-        電話番号：<input type="number" id="phone_number" name="phone_number" size="12" required>
-    </label><br>
-    <label for="address">
-        住所：<input type="text" id="address" name="address" required>
-    </label><br>
-    <label for="password">
-        パスワード：<input type="password" id="password" name="password" required>
-    </label><br>
-    <!-- <label for="trust_flg">
+    <main>
+        <h1>登録</h1>
+        <!-- <form action="" method="POST"> -->
+        <label for="distinction">
+            <input type="radio" name="distinction" id="distinction" value="0" required>業者
+            <input type="radio" name="distinction" id="distinction" value="0" required>個人
+        </label><br>
+        <div class="cp_iptxt">
+            <label for="name">
+                <input type="text" name="name" id="name" required placeholder="お名前">
+            </label>
+        </div><br>
+        <div class="cp_iptxt">
+            <label for="birthday">
+                <input type="date" name="birthday" id="birthday" required placeholder="お誕生日">
+            </label>
+        </div><br>
+        <div class="cp_iptxt">
+            <label for="phone_number">
+                <input type="number" id="phone_number" name="phone_number" size="12" required placeholder="電話番号">
+            </label>
+        </div><br>
+        <div class="cp_iptxt">
+            <label for="address">
+                <input type="text" id="address" name="address" required placeholder="住所">
+            </label>
+        </div><br>
+        <div class="cp_iptxt">
+            <label for="password">
+                <input type="password" id="password" name="password" required placeholder="パスワード">
+            </label>
+        </div><br>
+        <!-- <label for="trust_flg">
         trust_flg <input type="text" name="trust_flg" id="trust_flg" value="0">
     </label> -->
-    <button type="submit" onclick="postRequest()" class="button">登録する</button>
-    <!-- </form> -->
-    <div id="messageArea"></div>
-
+        <button type="submit" onclick="postRequest()" class="button">登録する</button>
+        <!-- </form> -->
+        <div id="messageArea"></div>
+    </main>
 </body>
 
 </html>
