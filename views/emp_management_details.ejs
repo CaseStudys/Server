@@ -115,9 +115,15 @@
       </ul>
     </header>
     <main>
+      <%= console.log(values)%>
       <div class="main_img">
         <img src="<% values[0].picture_path %>" alt="" class="card_img" />
+
         <div class="images">
+          <% for (var i=0; i < values[0].length; i++) { %>
+          <img class="ddd" src="/1/U00036466024_5_001.jpg" alt="" />
+          <% } %>
+          <img class="card_img" src="<%= values[0][i].picture_path %>" alt="" />
           <img src="<% values[0].picture_path %>" alt="" class="card_img" />
           <img src="<% values[0].picture_path %>" alt="" class="card_img" />
           <img src="<% values[0].picture_path %>" alt="" class="card_img" />
@@ -128,6 +134,7 @@
           <img src="<% values[0].picture_path %>" alt="" class="card_img" />
           <img src="<% values[0].picture_path %>" alt="" class="card_img" />
         </div>
+
         <table border="1">
           <tr>
             <th>年式</th>
@@ -241,3 +248,5 @@
     <footer></footer>
   </body>
 </html>
+
+<script></script>
