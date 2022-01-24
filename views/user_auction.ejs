@@ -102,6 +102,7 @@
     .card_flex {
         width: 100%;
         display: flex;
+        flex-wrap: wrap;
     }
 
     /* 車両のカードレイアウト */
@@ -118,6 +119,44 @@
         height: 200px;
         background-color: black;
     }
+
+
+    .button {
+        display: inline-block;
+        border-radius: 50%;
+        /* 角丸       */
+        font-size: 18pt;
+        /* 文字サイズ */
+        text-align: center;
+        /* 文字位置   */
+        cursor: pointer;
+        /* カーソル   */
+        padding: 9px 27px;
+        /* 余白       */
+        background: #eb6100;
+        /* 背景色     */
+        color: #ffffff;
+        /* 文字色     */
+        line-height: 1em;
+        /* 1行の高さ  */
+        transition: 0.3s;
+        /* なめらか変化 */
+        border: 2px solid #eb6100;
+        /* 枠の指定 */
+    }
+
+    .button:hover {
+        color: #eb6100;
+        /* 背景色     */
+        background: #ffffff;
+        /* 文字色     */
+    }
+
+    .buttonArea {
+        text-align: right;
+        margin-top: 20px;
+        margin-right: 40px;
+    }
 </style>
 
 <body>
@@ -126,23 +165,27 @@
             <a href="/management"> オークション </a>
         </p>
 
-        <ul class="header_r">
-            <!-- <li>
+
+        <!-- <li>
           <button>
             <a href="/car"> 車両登録 </a>
           </button>
         </li> -->
-            <li class="login_name"></li>
+        <li class="login_name"></li>
         </ul>
     </header>
-
+    <div class="buttonArea">
+        <button onclick="requestUser_get()" class="button">
+            マイページへ
+        </button>
+    </div>
     <div class="content_area">
-        <button onclick="requestUser_get()">マイページ(test)</button>
         <div class="card_flex">
             <% for (var i=0; i < values.length; i++) { %>
                 <a href="bid/<%=values[i].car_id %>">
                     <div class="card">
-                        <img src="<%= values[i].picture_path　%>" alt="車両画像" />
+                        <!-- <img src="<%= values[i].picture_path　%>" alt="車両画像" /> -->
+                        <img class="card_img" src='/1/U00036466024_5_001.jpg' alt=''>
                         <p>車体番号:<%= values[i].car_id %>
                         </p>
                         <p>車名:<%= values[i].type_name %>
