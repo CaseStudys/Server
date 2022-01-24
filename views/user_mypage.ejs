@@ -141,10 +141,11 @@
     /* 車両のカードレイアウト */
     .card {
         width: 300px;
-        height: 300px;
+        height: 380px;
         margin: 20px;
         background-color: aquamarine;
         border-radius: 8px;
+        text-align: center;
     }
 
     .card_img {
@@ -182,6 +183,39 @@
         /* 背景色     */
         background: #ffffff;
         /* 文字色     */
+    }
+
+    .clButton {
+        /* ブラウザ特有のスタイルを無効に */
+        -moz-appearance: none;
+        -webkit-appearance: none;
+        appearance: none;
+
+        /* 整える */
+        margin: 1em 0;
+        /* 前後の隙間 */
+        padding: 0.6em 1em;
+        /* 塗りの余白 */
+        font-size: 1em;
+        /* フォントサイズ */
+        background-color: #1aa1ff;
+        /* 背景色 */
+        color: #FFF;
+        /* テキストカラー */
+        cursor: pointer;
+        /* カーソルを指マークに */
+        border-radius: 3px;
+        /* 角の丸み */
+        border: 0;
+        /* 枠線を消す */
+        transition: 0.3s;
+        /* ホバーの変化を滑らかに */
+    }
+
+    /* ホバー時（カーソルをのせた時）の見た目 */
+    .clButton:hover {
+        background-color: #064fda;
+        /* 背景色 */
     }
 </style>
 
@@ -228,7 +262,7 @@
                         支払い状況: <% if(values[1][i].payment_flg==0){ %> 未払い <% } %>
                     </p>
                     <p>値段:<%= values[1][i].price %> 円</p>
-                    <button onclick="requestUser_put('<%= values[1][i].project_id %>')">
+                    <button onclick="requestUser_put('<%= values[1][i].project_id %>')" class="clButton">
                         キャンセルボタン
                     </button>
                 </div>
