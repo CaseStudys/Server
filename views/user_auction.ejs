@@ -137,19 +137,22 @@
     </header>
 
     <div class="content_area">
+
         <div class="card_flex">
             <% for (var i=0; i < values.length; i++) { %>
-                <div class="card">
-                    <img src="<%= values[i].picture_path　%>" alt="車両画像">
-                    <p>車体番号:<%= values[i].car_id %>
-                    </p>
-                    <p>
-                        車名:<%= values[i].type_name %>
-                    </p>
-                    <p>
-                        金額:<%= values[i].purchace_price %>円
-                    </p>
-                </div>
+                <a href="localhost:8080/bid/<%=values[i].car_id %>">
+                    <div class="card">
+                        <img src="<%= values[i].picture_path　%>" alt="車両画像">
+                        <p>車体番号:<%= values[i].car_id %>
+                        </p>
+                        <p>
+                            車名:<%= values[i].type_name %>
+                        </p>
+                        <p>
+                            金額:<%= values[i].purchace_price %>円
+                        </p>
+                    </div>
+                </a>
                 <% } %>
         </div>
     </div>
