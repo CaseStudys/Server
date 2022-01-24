@@ -3,7 +3,7 @@ const express = require("express");
 const db = require("../../db");
 const router = express.Router();
 const LOGIN_END_POINT = "/login";
-
+console.log("経過テスト");
 //ログイン画面を表示するGETのAPI
 router.route(LOGIN_END_POINT).get((req, res) => {
   res.status("200").render("login.ejs");
@@ -43,7 +43,7 @@ router.route(LOGIN_END_POINT).put((req, res) => {
             password: Password,
             message: "ログイン失敗",
           };
-          return res.status("200").render("login.ejs", { values: returnVals });
+          return res.status("200").json({ result: 2 });
           //テスト用
           //return res.status(200).json(returnVals);//値確認
           //return res.status("200").render("get_test.ejs", {values: returnVals});//ejs確認
@@ -107,9 +107,7 @@ router.route(LOGIN_END_POINT).put((req, res) => {
               password: Password,
               message: "ログイン失敗",
             };
-            return res
-              .status("200")
-              .render("login.ejs", { values: returnVals });
+            return res.status("200").json({ result: 2 });
             //テスト用
             //return res.status(200).json(returnVals);//値確認
           }

@@ -126,6 +126,10 @@
     dl dd {
         padding: 10px 0;
     }
+
+    .link {
+        margin-bottom: 40px;
+    }
 </style>
 
 <body>
@@ -143,8 +147,10 @@
             <dd><input type="text" name="password" id="password"></dd>
         </dl>
         <div class="buttonLink">
-            <button onclick="requestlogin_put()">ログインする</button>
+            <button onclick="requestlogin_put()" class="link">ログインする</button>
         </div>
+
+        <a href="/user/signup">サインアップページへ</a>
     </div>
 </body>
 
@@ -168,8 +174,10 @@
         }
 
         fetch('/login', param).then((data) => {
+            console.log('ログイン処理')
             data.json().then((data) => {
-                data.result === 1 ? window.location.href='http://localhost:8080/employee'  : window.location.href='http://localhost:8080/auction'
+                if (data.result === 2) return alert('ログインに失敗しました')
+                data.result === 1 ? window.location.href = 'http://localhost:8080/employee' : window.location.href = 'http://localhost:8080/auction'
             })
         })
     }
