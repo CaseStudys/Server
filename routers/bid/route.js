@@ -39,11 +39,10 @@ router.route(`${BID_END_POINT}/:car_id`).get(async (req, res) => {
         ); //終了日を取得
         const nowDate = new Date(); //現在の日付を取得
         //現在時間 > オークション終了時間 ||現在時間 < オークション開始五分前
-        const d = false;
+
         if (
-          endDate - nowDate <
-            0 /*||new Date(endDate - nowDate).getMinutes() - 5 > 5*/ &&
-          d
+          endDate - nowDate < 0 ||
+          new Date(endDate - nowDate).getMinutes() - 5 > 5
         ) {
           return res.redirect("/auction");
         }
@@ -62,16 +61,7 @@ router.route(`${BID_END_POINT}/:car_id`).get(async (req, res) => {
           return res.status(500).json({ code: 500, message: err });
         }
         console.log("values", values);
-        const limitTime = 3000000;
-        res.cookie("user_id", 10, {
-          maxAge: limitTime,
-          httpOnly: false,
-        });
-        res.cookie("name", 222, { maxAge: limitTime, httpOnly: false });
-        res.cookie("password", 333, {
-          maxAge: limitTime,
-          httpOnly: false,
-        });
+
         return res.status("200").render("user_bid.ejs", { values: values });
         //テスト用
         //return res.status("200").json(result);//値確認

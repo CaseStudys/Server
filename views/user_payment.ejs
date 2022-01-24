@@ -125,7 +125,17 @@
 
     <p>落札金額は〇〇円です。</p>
     <p>担当者から連絡を差し上げますので、それまでしばらくお待ちください</p>
-    <button class="buttonLink"><a href="/user">マイページに戻る</a></button>
+    <button class="buttonLink" onclick="redirect()">マイページに戻る</button>
 </body>
 
 </html>
+
+<script>
+    const redirect = () => {
+     const userId = document.cookie.split(";")
+        .map((cookieData) => cookieData.trim()).find((cookieData) =>
+        cookieData.startsWith("user_id=")
+        ).split("=")[1]
+        window.location = `http://localhost:8080/user/${userId}`
+    }
+</script>

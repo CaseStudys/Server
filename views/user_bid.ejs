@@ -223,7 +223,7 @@
     現在価格：<p id="now_price"><%=values.price %></p>
 
     <label for="bid">
-        <input type="text" name="bid" id="bid">円
+        <input type="text" name="bid" id="price">円
         <button id="bidButton" onclick="bidRequest()">入札する</button>
     </label>
 
@@ -288,7 +288,7 @@
     const bidRequest = () => {
         const price = document.getElementById("price").value;
         const nowPrice = "<%=values.price %>"
-        console.log(nowPrice + 1000 )
+        console.log('ffff',nowPrice + 1000 )
         if(price < Number(nowPrice) + 1000){
             alert('入札可能額は現在価格＋1000円以上です。')
             return
