@@ -1,378 +1,411 @@
 <!DOCTYPE html>
 <html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>車両情報登録</title>
+  </head>
+  <style>
+    * {
+      margin: 0px;
+      padding: 0px;
+      list-style-type: none;
+      box-sizing: border-box;
+      text-decoration: none;
+    }
 
-<head>
-  <meta charset="UTF-8" />
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>車両情報登録</title>
-</head>
-<style>
-  * {
-    margin: 0px;
-    padding: 0px;
-    list-style-type: none;
-    box-sizing: border-box;
-    text-decoration: none;
-  }
+    .none {
+      display: none;
+      /* ボックスごと非表示 */
+    }
 
-  .none {
-    display: none;
-    /* ボックスごと非表示 */
-  }
+    .hidden {
+      text-indent: 100%;
+      white-space: nowrap;
+      /* 改行せずに表示 */
+      overflow: hidden;
+      /* ボックスの中身が不可視 */
+    }
 
-  .hidden {
-    text-indent: 100%;
-    white-space: nowrap;
-    /* 改行せずに表示 */
-    overflow: hidden;
-    /* ボックスの中身が不可視 */
-  }
+    body {
+      width: 100%;
+      height: 100%;
+    }
 
-  body {
-    width: 100%;
-    height: 100%;
-  }
+    header {
+      width: 100%;
+      height: 80px;
+      display: flex;
+      font-size: 25px;
+      align-items: center;
+      background-color: aqua;
+      text-align: center;
+      margin: 0 auto;
+    }
 
-  header {
-    width: 100%;
-    height: 80px;
-    display: flex;
-    font-size: 25px;
-    align-items: center;
-    background-color: aqua;
-    text-align: center;
-    margin: 0 auto;
-  }
+    .logo {
+      width: 55%;
+      text-align: right;
+    }
 
-  .logo {
-    width: 55%;
-    text-align: right;
-  }
+    .header_r {
+      width: 40%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
 
-  .header_r {
-    width: 40%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
+    .header_r > li {
+      margin: 15px;
+    }
 
-  .header_r>li {
-    margin: 15px;
-  }
+    .header_r > li > button {
+      color: #fff;
+      background-color: #eb6100;
+      border: 1px solid gray;
+      width: 100px;
+      height: 40px;
+    }
 
-  .header_r>li>button {
-    color: #fff;
-    background-color: #eb6100;
-    border: 1px solid gray;
-    width: 100px;
-    height: 40px;
-  }
+    .login_name {
+      font-size: 20px;
+    }
 
-  .login_name {
-    font-size: 20px;
-  }
+    .login_box {
+      width: 40%;
+      height: 300px;
+      background-color: rgb(225, 222, 222);
+      border-radius: 8px;
+    }
 
-  .login_box {
-    width: 40%;
-    height: 300px;
-    background-color: rgb(225, 222, 222);
-    border-radius: 8px;
-  }
+    /* ---- main ---- */
+    main {
+      width: 80%;
+      display: flex;
+      justify-content: center;
+      margin: 0 auto;
+      /* background-color: red; */
+    }
+    h1 {
+      padding: 30px 0;
+      padding-left: 100px;
+    }
+    a {
+      color: black;
+    }
 
-  /* ---- main ---- */
-  main {
-    width: 80%;
-    display: flex;
-    justify-content: center;
-    margin: 0 auto;
-    /* background-color: red; */
-  }
+    .label {
+      margin: 10px;
+    }
+    .blue {
+      color: aqua;
+      text-align: right;
+      padding-bottom: 30px;
+    }
+  </style>
 
-  a {
-    color: black;
-  }
-</style>
+  <body>
+    <header>
+      <p class="logo">
+        <a href="/management"> オークション </a>
+      </p>
 
-<body>
-  <header>
-    <p class="logo">
-      <a href="/management"> LOGO 社名 </a>
-    </p>
+      <ul class="header_r">
+        <li>
+          <button>
+            <a href="/car"> 車両登録 </a>
+          </button>
+        </li>
+        <li class="login_name"></li>
+      </ul>
+    </header>
+    <main>
+      <div class="waper">
+        <h1>車両登録</h1>
 
-    <ul class="header_r">
-      <li>
-        <button>
-          <a href="/car"> 車両登録 </a>
-        </button>
-      </li>
-      <li class="login_name">ログイン指名</li>
-    </ul>
-  </header>
+        <p class="blue">
+          <a href="/employee">マイページリンク</a>
+        </p>
 
-  <h1>車両登録</h1>
-  <form encType="multipart/form-data">
+        <!-- 登録者ID employee_id -->
+        <div class="label">
+          <!-- オークション登録フラグ
+          <label for="registerFlg">
+            オークション登録フラグ:<input
+              type="text"
+              name="registerFlg"
+              id="registerFlg"
+              required
+            /> </label
+          ><br /> -->
+        </div>
 
+        <div class="label">
+          <!-- 年式 -->
+          <label for="age"> 年式:<input name="age" id="age" required /></label
+          ><br />
+        </div>
 
-    <!-- 車両名 -->
-    <label for="type_name">
-      車両名:<input type="text" name="type_name" id="type_name" required /> </label><br />
+        <div class="label">
+          <!-- 車両名 -->
+          <label for="type_name">
+            車両名:<input
+              type="text"
+              name="type_name"
+              id="type_name"
+              required
+            /> </label
+          ><br />
+        </div>
 
-    <!-- メーカー -->
-    <label for="maker">
-      メーカー:<input type="text" name="maker" id="maker" required /> </label><br />
+        <div class="label">
+          <!-- メーカー -->
+          <label for="maker">
+            メーカー:<input
+              type="text"
+              name="maker"
+              id="maker"
+              required
+            /> </label
+          ><br />
+        </div>
 
-    <!-- 年式 -->
-    <label for="age"> 年式:<input name="age" id="age" required /></label><br />
+        <div class="label">
+          <!-- 排気量 -->
+          <label for="displacement">
+            排気量:<input
+              type="text"
+              name="displacement"
+              id="displacement"
+              required
+            /> </label
+          ><br />
+        </div>
 
-    <!-- 排気量 -->
-    <label for="displacement">
-      排気量:<input type="text" name="displacement" id="displacement" required /> </label><br />
+        <div class="label">
+          <!-- モデル年式 -->
+          <label for="model_age">
+            モデル年式:<input name="model_age" id="model_age" required /></label
+          ><br />
+        </div>
 
-    <!-- モデル年式 -->model_age
-    <label for="model_age">
-      モデル年式:<input name="model_age" id="model_age" required /></label><br />
+        <div class="label">
+          <!-- グレード -->
+          <label for="grade">
+            グレード:<input
+              type="text"
+              name="grade"
+              id="grade"
+              required
+            /> </label
+          ><br />
+        </div>
 
-    <!-- グレード -->
-    <label for="grade">
-      グレード:<input type="text" name="grade" id="grade" required /> </label><br />
+        <div class="label">
+          <!-- 型式 -->
+          <label for="model">
+            型式:<input type="text" name="model" id="model" required />
+          </label>
+          <br />
+        </div>
 
-    <!-- 型式 -->
-    <label for="model">
-      型式:<input type="text" name="model" id="model" required />
-    </label>
-    <br />
+        <div class="label">
+          <!-- 修復歴 -->
+          <label for="repair">
+            修復歴:<input name="repair" id="repair" required /> </label
+          ><br />
+        </div>
 
-    <!-- 修復歴 -->
-    <label for="repair"> 修復歴:<input name="repair" id="repair" required /> </label><br />
+        <div class="label">
+          <!-- 定員 -->
+          <label for="capacity">
+            定員:<input name="capacity" id="capacity" required />
+          </label>
+          <br />
+        </div>
 
-    <!-- 定員 -->
-    <label for="capacity"> 定員:<input name="capacity" id="capacity" required /> </label>
-    <br />
+        <div class="label">
+          <!-- ドア数 -->
+          <label for="door_number">
+            ドア数:<input
+              name="door_number"
+              id="door_number"
+              required
+            /> </label
+          ><br />
+        </div>
 
-    <!-- ドア数 -->
-    <label for="door_number">
-      ドア数:<input name="door_number" id="door_number" required /> </label><br />
+        <div class="label">
+          <!-- 形状 -->
+          <label for="shape">
+            形状:<input type="text" name="shape" id="shape" required /> </label
+          ><br />
+        </div>
 
-    <!-- 形状 -->
-    <label for="shape">
-      形状:<input type="text" name="shape" id="shape" required /> </label><br />
+        <div class="label">
+          <!-- 最大積載量 -->
+          <label for="loading_capacity">
+            最大積載量:<input
+              type="text"
+              name="loading_capacity"
+              id="loading_capacity"
+              required
+            /> </label
+          ><br />
+        </div>
 
-    <!-- 最大積載量 -->
-    <label for="loading_capacity">
-      最大積載量:<input type="text" name="loading_capacity" id="loading_capacity" required /> </label><br />
+        <div class="label">
+          <!-- 走行距離 -->
+          <label for="milage">
+            走行距離:<input
+              type="text"
+              name="milage"
+              id="milage"
+              required
+            /><br />
+          </label>
+        </div>
 
-    <!-- 走行距離 -->
-    <label for="milage">
-      走行距離:<input type="text" name="milage" id="milage" required /><br />
-    </label>
+        <div class="label">
+          <!-- トランスミッション -->
+          <label for="transmission">
+            トランスミッション:<input
+              type="text"
+              name="transmission"
+              id="transmission"
+              required
+            />
+          </label>
+          <br />
+        </div>
 
-    <!-- トランスミッション -->
-    <label for="transmission">
-      トランスミッション:<input type="text" name="transmission" id="transmission" required />
-    </label>
-    <br />
+        <div class="label">
+          <!-- 駆動方式 -->
+          <label for="drive_system">
+            駆動方式:<input
+              name="drive_system"
+              id="drive_system"
+              required
+            /> </label
+          ><br />
+        </div>
 
-    <!-- 駆動方式 -->
-    <label for="drive_system">
-      駆動方式:<input name="drive_system" id="drive_system" required /> </label><br />
+        <div class="label">
+          <!-- 検査期限 -->
+          <label for="inspection_deadline">
+            検査期限:<input
+              name="inspection_deadline"
+              id="inspection_deadline"
+              required /></label
+          ><br />
+        </div>
+        <div class="label">
+          <!-- 取扱説明書 -->
+          <label for="manual">
+            取扱説明書:<input name="manual" id="manual" required /></label
+          ><br />
+          <!-- 評価点 -->
+        </div>
 
-    <!-- 検査期限 -->
-    <label for="inspection_deadline">
-      検査期限:<input name="inspection_deadline" id="inspection_deadline" required /></label><br />
+        <div class="label">
+          <!-- 外装色 -->
+          <label for="exterior_color">
+            外装色:<input
+              type="text"
+              name="exterior_color"
+              id="exterior_color"
+              required
+            /> </label
+          ><br />
+        </div>
 
-    <!-- 取扱説明書 -->
-    <label for="manual"> 取扱説明書:<input name="manual" id="manual" required /></label><br />
+        <div class="label">
+          <!-- 外装カラーナンバー -->
+          <label for="exterior_color_number">
+            外装カラーナンバー:<input
+              type="text"
+              name="exterior_color_number"
+              id="exterior_color_number"
+              required
+            /> </label
+          ><br />
+        </div>
 
-    <!-- 評価点 -->
-    <label for="evaluation"> 評価点:<input name="evaluation" id="evaluation" required /></label><br />
+        <div class="label">
+          <!-- ハンドル -->
+          <label for="handle">
+            ハンドル:<input name="handle" id="handle" required />
+          </label>
+          <br />
+        </div>
 
-    <!-- 外装色 -->
-    <label for="exterior_color">
-      外装色:<input type="text" name="exterior_color" id="exterior_color" required /> </label><br />
+        <div class="label">
+          <!-- 内装色 -->
+          <label for="interior_color">
+            内装色：<input
+              type="text"
+              name="interior_color"
+              id="interior_color"
+              required
+            /> </label
+          ><br />
+        </div>
 
-    <!-- 外装カラーナンバー -->
-    <label for="exterior_color_number">
-      外装カラーナンバー:<input type="text" name="exterior_color_number" id="exterior_color_number" required /> </label><br />
+        <div class="label">
+          <!-- 仕入れ金額 -->
+          <label for="purchace_price">
+            仕入れ金額:<input
+              name="purchace_price"
+              id="purchace_price"
+              required
+            />
+          </label>
+          <br />
+        </div>
 
-    <!-- ハンドル -->
-    <label for="handle"> ハンドル:<input name="handle" id="handle" required /> </label>
-    <br />
+        <div class="label">
+          <!-- 仕入れ先　-->
+          <label for="supplier">
+            仕入れ先　:<input name="supplier" id="supplier" required /> </label
+          ><br />
+        </div>
 
-    <!-- 内装色 -->
-    <label for="interior_color">
-      内装色：<input type="text" name="interior_color" id="interior_color" required /> </label><br />
+        <div class="label">
+          <!-- コメント -->
+          <label for="comment">
+            コメント:<input
+              type="text"
+              name="comment"
+              id="comment"
+              required
+            /> </label
+          ><br />
+        </div>
 
-    <!-- 仕入れ金額 -->
-    <label for="purchace_price">
-      仕入れ金額:<input name="purchace_price" id="purchace_price" required />
-    </label>
-    <br />
-
-    <!-- 仕入れ先　-->
-    <label for="supplier">
-      仕入れ先　:<input name="supplier" id="supplier" required /> </label><br />
-
-    <!-- コメント -->
-    <label for="comment">
-      コメント:<input type="text" name="comment" id="comment" required /> </label><br />
-
-    <!-- 画像登録 -->
-    <label for="files">
-      画像:<input type="file" name="files" id="files" required><br>
-      <input type="file" name="files" id="files"><br>
-      <input type="file" name="files" id="files"><br>
-      <input type="file" name="files" id="files"><br>
-      <input type="file" name="files" id="files"><br>
-      <input type="file" name="files" id="files"><br>
-      <input type="file" name="files" id="files"><br>
-      <input type="file" name="files" id="files"><br>
-      <input type="file" name="files" id="files"><br>
-      <input type="file" name="files" id="files">
-    </label><br>
-    <button type="submit" onclick="requestCar_post()">登録する</button>
-  </form>
-</body>
-
+        <div class="label">
+          <!-- 画像登録 -->
+          <label for="picture_path">
+            車両登録:<br />
+            <input
+              type="file"
+              name="picture_path"
+              id="picture_path"
+              required
+            /><br />
+            <input type="file" name="picture_path" id="picture_path" /><br />
+            <input type="file" name="picture_path" id="picture_path" /><br />
+            <input type="file" name="picture_path" id="picture_path" /><br />
+            <input type="file" name="picture_path" id="picture_path" /><br />
+            <input type="file" name="picture_path" id="picture_path" /><br />
+            <input type="file" name="picture_path" id="picture_path" /><br />
+            <input type="file" name="picture_path" id="picture_path" /><br />
+            <input type="file" name="picture_path" id="picture_path" /><br />
+            <input type="file" name="picture_path" id="picture_path" /> </label
+          ><br />
+          <button type="submit">登録する</button>
+        </div>
+      </div>
+    </main>
+  </body>
 </html>
-
-<script>
-  //carのPOST
-  //車両登録
-  const requestCar_post = () => {
-
-    //値取得
-    const employee_id = getCookieData("user_id");
-    const type_name = document.getElementById("type_name").value;
-    const maker = document.getElementById("maker").value;
-    const age = document.getElementById("age").value;
-    const displacement = document.getElementById("displacement").value;
-    const model_age = document.getElementById("model_age").value;
-    const grade = document.getElementById("grade").value;
-    const model = document.getElementById("model").value;
-    const repair = document.getElementById("repair").value;
-    const capacity = document.getElementById("capacity").value;
-    const door_number = document.getElementById("door_number").value;
-    const shape = document.getElementById("shape").value;
-    const loading_capacity = document.getElementById("loading_capacity").value;
-    const milage = document.getElementById("milage").value;
-    const transmission = document.getElementById("transmission").value;
-    const drive_system = document.getElementById("drive_system").value;
-    const inspection_deadline = document.getElementById("inspection_deadline").value;
-    const manual = document.getElementById("manual").value;
-    const evaluation = document.getElementById("evaluation").value;
-    const exterior_color = document.getElementById("exterior_color").value;
-    const exterior_color_number = document.getElementById("exterior_color_number").value;
-    const handle = document.getElementById("handle").value;
-    const interior_color = document.getElementById("interior_color").value;
-    const purchace_price = document.getElementById("purchace_price").value;
-    const supplier = document.getElementById("supplier").value;
-    const comment = document.getElementById("comment").value;
-
-    console.log(employee_id);
-    console.log(type_name);
-    console.log(maker);
-    console.log(age);
-    console.log(displacement);
-    console.log(model_age);
-    console.log(grade);
-    console.log(model);
-    console.log(repair);
-    console.log(capacity);
-    console.log(door_number);
-    console.log(shape);
-    console.log(loading_capacity);
-    console.log(milage);
-    console.log(transmission);
-    console.log(drive_system);
-    console.log(inspection_deadline);
-    console.log(manual);
-    console.log(evaluation);
-    console.log(exterior_color);
-    console.log(exterior_color_number);
-    console.log(handle);
-    console.log(interior_color);
-    console.log(purchace_price);
-    console.log(supplier);
-    console.log(comment);
-
-    const param = {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json; charset=utf-8"
-      },
-      body: JSON.stringify({
-        employee_id: employee_id,
-        register_flg: 0,
-
-        // type_name: "aa",
-        // maker: "a",
-        // age: 2000,
-        // displacement: 2000,
-        // model_age: 2000,
-        // grade: "a",
-        // model: "a",
-        // repair: 0,
-        // capacity: 0,
-        // door_number: 0,
-        // shape: "aa",
-        // loading_capacity: 0,
-        // milage: 0,
-        // transmission: "a",
-        // drive_system: "a",
-        // inspection_deadline: "2021-12-12",
-        // manual: 0,
-        // evaluation: 4.5,
-        // exterior_color: "aa",
-        // exterior_color_number: "aa",
-        // handle: "右",
-        // interior_color: "a",
-        // purchace_price: 2000000,
-        // supplier: "aa",
-        // comment: "aa"
-
-
-        type_name: type_name,
-        maker: maker,
-        age: age,
-        displacement: displacement,
-        model_age: model_age,
-        grade: grade,
-        model: model,
-        repair: repair,
-        capacity: capacity,
-        door_number: door_number,
-        shape: shape,
-        loading_capacity: loading_capacity,
-        milage: milage,
-        transmission: transmission,
-        drive_system: drive_system,
-        inspection_deadline: inspection_deadline,
-        manual: manual,
-        evaluation: evaluation,
-        exterior_color: exterior_color,
-        exterior_color_number: exterior_color_number,
-        handle: handle,
-        interior_color: interior_color,
-        purchace_price: purchace_price,
-        supplier: supplier,
-        comment: comment
-      })
-    }
-
-    fetch('/car', param).then(() => {
-      //window.location.href = "http://localhost:8080/car";
-    })
-  }
-
-
-  const getCookieData = (keyName) => {
-    if (keyName !== 'user_id' && keyName !== 'name' && keyName !== 'password') {
-      throw '関数getCookieDataの引数keyNameには文字列"user_id"か"name"か"password"を指定してください'
-    }
-    return document.cookie.split(";")
-      .map((cookieData) => cookieData.trim()).find((cookieData) =>
-        cookieData.startsWith("user_id=")
-      ).split("=")[1]
-  }
-</script>

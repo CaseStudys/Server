@@ -98,6 +98,11 @@
       width: 200px;
       height: 150px;
     }
+    .blue {
+      display: block;
+      text-align: right;
+      padding-bottom: 30px;
+    }
   </style>
   <body>
     <header>
@@ -115,8 +120,11 @@
       </ul>
     </header>
     <main>
+      <%= console.log(values)%>
       <div class="main_img">
+        <a class="blue" href="/employee">マイページリンク</a>
         <img src="<% values[0].picture_path %>" alt="" class="card_img" />
+
         <div class="images">
           <img src="<% values[0].picture_path %>" alt="" class="card_img" />
           <img src="<% values[0].picture_path %>" alt="" class="card_img" />
@@ -128,6 +136,7 @@
           <img src="<% values[0].picture_path %>" alt="" class="card_img" />
           <img src="<% values[0].picture_path %>" alt="" class="card_img" />
         </div>
+
         <table border="1">
           <tr>
             <th>年式</th>
@@ -241,3 +250,5 @@
     <footer></footer>
   </body>
 </html>
+
+<script></script>
