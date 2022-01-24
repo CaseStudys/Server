@@ -140,7 +140,7 @@
 
         <div class="card_flex">
             <% for (var i=0; i < values.length; i++) { %>
-                <a href="localhost:8080/bid/<%=values[i].car_id %>">
+                <a href="bid/<%=values[i].car_id %>">
                     <div class="card">
                         <img src="<%= values[i].picture_path　%>" alt="車両画像">
                         <p>車体番号:<%= values[i].car_id %>
