@@ -122,7 +122,7 @@
     width: 100%;
 
     display: flex;
-    flex-wrap:wrap;
+    flex-wrap: wrap;
   }
 
   /* 車両のカードレイアウト */
@@ -139,9 +139,11 @@
     height: 200px;
     /* background-color: black; */
   }
-.ddd{
-width: 300px;
-}
+
+  .ddd {
+    width: 300px;
+  }
+
   a {
     color: black;
   }
@@ -175,7 +177,9 @@ width: 300px;
           </button></li>
       </ul>
 
-      <img class="ddd" src='img/1.jpg' alt=''>
+      //画像表示テスト
+      <img class="ddd" src='/1/U00036466024_5_001.jpg' alt=''>//picturesフォルダから
+      <img class="ddd" src='/images/1.jpg' alt=''>//publicから
 
       <!-- <h1><%= console.log(values[0].length) %>様の</h1> -->
       <div class="content_area">
@@ -187,14 +191,14 @@ width: 300px;
               <a href='/management/detail/<%= values[0][i].car_id %>'>
                 <img class="card_img" src="<%= values[0][i].picture_path %>" alt="" />
                 <% console.log(values[0][i].picture_path) %>
-                <p>番号<%= values[0][i].car_id %>
-                </p>
-                <p>
-                  <%= values[0][i].type_name %>
-                </p>
-                <p>
-                  <%= values[0][i].price %>円
-                </p>
+                  <p>番号<%= values[0][i].car_id %>
+                  </p>
+                  <p>
+                    <%= values[0][i].type_name %>
+                  </p>
+                  <p>
+                    <%= values[0][i].price %>円
+                  </p>
             </div>
             <% } %>
               </a>
