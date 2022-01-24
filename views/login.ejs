@@ -126,6 +126,10 @@
     dl dd {
         padding: 10px 0;
     }
+
+    .link {
+        margin-bottom: 40px;
+    }
 </style>
 
 <body>
@@ -143,10 +147,10 @@
             <dd><input type="text" name="password" id="password"></dd>
         </dl>
         <div class="buttonLink">
-            <button onclick="requestlogin_put()">ログインする</button>
+            <button onclick="requestlogin_put()" class="link">ログインする</button>
         </div>
 
-        <a href="/user/signup" class="link">サインアップページへ</a>
+        <a href="/user/signup">サインアップページへ</a>
     </div>
 </body>
 
