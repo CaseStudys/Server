@@ -1,129 +1,131 @@
 <!DOCTYPE html>
 <html lang="ja">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>購入確定画面</title>
-  </head>
-  <style>
-    * {
-      margin: 0px;
-      padding: 0px;
-      list-style-type: none;
-      box-sizing: border-box;
-      text-decoration: none;
-    }
 
-    .none {
-      display: none;
-      /* ボックスごと非表示 */
-    }
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>購入確定画面</title>
+</head>
+<style>
+  * {
+    margin: 0px;
+    padding: 0px;
+    list-style-type: none;
+    box-sizing: border-box;
+    text-decoration: none;
+  }
 
-    .hidden {
-      text-indent: 100%;
-      white-space: nowrap;
-      /* 改行せずに表示 */
-      overflow: hidden;
-      /* ボックスの中身が不可視 */
-    }
+  .none {
+    display: none;
+    /* ボックスごと非表示 */
+  }
 
-    body {
-      width: 100%;
-      height: 100%;
-      text-align: center;
-    }
+  .hidden {
+    text-indent: 100%;
+    white-space: nowrap;
+    /* 改行せずに表示 */
+    overflow: hidden;
+    /* ボックスの中身が不可視 */
+  }
 
-    header {
-      width: 100%;
-      height: 80px;
-      display: flex;
-      font-size: 25px;
-      align-items: center;
-      background-color: aqua;
-      text-align: center;
-      margin: 0 auto;
-    }
+  body {
+    width: 100%;
+    height: 100%;
+    text-align: center;
+  }
 
-    .logo {
-      width: 55%;
-      text-align: right;
-    }
+  header {
+    width: 100%;
+    height: 80px;
+    display: flex;
+    font-size: 25px;
+    align-items: center;
+    background-color: aqua;
+    text-align: center;
+    margin: 0 auto;
+  }
 
-    .header_r {
-      width: 40%;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-    }
+  .logo {
+    width: 55%;
+    text-align: right;
+  }
 
-    .header_r > li {
-      margin: 15px;
-    }
+  .header_r {
+    width: 40%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
 
-    .header_r > li > button {
-      color: #fff;
-      background-color: #eb6100;
-      border: 1px solid gray;
-      width: 100px;
-      height: 40px;
-    }
+  .header_r>li {
+    margin: 15px;
+  }
 
-    .login_name {
-      font-size: 20px;
-    }
+  .header_r>li>button {
+    color: #fff;
+    background-color: #eb6100;
+    border: 1px solid gray;
+    width: 100px;
+    height: 40px;
+  }
 
-    .login_box {
-      width: 40%;
-      height: 300px;
-      background-color: rgb(225, 222, 222);
-      border-radius: 8px;
-    }
+  .login_name {
+    font-size: 20px;
+  }
 
-    /* ---- main ---- */
-    main {
-      width: 80%;
-      display: flex;
-      justify-content: center;
-      margin: 0 auto;
-      /* background-color: red; */
-    }
+  .login_box {
+    width: 40%;
+    height: 300px;
+    background-color: rgb(225, 222, 222);
+    border-radius: 8px;
+  }
 
-    a {
-      color: black;
-    }
+  /* ---- main ---- */
+  main {
+    width: 80%;
+    display: flex;
+    justify-content: center;
+    margin: 0 auto;
+    /* background-color: red; */
+  }
 
-    h1 {
-      margin-top: 40px;
-      margin-bottom: 40px;
-    }
+  a {
+    color: black;
+  }
 
-    .buttonLink {
-      margin-top: 40px;
-    }
-  </style>
+  h1 {
+    margin-top: 40px;
+    margin-bottom: 40px;
+  }
 
-  <body>
-    <header>
-      <p class="logo">
-        <a href="/management"> オークション </a>
-      </p>
+  .buttonLink {
+    margin-top: 40px;
+  }
+</style>
 
-      <ul class="header_r">
-        <li>
-          <button>
-            <a href="/car"> 車両登録 </a>
-          </button>
-        </li>
-        <li class="login_name"></li>
-      </ul>
-    </header>
+<body>
+  <header>
+    <p class="logo">
+      <a href="/auction"> オークション </a>
+    </p>
 
-    <h1>購入確定画面</h1>
-    <p>ご落札誠にありがとうございます！！！</p>
-    <p>担当者から連絡を差し上げますので、それまでしばらくお待ちください</p>
-    <button class="buttonLink" onclick="redirect()">マイページに戻る</button>
-  </body>
+    <ul class="header_r">
+      <li>
+        <button>
+          <a href="/car"> 車両登録 </a>
+        </button>
+      </li>
+      <li class="login_name"></li>
+    </ul>
+  </header>
+
+  <h1>購入確定画面</h1>
+  <p>ご落札誠にありがとうございます！！！</p>
+  <p>担当者から連絡を差し上げますので、それまでしばらくお待ちください</p>
+  <button class="buttonLink" onclick="redirect()">マイページに戻る</button>
+</body>
+
 </html>
 
 <script>
