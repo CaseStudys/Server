@@ -233,7 +233,7 @@
       <div class="label">
         <!-- 評価点 -->
         <label for="evaluation">
-          取扱説明書:<input name="evaluation" id="evaluation" required /></label><br />
+          評価点:<input name="evaluation" id="evaluation" required /></label><br />
       </div>
 
       <div class="label">
@@ -309,136 +309,132 @@
 <script>
 
 
-
-
   //carのPOST
   //車両登録
   const requestCar_post = () => {
 
+    //値取得
+    const employee_id = getCookieData("user_id");
+    const type_name = document.getElementById("type_name").value;
+    const maker = document.getElementById("maker").value;
+    const age = document.getElementById("age").value;
+    const displacement = document.getElementById("displacement").value;
+    const model_age = document.getElementById("model_age").value;
+    const grade = document.getElementById("grade").value;
+    const model = document.getElementById("model").value;
+    const repair = document.getElementById("repair").value;
+    const capacity = document.getElementById("capacity").value;
+    const door_number = document.getElementById("door_number").value;
+    const shape = document.getElementById("shape").value;
+    const loading_capacity = document.getElementById("loading_capacity").value;
+    const milage = document.getElementById("milage").value;
+    const transmission = document.getElementById("transmission").value;
+    const drive_system = document.getElementById("drive_system").value;
+    const inspection_deadline = document.getElementById("inspection_deadline").value;
+    const manual = document.getElementById("manual").value;
+    const evaluation = document.getElementById("evaluation").value;
+    const exterior_color = document.getElementById("exterior_color").value;
+    const exterior_color_number = document.getElementById("exterior_color_number").value;
+    const handle = document.getElementById("handle").value;
+    const interior_color = document.getElementById("interior_color").value;
+    const purchace_price = document.getElementById("purchace_price").value;
+    const supplier = document.getElementById("supplier").value;
+    const comment = document.getElementById("comment").value;
+
+    console.log(employee_id);
+    console.log(type_name);
+    console.log(maker);
+    console.log(age);
+    console.log(displacement);
+    console.log(model_age);
+    console.log(grade);
+    console.log(model);
+    console.log(repair);
+    console.log(capacity);
+    console.log(door_number);
+    console.log(shape);
+    console.log(loading_capacity);
+    console.log(milage);
+    console.log(transmission);
+    console.log(drive_system);
+    console.log(inspection_deadline);
+    console.log(manual);
+    console.log(evaluation);
+    console.log(exterior_color);
+    console.log(exterior_color_number);
+    console.log(handle);
+    console.log(interior_color);
+    console.log(purchace_price);
+    console.log(supplier);
+    console.log(comment);
+
+    const param = {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json; charset=utf-8"
+      },
+      body: JSON.stringify({
+        employee_id: employee_id,
+        register_flg: 0,
+
+        // type_name: "aa",
+        // maker: "a",
+        // age: 2000,
+        // displacement: 2000,
+        // model_age: 2000,
+        // grade: "a",
+        // model: "a",
+        // repair: 0,
+        // capacity: 0,
+        // door_number: 0,
+        // shape: "aa",
+        // loading_capacity: 0,
+        // milage: 0,
+        // transmission: "a",
+        // drive_system: "a",
+        // inspection_deadline: "2021-12-12",
+        // manual: 0,
+        // evaluation: 4.5,
+        // exterior_color: "aa",
+        // exterior_color_number: "aa",
+        // handle: "右",
+        // interior_color: "a",
+        // purchace_price: 2000000,
+        // supplier: "aa",
+        // comment: "aa"
 
 
-    // //値取得
-    // const employee_id = getCookieData("user_id");
-    // const type_name = document.getElementById("type_name").value;
-    // const maker = document.getElementById("maker").value;
-    // const age = document.getElementById("age").value;
-    // const displacement = document.getElementById("displacement").value;
-    // const model_age = document.getElementById("model_age").value;
-    // const grade = document.getElementById("grade").value;
-    // const model = document.getElementById("model").value;
-    // const repair = document.getElementById("repair").value;
-    // const capacity = document.getElementById("capacity").value;
-    // const door_number = document.getElementById("door_number").value;
-    // const shape = document.getElementById("shape").value;
-    // const loading_capacity = document.getElementById("loading_capacity").value;
-    // const milage = document.getElementById("milage").value;
-    // const transmission = document.getElementById("transmission").value;
-    // const drive_system = document.getElementById("drive_system").value;
-    // const inspection_deadline = document.getElementById("inspection_deadline").value;
-    // const manual = document.getElementById("manual").value;
-    // const evaluation = document.getElementById("evaluation").value;
-    // const exterior_color = document.getElementById("exterior_color").value;
-    // const exterior_color_number = document.getElementById("exterior_color_number").value;
-    // const handle = document.getElementById("handle").value;
-    // const interior_color = document.getElementById("interior_color").value;
-    // const purchace_price = document.getElementById("purchace_price").value;
-    // const supplier = document.getElementById("supplier").value;
-    // const comment = document.getElementById("comment").value;
+        type_name: type_name,
+        maker: maker,
+        age: age,
+        displacement: displacement,
+        model_age: model_age,
+        grade: grade,
+        model: model,
+        repair: repair,
+        capacity: capacity,
+        door_number: door_number,
+        shape: shape,
+        loading_capacity: loading_capacity,
+        milage: milage,
+        transmission: transmission,
+        drive_system: drive_system,
+        inspection_deadline: inspection_deadline,
+        manual: manual,
+        evaluation: evaluation,
+        exterior_color: exterior_color,
+        exterior_color_number: exterior_color_number,
+        handle: handle,
+        interior_color: interior_color,
+        purchace_price: purchace_price,
+        supplier: supplier,
+        comment: comment
+      })
+    }
 
-    // console.log(employee_id);
-    // console.log(type_name);
-    // console.log(maker);
-    // console.log(age);
-    // console.log(displacement);
-    // console.log(model_age);
-    // console.log(grade);
-    // console.log(model);
-    // console.log(repair);
-    // console.log(capacity);
-    // console.log(door_number);
-    // console.log(shape);
-    // console.log(loading_capacity);
-    // console.log(milage);
-    // console.log(transmission);
-    // console.log(drive_system);
-    // console.log(inspection_deadline);
-    // console.log(manual);
-    // console.log(evaluation);
-    // console.log(exterior_color);
-    // console.log(exterior_color_number);
-    // console.log(handle);
-    // console.log(interior_color);
-    // console.log(purchace_price);
-    // console.log(supplier);
-    // console.log(comment);
-
-    // const param = {
-    //   method: "POST",
-    //   headers: {
-    //     "Content-Type": "application/json; charset=utf-8"
-    //   },
-    //   body: JSON.stringify({
-    //     employee_id: employee_id,
-    //     register_flg: 0,
-
-    //     // type_name: "aa",
-    //     // maker: "a",
-    //     // age: 2000,
-    //     // displacement: 2000,
-    //     // model_age: 2000,
-    //     // grade: "a",
-    //     // model: "a",
-    //     // repair: 0,
-    //     // capacity: 0,
-    //     // door_number: 0,
-    //     // shape: "aa",
-    //     // loading_capacity: 0,
-    //     // milage: 0,
-    //     // transmission: "a",
-    //     // drive_system: "a",
-    //     // inspection_deadline: "2021-12-12",
-    //     // manual: 0,
-    //     // evaluation: 4.5,
-    //     // exterior_color: "aa",
-    //     // exterior_color_number: "aa",
-    //     // handle: "右",
-    //     // interior_color: "a",
-    //     // purchace_price: 2000000,
-    //     // supplier: "aa",
-    //     // comment: "aa"
-
-
-    //     type_name: type_name,
-    //     maker: maker,
-    //     age: age,
-    //     displacement: displacement,
-    //     model_age: model_age,
-    //     grade: grade,
-    //     model: model,
-    //     repair: repair,
-    //     capacity: capacity,
-    //     door_number: door_number,
-    //     shape: shape,
-    //     loading_capacity: loading_capacity,
-    //     milage: milage,
-    //     transmission: transmission,
-    //     drive_system: drive_system,
-    //     inspection_deadline: inspection_deadline,
-    //     manual: manual,
-    //     evaluation: evaluation,
-    //     exterior_color: exterior_color,
-    //     exterior_color_number: exterior_color_number,
-    //     handle: handle,
-    //     interior_color: interior_color,
-    //     purchace_price: purchace_price,
-    //     supplier: supplier,
-    //     comment: comment
-    //   })
-    // }
-
-    // fetch('/car', param).then(() => {
-    //   //window.location.href = "http://localhost:8080/car";
-    // })
+    fetch('/car', param).then(() => {
+      //window.location.href = "http://localhost:8080/car";
+    })
   }
 
 
