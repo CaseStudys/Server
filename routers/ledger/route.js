@@ -16,6 +16,7 @@ router.route(LEDGER_END_POINT).get(async (req, res) => {
         if (err) {
           return res.status(500).json({ code: 500, message: err });
         }
+        console.log("hello!!", result);
         return res
           .status("200")
           .render("emp_ledger_management.ejs", { values: result });

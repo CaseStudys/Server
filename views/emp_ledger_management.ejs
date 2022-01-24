@@ -174,7 +174,7 @@
           <tr>
             <th>落札日</th>
             <td>
-              <%= values[i].purchase_date %>
+              <%= new Date(values[i].purchase_date).getFullYear() %>:<%= Number(new Date(values[i].purchase_date).getMonth()) + 1 %>:<%= new Date(values[i].purchase_date).getDate() %>
             </td>
           </tr>
           <tr>
@@ -186,7 +186,7 @@
           <tr>
             <th>期日</th>
             <td>
-              <%= values[i].due_date %>
+              <%= new Date(values[i].due_date).getFullYear() %>:<%= Number(new Date(values[i].due_date).getMonth()) + 1 %>:<%= new Date(values[i].due_date).getDate() %>
             </td>
           </tr>
           <tr>
