@@ -1,141 +1,138 @@
 <!DOCTYPE html>
 <html lang="ja">
-
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>購入確定画面</title>
-</head>
-<style>
+  </head>
+  <style>
     * {
-        margin: 0px;
-        padding: 0px;
-        list-style-type: none;
-        box-sizing: border-box;
-        text-decoration: none;
+      margin: 0px;
+      padding: 0px;
+      list-style-type: none;
+      box-sizing: border-box;
+      text-decoration: none;
     }
 
     .none {
-        display: none;
-        /* ボックスごと非表示 */
+      display: none;
+      /* ボックスごと非表示 */
     }
 
     .hidden {
-        text-indent: 100%;
-        white-space: nowrap;
-        /* 改行せずに表示 */
-        overflow: hidden;
-        /* ボックスの中身が不可視 */
+      text-indent: 100%;
+      white-space: nowrap;
+      /* 改行せずに表示 */
+      overflow: hidden;
+      /* ボックスの中身が不可視 */
     }
 
     body {
-        width: 100%;
-        height: 100%;
-        text-align: center;
+      width: 100%;
+      height: 100%;
+      text-align: center;
     }
 
     header {
-        width: 100%;
-        height: 80px;
-        display: flex;
-        font-size: 25px;
-        align-items: center;
-        background-color: aqua;
-        text-align: center;
-        margin: 0 auto;
+      width: 100%;
+      height: 80px;
+      display: flex;
+      font-size: 25px;
+      align-items: center;
+      background-color: aqua;
+      text-align: center;
+      margin: 0 auto;
     }
 
     .logo {
-        width: 55%;
-        text-align: right;
+      width: 55%;
+      text-align: right;
     }
 
     .header_r {
-        width: 40%;
-        display: flex;
-        justify-content: center;
-        align-items: center;
+      width: 40%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
     }
 
-    .header_r>li {
-        margin: 15px;
+    .header_r > li {
+      margin: 15px;
     }
 
-    .header_r>li>button {
-        color: #fff;
-        background-color: #eb6100;
-        border: 1px solid gray;
-        width: 100px;
-        height: 40px;
+    .header_r > li > button {
+      color: #fff;
+      background-color: #eb6100;
+      border: 1px solid gray;
+      width: 100px;
+      height: 40px;
     }
 
     .login_name {
-        font-size: 20px;
+      font-size: 20px;
     }
 
     .login_box {
-        width: 40%;
-        height: 300px;
-        background-color: rgb(225, 222, 222);
-        border-radius: 8px;
+      width: 40%;
+      height: 300px;
+      background-color: rgb(225, 222, 222);
+      border-radius: 8px;
     }
 
     /* ---- main ---- */
     main {
-        width: 80%;
-        display: flex;
-        justify-content: center;
-        margin: 0 auto;
-        /* background-color: red; */
+      width: 80%;
+      display: flex;
+      justify-content: center;
+      margin: 0 auto;
+      /* background-color: red; */
     }
 
     a {
-        color: black;
+      color: black;
     }
 
     h1 {
-        margin-top: 40px;
-        margin-bottom: 40px;
+      margin-top: 40px;
+      margin-bottom: 40px;
     }
 
     .buttonLink {
-        margin-top: 40px;
+      margin-top: 40px;
     }
-</style>
+  </style>
 
-<body>
+  <body>
     <header>
-        <p class="logo">
-            <a href="/management"> LOGO 社名 </a>
-        </p>
+      <p class="logo">
+        <a href="/management"> オークション </a>
+      </p>
 
-        <ul class="header_r">
-            <li>
-                <button>
-                    <a href="/car"> 車両登録 </a>
-                </button>
-            </li>
-            <li class="login_name">ログイン指名</li>
-        </ul>
+      <ul class="header_r">
+        <li>
+          <button>
+            <a href="/car"> 車両登録 </a>
+          </button>
+        </li>
+        <li class="login_name"></li>
+      </ul>
     </header>
 
     <h1>購入確定画面</h1>
     <p>ご落札誠にありがとうございます！！！</p>
-
-    <p>落札金額は〇〇円です。</p>
     <p>担当者から連絡を差し上げますので、それまでしばらくお待ちください</p>
     <button class="buttonLink" onclick="redirect()">マイページに戻る</button>
-</body>
-
+  </body>
 </html>
 
 <script>
-    const redirect = () => {
-     const userId = document.cookie.split(";")
-        .map((cookieData) => cookieData.trim()).find((cookieData) =>
-        cookieData.startsWith("user_id=")
-        ).split("=")[1]
-        window.location = `http://localhost:8080/user/${userId}`
-    }
+  const redirect = () => {
+    const userId = document.cookie
+      .split(";")
+      .map((cookieData) => cookieData.trim())
+      .find((cookieData) => cookieData.startsWith("user_id="))
+      .split("=")[1];
+    window.location = `http://localhost:8080/user/${userId}`;
+  };
 </script>

@@ -50,7 +50,7 @@
       align-items: center;
     }
     .header_r > li {
-      margin: 15px;
+      margin: 15x;
     }
     .header_r > li > button {
       color: #fff;
@@ -81,18 +81,28 @@
       padding-top: 40px;
     }
     .card_img {
-      width: 800px;
+      width: 100%;
       height: 500px;
       background-color: black;
     }
     a {
       color: black;
     }
+    .images {
+      display: flex;
+      width: 100%;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+    .images > img {
+      width: 200px;
+      height: 150px;
+    }
   </style>
   <body>
     <header>
       <p class="logo">
-        <a href="/management"> LOGO 社名 </a>
+        <a href="/management"> オークション </a>
       </p>
 
       <ul class="header_r">
@@ -101,12 +111,23 @@
             <a href="/car"> 車両登録</a>
           </button>
         </li>
-        <li class="login_name">ログイン指名</li>
+        <li class="login_name"></li>
       </ul>
     </header>
     <main>
       <div class="main_img">
         <img src="<% values[0].picture_path %>" alt="" class="card_img" />
+        <div class="images">
+          <img src="<% values[0].picture_path %>" alt="" class="card_img" />
+          <img src="<% values[0].picture_path %>" alt="" class="card_img" />
+          <img src="<% values[0].picture_path %>" alt="" class="card_img" />
+          <img src="<% values[0].picture_path %>" alt="" class="card_img" />
+          <img src="<% values[0].picture_path %>" alt="" class="card_img" />
+          <img src="<% values[0].picture_path %>" alt="" class="card_img" />
+          <img src="<% values[0].picture_path %>" alt="" class="card_img" />
+          <img src="<% values[0].picture_path %>" alt="" class="card_img" />
+          <img src="<% values[0].picture_path %>" alt="" class="card_img" />
+        </div>
         <table border="1">
           <tr>
             <th>年式</th>
@@ -170,7 +191,11 @@
           </tr>
           <tr>
             <th>検査期限</th>
-            <td><%= values[0].inspection_deadline %></td>
+            <td>
+              <%= new Date(values[0].inspection_deadline).getFullYear() %>:<%=
+              Number(new Date(values[0].inspection_deadline).getMonth()) + 1
+              %>:<%= new Date(values[0].inspection_deadline).getDate() %>
+            </td>
           </tr>
           <tr>
             <th>取扱説明書</th>
