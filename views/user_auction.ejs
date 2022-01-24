@@ -151,6 +151,12 @@
         background: #ffffff;
         /* 文字色     */
     }
+
+    .buttonArea {
+        text-align: right;
+        margin-top: 20px;
+        margin-right: 40px;
+    }
 </style>
 
 <body>
@@ -168,9 +174,11 @@
         <li class="login_name"></li>
         </ul>
     </header>
-    <button onclick="requestUser_get()" class="button">
-        マイページへ
-    </button>
+    <div class="buttonArea">
+        <button onclick="requestUser_get()" class="button">
+            マイページへ
+        </button>
+    </div>
     <div class="content_area">
         <div class="card_flex">
             <% for (var i=0; i < values.length; i++) { %>
