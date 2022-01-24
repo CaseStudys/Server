@@ -38,6 +38,8 @@ app.use("/", logoutRouter);
 app.use("/", userRouter);
 app.use("/", bidRouter);
 app.use("/", userPaymentRouter);
+app.use(express.static('pictures'));
+app.use(express.static('public'));
 
 const http_socket = require("http").Server(app);
 const io_socket = require("socket.io")(http_socket);
