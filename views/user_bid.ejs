@@ -89,8 +89,36 @@
         /* background-color: red; */
     }
 
+    .main_img {
+        padding-top: 40px;
+    }
+
+    .card_img {
+        width: 100%;
+        height: 500px;
+        background-color: black;
+    }
+
     a {
         color: black;
+    }
+
+    .images {
+        display: flex;
+        width: 100%;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    .images>img {
+        width: 200px;
+        height: 150px;
+    }
+
+    .box {
+        display: flex;
+        justify-content: space-around;
+        padding-top: 40px;
     }
 </style>
 
@@ -109,123 +137,206 @@
             <li class="login_name"></li>
         </ul>
     </header>
-    <p><img src="<%= values.picture_path %>" alt="車両画像"></p><br>
+    <main>
+        <div class="main_img">
+            <img src="/1/U00036466024_5_001.jpg" alt="" class="card_img">
+            <div class="images">
+                <img src="<% values.picture_path %>" alt="" class="card_img" />
+                <img src="<% values.picture_path %>" alt="" class="card_img" />
+                <img src="<% values.picture_path %>" alt="" class="card_img" />
+                <img src="<% values.picture_path %>" alt="" class="card_img" />
+                <img src="<% values.picture_path %>" alt="" class="card_img" />
+                <img src="<% values.picture_path %>" alt="" class="card_img" />
+                <img src="<% values.picture_path %>" alt="" class="card_img" />
+                <img src="<% values.picture_path %>" alt="" class="card_img" />
+                <img src="<% values.picture_path %>" alt="" class="card_img" />
+                <img src="<% values.picture_path %>" alt="" class="card_img" />
+            </div>
 
-    <!-- 車両情報 -->
-    <div>
-        <!-- 車両名 -->
-        <label for="type_name">
-            車両名:<%=values.type_name %>
-        </label>
+            <!-- <p><img src="<%= values.picture_path %>" alt="車両画像"></p><br> -->
 
-        <!-- グレード -->
-        <label for="grade">
-            グレード:<%=values.grade %>
-        </label>
+            <div class="box">
+                <!-- 車両情報 -->
+                <table border="1">
+                    <!-- 車両名 -->
+                    <tr for="type_name">
+                        <th>車両名</th>
+                        <td>
+                            <%=values.type_name %>
+                        </td>
+                    </tr>
 
-        <!-- メーカー -->
-        <label for="maker">
-            メーカー:<%=values.maker %>
-        </label>
+                    <!-- グレード -->
+                    <tr for="grade">
+                        <th>グレード</th>
+                        <td>
+                            <%=values.grade %>
+                        </td>
+                    </tr>
 
-        <!-- 年式 -->
-        <label for="age">
-            年式:<%=values.age %>
-        </label>
+                    <!-- メーカー -->
+                    <tr for="maker">
+                        <th>メーカー</th>
+                        <td>
+                            <%=values.maker %>
+                        </td>
+                    </tr>
 
-        <!-- モデル年式 -->
-        <label for="model_age">
-            モデル年式:<%=values.model_age %>
-        </label><br>
+                    <!-- 年式 -->
+                    <tr for="age">
+                        <th>年式</th>
+                        <td>
+                            <%=values.age %>
+                        </td>
+                    </tr>
 
-        <!-- 型式 -->
-        <label for="model">
-            型式:<%=values.model %>
-        </label>
+                    <!-- モデル年式 -->
+                    <tr for="model_age">
+                        <th>モデル年式</th>
+                        <td>
+                            <%=values.model_age %>
+                        </td>
+                    </tr><br>
 
-        <!-- 排気量 -->
-        <label for="displacement">
-            排気量:<%=values.displacement %>
-        </label><br>
+                    <!-- 型式 -->
+                    <tr for="model">
+                        <th>型式</th>
+                        <td>
+                            <%=values.model %>
+                        </td>
+                    </tr>
 
-        <!-- 走行距離 -->
-        <label for="milage">
-            走行距離:<%=values.milage %>
-        </label>
+                    <!-- 排気量 -->
+                    <tr for="displacement">
+                        <th>排気量</th>
+                        <td>
+                            <%=values.displacement %>
+                        </td>
+                    </tr>
 
-        <!-- 形状 -->
-        <label for="shape">
-            形状:<%=values.shape %>
-        </label><br>
+                    <!-- 走行距離 -->
+                    <tr for="milage">
+                        <th>走行距離</th>
+                        <td>
+                            <%=values.milage %>
+                        </td>
+                    </tr>
 
-        <!-- トランスミッション -->
-        <label for="transmission">
-            トランスミッション:<%=values.transmission %>
-        </label>
+                    <!-- 形状 -->
+                    <tr for="shape">
+                        <th>形状</th>
+                        <td>
+                            <%=values.shape %>
+                        </td>
+                    </tr><br>
 
-        <!-- 駆動方式 -->
-        <label for="drive_system">
-            駆動方式:<%=values.drive_system %>
-        </label><br>
+                    <!-- トランスミッション -->
+                    <tr for="transmission">
+                        <th>トランスミッション</th>
+                        <td>
+                            <%=values.transmission %>
+                        </td>
+                        </label>
 
-        <!-- 定員 -->
-        <label for="capacity">
-            定員:<%=values.capacity %>
-        </label>
+                        <!-- 駆動方式 -->
+                    <tr for="drive_system">
+                        <th>駆動方式</th>
+                        <td>
+                            <%=values.drive_system %>
+                        </td>
+                    </tr><br>
 
-        <!-- ドア数 -->
-        <label for="door_number">
-            ドア数:<%=values.door_number %>
-        </label><br>
+                    <!-- 定員 -->
+                    <tr for="capacity">
+                        <th>定員</th>
+                        <td>
+                            <%=values.capacity %>
+                        </td>
+                    </tr>
 
-        <!-- ハンドル向き -->
-        <label for="handle">
-            ハンドル向き:<%=values.handle %>
-        </label>
+                    <!-- ドア数 -->
+                    <tr for="door_number">
+                        <th>ドア数</th>
+                        <td>
+                            <%=values.door_number %>
+                        </td>
+                    </tr><br>
 
-        <!-- 評価点 -->
-        <label for="evaluation">
-            評価点:<%=values.evaluation %>
-        </label><br>
+                    <!-- ハンドル向き -->
+                    <tr for="handle">
+                        <th>ハンドル向き</th>
+                        <td>
+                            <%=values.handle %>
+                        </td>
+                        </label>
 
-        <!-- 外装色 -->
-        <label for="exterior_color">
-            外装色:<%=values.type_name %>
-        </label>
+                        <!-- 評価点 -->
+                    <tr for="evaluation">
+                        <th>評価点</th>
+                        <td>
+                            <%=values.evaluation %>
+                        </td>
+                    </tr>
 
-        <!-- 内装色 -->
-        <label for="interior_color">
-            内装色:<%=values.interior_color %>
-        </label><br>
+                    <!-- 外装色 -->
+                    <tr for="exterior_color">
+                        <th>外装色</th>
+                        <td>
+                            <%=values.type_name %>
+                        </td>
+                    </tr>
 
-        <!-- 車検 -->
-        <label for="vehicleInspection">
-            車検:<%=values.vehicleInspection %>
-        </label>
+                    <!-- 内装色 -->
+                    <tr for="interior_color">
+                        <th>内装色</th>
+                        <td>
+                            <%=values.interior_color %>
+                        </td>
+                    </tr>
 
-        <!-- 修復歴 -->
-        <label for="repair">
-            修復歴:<%=values.repair %>
-        </label><br>
+                    <!-- 車検 -->
+                    <tr for="vehicleInspection">
+                        <th>車検</th>
+                        <td>
+                            <%=values.vehicleInspection %>
+                        </td>
+                    </tr>
 
-        <!-- コメント -->
-        <label for="comment">
-            コメント:<%=values.comment %>
+                    <!-- 修復歴 -->
+                    <tr for="repair">
+                        <th>修復歴</th>
+                        <td>
+                            <%=values.repair %>
+                        </td>
+                    </tr><br>
+
+                    <!-- コメント -->
+                    <tr for="comment">
+                        <th>コメント</th>
+                        <td>
+                            <%=values.comment %>
+                        </td>
+                    </tr>
+            </div>
+    </main>
+    </div>
+    <div class="bidFlex">
+        <p id="attention"></p>
+        <p>現在時刻：<span id="nowDate"></span></p>
+        <p>終了まで：<span id="endRemaining"></span></p>
+        <p>開催まで：<span id="startRemaining"></span></p>
+        <br />
+        現在価格：<p id="now_price">
+            <%=values.price %>円
+        </p>
+
+        <label for="bid">
+            <input type="text" name="bid" id="price">円
+            <button id="bidButton" onclick="bidRequest()">入札する</button>
         </label>
     </div>
-    <p id="attention"></p>
-    <p>現在時刻：<span id="nowDate"></span></p>
-    <p>終了まで：<span id="endRemaining"></span></p>
-    <p>開催まで：<span id="startRemaining"></span></p>
-    <br />
-    現在価格：<p id="now_price">
-        <%=values.price %>円
-    </p>
+    </div>
 
-    <label for="bid">
-        <input type="text" name="bid" id="price">円
-        <button id="bidButton" onclick="bidRequest()">入札する</button>
-    </label>
 
 </body>
 
