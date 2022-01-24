@@ -126,6 +126,10 @@
     dl dd {
         padding: 10px 0;
     }
+
+    .link {
+        margin-bottom: 40px;
+    }
 </style>
 
 <body>
@@ -138,14 +142,43 @@
     <div class="box">
         <dl>
             <dt>ID:</dt>
-            <dd><input type="text" name="id" id="id"></dd>
+            <dd><input type="text" name="name" id="name"></dd>
             <dt>パスワード:</dt>
             <dd><input type="text" name="password" id="password"></dd>
         </dl>
         <div class="buttonLink">
-            <button type="submit">ログインする</button>
+            <button onclick="requestlogin_put()" class="link">ログインする</button>
         </div>
+
+        <a href="/user/signup">サインアップページへ</a>
     </div>
 </body>
 
 </html>
+<script>
+    //
+    //loginのPUT
+    const requestlogin_put = () => {
+        const name = document.getElementById("name").value;
+        const password = document.getElementById("password").value;
+
+        const param = {
+            method: "PUT",
+            headers: {
+                "Content-Type": "application/json; charset=utf-8"
+            },
+            body: JSON.stringify({
+                name: name,
+                password: password
+            })
+        }
+
+        fetch('/login', param).then((data) => {
+            console.log('ログイン処理')
+            data.json().then((data) => {
+                if (data.result === 2) return alert('ログインに失敗しました')
+                data.result === 1 ? window.location.href = 'http://localhost:8080/employee' : window.location.href = 'http://localhost:8080/auction'
+            })
+        })
+    }
+</script>

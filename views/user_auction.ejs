@@ -137,22 +137,42 @@
     </header>
 
     <div class="content_area">
+        <button onclick="requestUser_get()">マイページ(test)</button>
         <div class="card_flex">
             <% for (var i=0; i < values.length; i++) { %>
-                <div class="card">
-                    <img src="<%= values[i].picture_path　%>" alt="車両画像">
-                    <p>車体番号:<%= values[i].car_id %>
-                    </p>
-                    <p>
-                        車名:<%= values[i].type_name %>
-                    </p>
-                    <p>
-                        金額:<%= values[i].purchace_price %>円
-                    </p>
-                </div>
+                <a href="bid/<%=values[i].car_id %>">
+                    <div class="card">
+                        <img src="<%= values[i].picture_path　%>" alt="車両画像">
+                        <p>車体番号:<%= values[i].car_id %>
+                        </p>
+                        <p>
+                            車名:<%= values[i].type_name %>
+                        </p>
+                        <p>
+                            金額:<%= values[i].purchace_price %>円
+                        </p>
+                    </div>
+                </a>
                 <% } %>
         </div>
     </div>
 </body>
 
 </html>
+<script>
+    //userのGET
+    const requestUser_get = () => {
+        const user_id = getCookieData("user_id");
+        window.location = `user/${user_id}`;
+    }
+
+    const getCookieData = (keyName) => {
+        if (keyName !== 'user_id' && keyName !== 'name' && keyName !== 'password') {
+            throw '関数getCookieDataの引数keyNameには文字列"user_id"か"name"か"password"を指定してください'
+        }
+        return document.cookie.split(";")
+            .map((cookieData) => cookieData.trim()).find((cookieData) =>
+                cookieData.startsWith("user_id=")
+            ).split("=")[1]
+    }
+</script>

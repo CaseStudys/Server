@@ -17,6 +17,7 @@ price:<input type="text" name="" id="price">
 
 <script src="/socket.io/socket.io.js"></script>
 <script>
+
     const SocketIo = io();
     let userId = 1//cookieからuserIdを取得　今は任意のidに変えてテストしてね
     //test用ユーザーID
@@ -110,4 +111,5 @@ price:<input type="text" name="" id="price">
     SocketIo.on(`success_${userId}`,(msg) => {
         window.location.href = 'http://localhost:8080/user_payment';
 })
+
 </script>

@@ -3,7 +3,7 @@ const express = require("express");
 const db = require("../../db");
 const router = express.Router();
 const LOGIN_END_POINT = "/login";
-
+console.log("経過テスト");
 //ログイン画面を表示するGETのAPI
 router.route(LOGIN_END_POINT).get((req, res) => {
   res.status("200").render("login.ejs");
@@ -43,13 +43,14 @@ router.route(LOGIN_END_POINT).put((req, res) => {
             password: Password,
             message: "ログイン失敗",
           };
-          return res.status("200").render("login.ejs", { values: returnVals });
+          return res.status("200").json({ result: 2 });
           //テスト用
           //return res.status(200).json(returnVals);//値確認
           //return res.status("200").render("get_test.ejs", {values: returnVals});//ejs確認
         }
         //ログイン成功時-----
-        if (result[0].length != 0) {//ユーザーだった場合の処理
+        if (result[0].length != 0) {
+          //ユーザーだった場合の処理
           //cookie有効時間(ミリ秒)
           const limitTime = 10800000; //3時間
           //cookie設定
@@ -68,12 +69,13 @@ router.route(LOGIN_END_POINT).put((req, res) => {
           });
 
           //render
-          return res.status("200").render("user_auction.ejs", { values: result[2] });
+          return res.status("200").json({ result: 0 });
           //テスト用
           //return res.status(200).json(result[2]);//値確認
           //return res.status("200").render("get_test.ejs", {values: result[1]});//ejs確認
         }
-        if (result[1].length != 0) {//従業員だった場合の処理
+        if (result[1].length != 0) {
+          //従業員だった場合の処理
           //パスワードがあっていた場合
           if (Password == "team8") {
             //return res.status(200).json(result[1][0]);//値確認
@@ -94,18 +96,18 @@ router.route(LOGIN_END_POINT).put((req, res) => {
               httpOnly: false,
             });
 
-            return res.status(200).render("emp_mypage.ejs");
+            return res.status(200).json({ result: 1 });
             //テスト用
-            return res.status(200).json(result[1][0]);//値確認
+            return res.status(200).json(result[1][0]); //値確認
           }
           //パスワードが間違っていた場合
-          else{
+          else {
             const returnVals = {
               name: Name,
               password: Password,
               message: "ログイン失敗",
             };
-            return res.status("200").render("login.ejs", { values: returnVals });
+            return res.status("200").json({ result: 2 });
             //テスト用
             //return res.status(200).json(returnVals);//値確認
           }
