@@ -202,7 +202,7 @@
             <% if (values[i].car_inspection_service_flg==1) { %>
               <td>済</td>
               <% } else { %>
-                <td>味</td>
+                <td>未</td>
                 <% } %>
           </tr>
           <tr>
@@ -240,27 +240,37 @@
           <tr>
             <th>催促</th>
             <% if (values[i].reminder_flg==1) { %>
-              <td>済</td>
-              <% } else { %>
-                <td>未</td>
+              <td>済
+                <% } else { %>
+              <td>未
                 <% } %>
+
+                  <button onclick="reminderFlg_put('<%= values[i].project_id %>')">実行</button>
+              </td>
           </tr>
           <tr>
             <th>キャンセル</th>
             <% if (values[i].cancel_flg==1) { %>
-              <td>済</td>
-              <% } else { %>
-                <td>未</td>
+              <td>済
+                <% } else { %>
+              <td>未
                 <% } %>
+
+                  <button
+                    onclick="requestUser_put('<%= values[i].buyer_id %>','<%= values[i].project_id %>')">実行</button>
+              </td>
           </tr>
 
           <tr>
             <th>法的措置</th>
             <% if (values[i].illegal_action_flg==1) { %>
-              <td>済</td>
-              <% } else { %>
-                <td>未</td>
+              <td>済
+                <% } else { %>
+              <td>未
                 <% } %>
+
+                  <button onclick="illegalActionFlg_put('<%= values[i].project_id %>')">実行</button>
+              </td>
           </tr>
 
           <tr>
@@ -286,29 +296,66 @@
 
   <footer></footer>
 </body>
+
+</html>
 <script>
-  const putRequestCancel = () => {
+  //userのPUT
+  //取引キャンセル
+  const requestUser_put = (user_id, project_id) => {
+
     const param = {
       method: "PUT",
       headers: {
-        "Content-Type": "application/json; charset=utf-8",
+        "Content-Type": "application/json; charset=utf-8"
       },
       body: JSON.stringify({
-        email: email,
-        username: username,
-        password: password,
-      }),
-    };
-    fetch(`/users/${id}`, param).then((res) => {
-      res.json().then((data) => {
-        const newElm = document.createElement("p");
-        const newContent = document.createTextNode(`PUT：${data.message}`);
-        newElm.appendChild(newContent);
-        const parentElm = document.getElementById("messageArea");
-        parentElm.insertBefore(newElm, parentElm.firstChild);
-      });
-    });
-  };
-</script>
+        user_id: user_id,
+        project_id: project_id
+      })
+    }
 
-</html>
+    fetch('/user', param).then(() => {
+      window.location.href = "http://localhost:8080/ledger";
+    })
+  }
+
+
+  //催促フラグ
+  const reminderFlg_put = (project_id) => {
+
+    const param = {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json; charset=utf-8"
+      },
+      body: JSON.stringify({
+        project_id: project_id,
+        reminder_flg: 1
+      })
+    }
+
+    fetch('/flg', param).then(() => {
+      window.location.href = "http://localhost:8080/ledger";
+    })
+  }
+
+
+  //法的措置フラグ
+  const illegalActionFlg_put = (project_id) => {
+
+    const param = {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json; charset=utf-8"
+      },
+      body: JSON.stringify({
+        project_id: project_id,
+        illegal_action_flg: 1
+      })
+    }
+
+    fetch('/flg', param).then(() => {
+      window.location.href = "http://localhost:8080/ledger";
+    })
+  }
+</script>
