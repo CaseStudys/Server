@@ -91,15 +91,15 @@ router
 
               //画像を一時保存フォルダから移動
               fex.copySync("tmp", "pictures/" + newId);
-              //tmp内の画像全削除
-              // fs.readdir("tmp", (err, files) => {
-              //   if (err) throw err;
-              //   for (const file of files) {
-              //     fs.unlink(path.join("tmp", file), (err) => {
-              //       if (err) throw err;
-              //     });
-              //   }
-              // });
+              tmp内の画像全削除
+              fs.readdir("tmp", (err, files) => {
+                if (err) throw err;
+                for (const file of files) {
+                  fs.unlink(path.join("tmp", file), (err) => {
+                    if (err) throw err;
+                  });
+                }
+              });
 
               return res.status(200).json({ result: true });
               //return res.status(200).json(result);
@@ -138,6 +138,12 @@ router.route(CAR_END_POINT).get(async (req, res) => {
   return !(await auth(req))
     ? res.status("200").redirect("/login")
     : res.status("200").render("emp_car_register.ejs");
+});
+
+
+//車両登録画面を表示するGETのAPI
+router.route(CAR_END_POINT).delete(multer({ storage: storage }).array("files", 10), async (req, res) => {
+  console.log(req.files);
 });
 
 module.exports = router;
