@@ -118,14 +118,17 @@ io_socket.on("connection", async (socket) => {
 /*------------------- 落札定時処理一括 -------------------- */
 //毎週土曜日当日に終了するオークション全ての落札処理を予約する。
 //毎週土曜深夜三時に実行;
-const endCronTime = "0 3 * * 1";
+const endCronTime = "21 14 * * 1";
+//"0 3 * * 1"
 //↑テストする場合 例 "5 15 * * 2"月曜にテストする場合、昼三時五分に実行されるようにする。
+//プレゼンは、"分 時 日 月 2""
+//本番は、"0 3 * * 6"
 new cronJob({
   cronTime: endCronTime,
   context: {},
   //アロー記法だと動きません。
   onTick: function () {
-    console.log("初期予約実行！！！");
+    console.log("初期予約実行だぜ！！！");
     createEndReservations();
   },
   //動きません。。。なぜ？？（必要ないから大丈夫）
@@ -180,6 +183,7 @@ const createEndReservations = () => {
 */
 const createEndReservation = (date, result) => {
   const endCronTime = date;
+  console.log("endCronTime", endCronTime);
   const data = result;
   //落札時の定時処理を予約
   new cronJob({
@@ -191,7 +195,7 @@ const createEndReservation = (date, result) => {
     onTick: function () {
       //最高入札者と入札情報を取得
       const exhibitId = this.data.exhibit_id;
-      console.log("createReservation2", this.date, this.data);
+      console.log("createReservation2", this.data, this.data);
       db.mysql_connection.connect((error) => {
         db.mysql_connection.query(
           "SELECT * FROM bids WHERE exhibit_id = ? and price IN(SELECT max(price) as price from bids WHERE exhibit_id = ?);",

@@ -31,4 +31,8 @@ router.route(`${TEST_END_POINT}`).get((req, res) => {
   });
 });
 
+router.route(`/user_payment`).get((req, res) => {
+  return res.status("200").render("user_payment.ejs");
+});
+
 module.exports = router;
