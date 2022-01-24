@@ -118,11 +118,20 @@
       <p><% console.log(values) %></p>
 
       <% for (var i = 0; i < values.length; i++) { %>
+
       <div class="main_img">
         <table>
           <tr>
             <th>車両プロジェクトID</th>
             <td><%= values[i].project_id %></td>
+          </tr>
+          <tr>
+            <th>氏名</th>
+            <td><%= values[i].name %></td>
+          </tr>
+          <tr>
+            <th>電話番号</th>
+            <td><%= values[i].phone_number %></td>
           </tr>
           <tr>
             <th>出品ID</th>
@@ -145,48 +154,94 @@
             <td><%= values[i].due_date %></td>
           </tr>
           <tr>
-            <th>修理フラグ</th>
-            <td><%= values[i].repair_service_flg %></td>
+            <th>修理</th>
+            <% if (values[i].repair_service_flg == 1) { %>
+            <td>提出済</td>
+            <% } else { %>
+            <td>未提出</td>
+            <% } %>
           </tr>
           <tr>
-            <th>車検フラグ</th>
-            <td><%= values[i].car_inspection_service_flg %></td>
+            <th>車検</th>
+            <% if (values[i].car_inspection_service_flg == 1) { %>
+            <td>済</td>
+            <% } else { %>
+            <td>未</td>
+            <% } %>
           </tr>
           <tr>
-            <th>書類フラグ</th>
-            <td><%= values[i].documents_flg %></td>
+            <th>書類</th>
+            <% if (values[i].documents_flg == 1) { %>
+            <td>済</td>
+            <% } else { %>
+            <td>未</td>
+            <% } %>
           </tr>
           <tr>
-            <th>出荷フラグ</th>
-            <td><%= values[i].shipped_flg %></td>
+            <th>出荷</th>
+            <% if (values[i].shipped_flg == 1) { %>
+            <td>済</td>
+            <% } else { %>
+            <td>未</td>
+            <% } %>
           </tr>
           <tr>
-            <th>納品フラグ</th>
-            <td><%= values[i].delivered_flg %></td>
+            <th>納品</th>
+            <% if (values[i].delivered_flg == 1) { %>
+            <td>済</td>
+            <% } else { %>
+            <td>未</td>
+            <% } %>
           </tr>
           <tr>
-            <th>消込フラグ</th>
-            <td><%= values[i].deposit_apply_flg %></td>
+            <th>消込完了</th>
+            <% if (values[i].deposit_apply_flg == 1) { %>
+            <td>済</td>
+            <% } else { %>
+            <td>未</td>
+            <% } %>
           </tr>
           <tr>
-            <th>催促フラグ</th>
-            <td><%= values[i].reminder_flg %></td>
+            <th>催促</th>
+            <% if (values[i].reminder_flg == 1) { %>
+            <td>済</td>
+            <% } else { %>
+            <td>未</td>
+            <% } %>
           </tr>
           <tr>
-            <th>キャンセルフラグ</th>
-            <td><%= values[i].cancel_flg %></td>
+            <th>キャンセル</th>
+            <% if (values[i].cancel_flg == 1) { %>
+            <td>済</td>
+            <% } else { %>
+            <td>未</td>
+            <% } %>
+          </tr>
+
+          <tr>
+            <th>法的措置</th>
+            <% if (values[i].illegal_action_flg == 1) { %>
+            <td>済</td>
+            <% } else { %>
+            <td>未</td>
+            <% } %>
+          </tr>
+
+          <tr>
+            <th>支払い</th>
+            <% if (values[i].payment_flg == 1) { %>
+            <td>済</td>
+            <% } else { %>
+            <td>未</td>
+            <% } %>
           </tr>
           <tr>
-            <th>法的措置フラグ</th>
-            <td><%= values[i].illegal_action_flg %></td>
-          </tr>
-          <tr>
-            <th>支払いフラグ</th>
-            <td><%= values[i].payment_flg %></td>
-          </tr>
-          <tr>
-            <th>受け取り連絡フラグ</th>
-            <td><%= values[i].receipt_contact_flg %></td>
+            <th>受け取り連絡</th>
+            <% if (values[i].receipt_contact_flg == 1) { %>
+            <td>済</td>
+            <% } else { %>
+            <td>未</td>
+            <% } %>
           </tr>
         </table>
         <% } %>
