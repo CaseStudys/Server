@@ -254,7 +254,7 @@
 </html>
 
 <script>
-const carId = "<%=values[0].car_id %>"
+const carId = "<%=values[0].car_id %>"//取得したcarIdを取得。apiをたたくためにある
 
 fetch(`http://localhost:8080/car/picture/${carId}`).then((data) => {
   data.json().then((data) => {
