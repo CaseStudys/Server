@@ -113,8 +113,10 @@
     }
 
     .images>img {
-        width: 200px;
-        height: 150px;
+        width: 300px;
+        height: 250px;
+        margin: 30px;
+        border: 2px solid black;
     }
 
     .box {
@@ -141,185 +143,186 @@
     </header>
     <main>
         <div class="main_img">
-            <img src="/1/U00036466024_5_001.jpg" alt="" class="card_img">
-            <div class="images">
-                <img src="<% values.picture_path %>" alt="" class="card_img" />
-                <img src="<% values.picture_path %>" alt="" class="card_img" />
-                <img src="<% values.picture_path %>" alt="" class="card_img" />
-                <img src="<% values.picture_path %>" alt="" class="card_img" />
-                <img src="<% values.picture_path %>" alt="" class="card_img" />
-                <img src="<% values.picture_path %>" alt="" class="card_img" />
-                <img src="<% values.picture_path %>" alt="" class="card_img" />
-                <img src="<% values.picture_path %>" alt="" class="card_img" />
-                <img src="<% values.picture_path %>" alt="" class="card_img" />
-                <img src="<% values.picture_path %>" alt="" class="card_img" />
-            </div>
+            <%= console.log(values) %>
+                <!-- <img src="/1/U00036466024_5_001.jpg" alt="" class="card_img"> -->
+                <div class="images" id="images">
+                    <!-- <img src="<% values.picture_path %>" alt="" class="card_img" />
+                    <img src="<% values.picture_path %>" alt="" class="card_img" />
+                    <img src="<% values.picture_path %>" alt="" class="card_img" />
+                    <img src="<% values.picture_path %>" alt="" class="card_img" />
+                    <img src="<% values.picture_path %>" alt="" class="card_img" />
+                    <img src="<% values.picture_path %>" alt="" class="card_img" />
+                    <img src="<% values.picture_path %>" alt="" class="card_img" />
+                    <img src="<% values.picture_path %>" alt="" class="card_img" />
+                    <img src="<% values.picture_path %>" alt="" class="card_img" />
+                    <img src="<% values.picture_path %>" alt="" class="card_img" /> -->
+                </div>
 
-            <!-- <p><img src="<%= values.picture_path %>" alt="車両画像"></p><br> -->
+                <!-- <p><img src="<%= values.picture_path %>" alt="車両画像"></p><br> -->
 
-            <div class="box">
-                <!-- 車両情報 -->
-                <table border="1">
-                    <!-- 車両名 -->
-                    <tr for="type_name">
-                        <th>車両名</th>
-                        <td>
-                            <%=values.type_name %>
-                        </td>
-                    </tr>
+                <div class="box">
+                    <!-- 車両情報 -->
+                    <table border="1">
+                        <!-- 車両名 -->
+                        <tr for="type_name">
+                            <th>車両名</th>
+                            <td>
+                                <%=values.type_name %>
+                            </td>
+                        </tr>
 
-                    <!-- グレード -->
-                    <tr for="grade">
-                        <th>グレード</th>
-                        <td>
-                            <%=values.grade %>
-                        </td>
-                    </tr>
+                        <!-- グレード -->
+                        <tr for="grade">
+                            <th>グレード</th>
+                            <td>
+                                <%=values.grade %>
+                            </td>
+                        </tr>
 
-                    <!-- メーカー -->
-                    <tr for="maker">
-                        <th>メーカー</th>
-                        <td>
-                            <%=values.maker %>
-                        </td>
-                    </tr>
+                        <!-- メーカー -->
+                        <tr for="maker">
+                            <th>メーカー</th>
+                            <td>
+                                <%=values.maker %>
+                            </td>
+                        </tr>
 
-                    <!-- 年式 -->
-                    <tr for="age">
-                        <th>年式</th>
-                        <td>
-                            <%=values.age %>
-                        </td>
-                    </tr>
+                        <!-- 年式 -->
+                        <tr for="age">
+                            <th>年式</th>
+                            <td>
+                                <%=values.age %>
+                            </td>
+                        </tr>
 
-                    <!-- モデル年式 -->
-                    <tr for="model_age">
-                        <th>モデル年式</th>
-                        <td>
-                            <%=values.model_age %>
-                        </td>
-                    </tr><br>
+                        <!-- モデル年式 -->
+                        <tr for="model_age">
+                            <th>モデル年式</th>
+                            <td>
+                                <%=values.model_age %>
+                            </td>
+                        </tr><br>
 
-                    <!-- 型式 -->
-                    <tr for="model">
-                        <th>型式</th>
-                        <td>
-                            <%=values.model %>
-                        </td>
-                    </tr>
+                        <!-- 型式 -->
+                        <tr for="model">
+                            <th>型式</th>
+                            <td>
+                                <%=values.model %>
+                            </td>
+                        </tr>
 
-                    <!-- 排気量 -->
-                    <tr for="displacement">
-                        <th>排気量</th>
-                        <td>
-                            <%=values.displacement %>
-                        </td>
-                    </tr>
+                        <!-- 排気量 -->
+                        <tr for="displacement">
+                            <th>排気量</th>
+                            <td>
+                                <%=values.displacement %>
+                            </td>
+                        </tr>
 
-                    <!-- 走行距離 -->
-                    <tr for="milage">
-                        <th>走行距離</th>
-                        <td>
-                            <%=values.milage %>
-                        </td>
-                    </tr>
+                        <!-- 走行距離 -->
+                        <tr for="milage">
+                            <th>走行距離</th>
+                            <td>
+                                <%=values.milage %>
+                            </td>
+                        </tr>
 
-                    <!-- 形状 -->
-                    <tr for="shape">
-                        <th>形状</th>
-                        <td>
-                            <%=values.shape %>
-                        </td>
-                    </tr><br>
+                        <!-- 形状 -->
+                        <tr for="shape">
+                            <th>形状</th>
+                            <td>
+                                <%=values.shape %>
+                            </td>
+                        </tr><br>
 
-                    <!-- トランスミッション -->
-                    <tr for="transmission">
-                        <th>トランスミッション</th>
-                        <td>
-                            <%=values.transmission %>
-                        </td>
-                        </label>
+                        <!-- トランスミッション -->
+                        <tr for="transmission">
+                            <th>トランスミッション</th>
+                            <td>
+                                <%=values.transmission %>
+                            </td>
+                            </label>
 
-                        <!-- 駆動方式 -->
-                    <tr for="drive_system">
-                        <th>駆動方式</th>
-                        <td>
-                            <%=values.drive_system %>
-                        </td>
-                    </tr><br>
+                            <!-- 駆動方式 -->
+                        <tr for="drive_system">
+                            <th>駆動方式</th>
+                            <td>
+                                <%=values.drive_system %>
+                            </td>
+                        </tr><br>
 
-                    <!-- 定員 -->
-                    <tr for="capacity">
-                        <th>定員</th>
-                        <td>
-                            <%=values.capacity %>
-                        </td>
-                    </tr>
+                        <!-- 定員 -->
+                        <tr for="capacity">
+                            <th>定員</th>
+                            <td>
+                                <%=values.capacity %>
+                            </td>
+                        </tr>
 
-                    <!-- ドア数 -->
-                    <tr for="door_number">
-                        <th>ドア数</th>
-                        <td>
-                            <%=values.door_number %>
-                        </td>
-                    </tr><br>
+                        <!-- ドア数 -->
+                        <tr for="door_number">
+                            <th>ドア数</th>
+                            <td>
+                                <%=values.door_number %>
+                            </td>
+                        </tr><br>
 
-                    <!-- ハンドル向き -->
-                    <tr for="handle">
-                        <th>ハンドル向き</th>
-                        <td>
-                            <%=values.handle %>
-                        </td>
-                        </label>
+                        <!-- ハンドル向き -->
+                        <tr for="handle">
+                            <th>ハンドル向き</th>
+                            <td>
+                                <%=values.handle %>
+                            </td>
+                            </label>
 
-                        <!-- 評価点 -->
-                    <tr for="evaluation">
-                        <th>評価点</th>
-                        <td>
-                            <%=values.evaluation %>
-                        </td>
-                    </tr>
+                            <!-- 評価点 -->
+                        <tr for="evaluation">
+                            <th>評価点</th>
+                            <td>
+                                <%=values.evaluation %>
+                            </td>
+                        </tr>
 
-                    <!-- 外装色 -->
-                    <tr for="exterior_color">
-                        <th>外装色</th>
-                        <td>
-                            <%=values.type_name %>
-                        </td>
-                    </tr>
+                        <!-- 外装色 -->
+                        <tr for="exterior_color">
+                            <th>外装色</th>
+                            <td>
+                                <%=values.type_name %>
+                            </td>
+                        </tr>
 
-                    <!-- 内装色 -->
-                    <tr for="interior_color">
-                        <th>内装色</th>
-                        <td>
-                            <%=values.interior_color %>
-                        </td>
-                    </tr>
+                        <!-- 内装色 -->
+                        <tr for="interior_color">
+                            <th>内装色</th>
+                            <td>
+                                <%=values.interior_color %>
+                            </td>
+                        </tr>
 
-                    <!-- 車検 -->
-                    <tr for="vehicleInspection">
-                        <th>車検</th>
-                        <td>
-                            <%=values.vehicleInspection %>
-                        </td>
-                    </tr>
+                        <!-- 車検 -->
+                        <tr for="vehicleInspection">
+                            <th>車検</th>
+                            <td>
+                                <%=values.vehicleInspection %>
+                            </td>
+                        </tr>
 
-                    <!-- 修復歴 -->
-                    <tr for="repair">
-                        <th>修復歴</th>
-                        <td>
-                            <%=values.repair %>
-                        </td>
-                    </tr><br>
+                        <!-- 修復歴 -->
+                        <tr for="repair">
+                            <th>修復歴</th>
+                            <td>
+                                <%=values.repair %>
+                            </td>
+                        </tr><br>
 
-                    <!-- コメント -->
-                    <tr for="comment">
-                        <th>コメント</th>
-                        <td>
-                            <%=values.comment %>
-                        </td>
-                    </tr>
-            </div>
+                        <!-- コメント -->
+                        <tr for="comment">
+                            <th>コメント</th>
+                            <td>
+                                <%=values.comment %>
+                            </td>
+                        </tr>
+                </div>
     </main>
     </div>
     <div class="bidFlex">
@@ -346,6 +349,24 @@
 
 <script src="/socket.io/socket.io.js"></script>
 <script>
+
+    const carId = "<%=values.car_id %>";
+
+    fetch(`http://localhost:8080/car/picture/${carId}`).then((data) => {
+        data.json().then((data) => {
+            const paths = data.paths;
+            for (let i = 0; i < paths.length; i++) {
+                console.log("ff", paths[i]);
+                const newElm = document.createElement("img"); //imgタグ作成
+                newElm.src = paths[i].picture_path; //作成したimgタグのsrc属性にパスを追加
+                newElm.alt = ""; //作成したimgタグにaltを追加
+                //後は作成したimgタグをidがimagesのdivの中に挿入↓
+                const parentElm = document.getElementById("images");
+                parentElm.insertBefore(newElm, parentElm.firstChild);
+            }
+        });
+    });
+
     const SocketIo = io();
     //user_idを取得
     const userId = document.cookie.split(";")
