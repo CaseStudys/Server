@@ -34,7 +34,9 @@
       display: flex;
       font-size: 25px;
       align-items: center;
-      background-color: aqua;
+      background-color: rgb(202, 208, 177);
+      border-bottom: 2px solid black;
+      border-bottom: 2px solid black;
       text-align: center;
       margin: 0 auto;
     }
@@ -91,12 +93,14 @@
     .images {
       display: flex;
       width: 100%;
-      flex-wrap: wrap;
+      flex-wrap: wrap-reverse;
       justify-content: center;
     }
     .images > img {
-      width: 200px;
-      height: 150px;
+      width: 300px;
+      height: 250px;
+      margin: 30px;
+      border: 2px solid black;
     }
     .blue {
       display: block;
@@ -123,9 +127,9 @@
       <%= console.log(values)%>
       <div class="main_img">
         <a class="blue" href="/employee">マイページリンク</a>
-        <img src="<% values[0].picture_path %>" alt="" class="card_img" />
+        <!-- <img src="<% values[0].picture_path %>" alt="" class="card_img" /> -->
 
-        <div class="images" id = images>
+        <div class="images" id="images">
           <!--
           <img src="<% values[0].picture_path %>" alt="" class="card_img" />
           <img src="<% values[0].picture_path %>" alt="" class="card_img" />
@@ -249,27 +253,24 @@
     </main>
 
     <footer></footer>
-
   </body>
 </html>
 
 <script>
-const carId = "<%=values[0].car_id %>"
+  const carId = "<%=values[0].car_id %>";
 
-fetch(`http://localhost:8080/car/picture/${carId}`).then((data) => {
-  data.json().then((data) => {
-    const paths = data.paths
-    for(let i = 0;i < paths.length;i++) {
-      console.log('ff',paths[i])
-      const newElm = document.createElement('img')//imgタグ作成
-      newElm.src = paths[i].picture_path//作成したimgタグのsrc属性にパスを追加
-      newElm.alt = ''//作成したimgタグにaltを追加
-      //後は作成したimgタグをidがimagesのdivの中に挿入↓
-      const parentElm = document.getElementById('images')
-      parentElm.insertBefore(newElm,parentElm.firstChild)
-    };
-
-  })
-})
-
+  fetch(`http://localhost:8080/car/picture/${carId}`).then((data) => {
+    data.json().then((data) => {
+      const paths = data.paths;
+      for (let i = 0; i < paths.length; i++) {
+        console.log("ff", paths[i]);
+        const newElm = document.createElement("img"); //imgタグ作成
+        newElm.src = paths[i].picture_path; //作成したimgタグのsrc属性にパスを追加
+        newElm.alt = ""; //作成したimgタグにaltを追加
+        //後は作成したimgタグをidがimagesのdivの中に挿入↓
+        const parentElm = document.getElementById("images");
+        parentElm.insertBefore(newElm, parentElm.firstChild);
+      }
+    });
+  });
 </script>
