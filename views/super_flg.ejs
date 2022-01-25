@@ -118,6 +118,7 @@
 
   input {
     margin-bottom: 20px;
+    margin-top: 40px;
   }
 
   .clButton {
@@ -152,6 +153,11 @@
     background-color: #064fda;
     /* 背景色 */
   }
+
+  .btnDiv {
+    display: flex;
+    justify-content: space-between;
+  }
 </style>
 
 <body>
@@ -175,34 +181,38 @@
       信用フラグ</button><br />
     <hr />
     プロジェクトID：<input type="text" name="project_id" id="project_id" /><br />
-    <button type="submit" name="documents_flg" id="documents_flg" value="1" onclick="documentsPutRequest()"
-      class="clButton">
-      書類フラグ</button><br />
-    <button type="submit" name="repair_service_flg" id="repair_service_flg" value="1"
-      onclick="repairServicePutRequest()" class="clButton">
-      修理フラグ</button><br />
-    <button type="submit" name="car_inspection_service_flg" id="car_inspection_service_flg" value="1"
-      onclick="carInspectionServicePutRequest()" class="clButton">
-      車検フラグ</button><br />
-    <button type="submit" name="payment_flg" id="payment_flg" value="1" onclick="paymentPutRequest()" class="clButton">
-      支払いフラグ</button><br />
-    <button type="submit" name="receipt_contact_flg" id="receipt_contact_flg" value="1"
-      onclick="receiptContactPutRequest()" class="clButton">
-      受け取り連絡フラグ</button><br />
-    <button type="submit" name="deposit_apply_flg" id="deposit_apply_flg" value="1" onclick="depositApplyPutRequest()"
-      class="clButton">
-      消込フラグ</button><br />
-    <button type="submit" name="shipped_flg" id="shipped_flg" value="1" onclick="shippedPutRequest()" class="clButton">
-      出荷フラグ</button><br />
-    <button type="submit" name="delivered_flg" id="delivered_flg" value="1" onclick="deliveredPutRequest()"
-      class="clButton">
-      配達完了フラグ</button><br />
-    <button type="submit" name="reminder_flg" id="reminder_flg" value="1" onclick="reminderPutRequest()"
-      class="clButton">
-      催促フラグ</button><br />
-    <button type="submit" name="illegal_action_flg" id="illegal_action_flg" value="1"
-      onclick="illegalActionPutRequest()" class="clButton">
-      法的措置フラグ</button><br />
+    <div class="btnDiv">
+      <button type="submit" name="documents_flg" id="documents_flg" value="1" onclick="documentsPutRequest()"
+        class="clButton">
+        書類フラグ</button><br />
+      <button type="submit" name="repair_service_flg" id="repair_service_flg" value="1"
+        onclick="repairServicePutRequest()" class="clButton">
+        修理フラグ</button><br />
+      <button type="submit" name="car_inspection_service_flg" id="car_inspection_service_flg" value="1"
+        onclick="carInspectionServicePutRequest()" class="clButton">
+        車検フラグ</button><br />
+      <button type="submit" name="payment_flg" id="payment_flg" value="1" onclick="paymentPutRequest()"
+        class="clButton">
+        支払いフラグ</button><br />
+      <button type="submit" name="receipt_contact_flg" id="receipt_contact_flg" value="1"
+        onclick="receiptContactPutRequest()" class="clButton">
+        受け取り連絡フラグ</button><br />
+      <button type="submit" name="deposit_apply_flg" id="deposit_apply_flg" value="1" onclick="depositApplyPutRequest()"
+        class="clButton">
+        消込フラグ</button><br />
+      <button type="submit" name="shipped_flg" id="shipped_flg" value="1" onclick="shippedPutRequest()"
+        class="clButton">
+        出荷フラグ</button><br />
+      <button type="submit" name="delivered_flg" id="delivered_flg" value="1" onclick="deliveredPutRequest()"
+        class="clButton">
+        配達完了フラグ</button><br />
+      <button type="submit" name="reminder_flg" id="reminder_flg" value="1" onclick="reminderPutRequest()"
+        class="clButton">
+        催促フラグ</button><br />
+      <button type="submit" name="illegal_action_flg" id="illegal_action_flg" value="1"
+        onclick="illegalActionPutRequest()" class="clButton">
+        法的措置フラグ</button><br />
+    </div>
   </main>
   <div id="messageArea"></div>
 </body>
