@@ -1,261 +1,222 @@
 <!DOCTYPE html>
 <html lang="ja">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>出品者 管理一覧ページ</title>
-  </head>
-  <style>
-    * {
-      margin: 0px;
-      padding: 0px;
-      list-style-type: none;
-      box-sizing: border-box;
-      text-decoration: none;
-    }
 
-    .none {
-      display: none;
-      /* ボックスごと非表示 */
-    }
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>出品者 管理一覧ページ</title>
+</head>
+<style>
+  * {
+    margin: 0px;
+    padding: 0px;
+    list-style-type: none;
+    box-sizing: border-box;
+    text-decoration: none;
+  }
 
-    .hidden {
-      text-indent: 100%;
-      white-space: nowrap;
-      /* 改行せずに表示 */
-      overflow: hidden;
-      /* ボックスの中身が不可視 */
-    }
+  .none {
+    display: none;
+    /* ボックスごと非表示 */
+  }
 
-    body {
-      width: 100%;
-      height: 100%;
-    }
+  .hidden {
+    text-indent: 100%;
+    white-space: nowrap;
+    /* 改行せずに表示 */
+    overflow: hidden;
+    /* ボックスの中身が不可視 */
+  }
 
-    header {
-      width: 100%;
-      height: 80px;
-      display: flex;
-      font-size: 25px;
-      align-items: center;
-      background-color: rgb(202, 208, 177);
-      border-bottom: 2px solid black;
-      text-align: center;
-      margin: 0 auto;
-    }
+  body {
+    width: 100%;
+    height: 100%;
+  }
 
-    .logo {
-      width: 55%;
-      text-align: right;
-    }
+  header {
+    width: 100%;
+    height: 80px;
+    display: flex;
+    font-size: 25px;
+    align-items: center;
+    background-color: rgb(202, 208, 177);
+    border-bottom: 2px solid black;
+    text-align: center;
+    margin: 0 auto;
+  }
 
-    .header_r {
-      width: 40%;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-    }
+  .logo {
+    width: 55%;
+    text-align: right;
+  }
 
-    .header_r > li {
-      margin: 15px;
-    }
+  .header_r {
+    width: 40%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
 
-    .header_r > li > button {
-      color: #fff;
-      background-color: #eb6100;
-      border: 1px solid gray;
-      width: 100px;
-      height: 40px;
-    }
+  .header_r>li {
+    margin: 15px;
+  }
 
-    .login_name {
-      font-size: 20px;
-    }
+  .header_r>li>button {
+    color: #fff;
+    background-color: #eb6100;
+    border: 1px solid gray;
+    width: 100px;
+    height: 40px;
+  }
 
-    .login_box {
-      width: 40%;
-      height: 300px;
-      background-color: rgb(225, 222, 222);
-      border-radius: 8px;
-    }
+  .login_name {
+    font-size: 20px;
+  }
 
-    .button {
-      display: inline-block;
-      border-radius: 50%;
-      /* 角丸       */
-      font-size: 18pt;
-      /* 文字サイズ */
-      text-align: center;
-      /* 文字位置   */
-      cursor: pointer;
-      /* カーソル   */
-      padding: 9px 27px;
-      /* 余白       */
-      background: #eb6100;
-      /* 背景色     */
-      color: #ffffff;
-      /* 文字色     */
-      line-height: 1em;
-      /* 1行の高さ  */
-      transition: 0.3s;
-      /* なめらか変化 */
-      border: 2px solid #eb6100;
-      /* 枠の指定 */
-    }
+  .login_box {
+    width: 40%;
+    height: 300px;
+    background-color: rgb(225, 222, 222);
+    border-radius: 8px;
+  }
 
-    .button:hover {
-      color: #eb6100;
-      /* 背景色     */
-      background: #ffffff;
-      /* 文字色     */
-    }
+  .button {
+    display: inline-block;
+    border-radius: 50%;
+    /* 角丸       */
+    font-size: 18pt;
+    /* 文字サイズ */
+    text-align: center;
+    /* 文字位置   */
+    cursor: pointer;
+    /* カーソル   */
+    padding: 9px 27px;
+    /* 余白       */
+    background: #eb6100;
+    /* 背景色     */
+    color: #ffffff;
+    /* 文字色     */
+    line-height: 1em;
+    /* 1行の高さ  */
+    transition: 0.3s;
+    /* なめらか変化 */
+    border: 2px solid #eb6100;
+    /* 枠の指定 */
+  }
 
-    main {
-      text-align: center;
-    }
+  .button:hover {
+    color: #eb6100;
+    /* 背景色     */
+    background: #ffffff;
+    /* 文字色     */
+  }
 
-    input {
-      margin-bottom: 20px;
-    }
-  </style>
+  main {
+    text-align: center;
+  }
 
-  <body>
-    <header>
-      <p class="logo">
-        <a href="/management"> オークション </a>
-      </p>
+  input {
+    margin-bottom: 20px;
+    margin-top: 40px;
+  }
 
-      <ul class="header_r">
-        <li>
-          <button>
-            <a href="/car"> 車両登録</a>
-          </button>
-        </li>
-        <li class="login_name"></li>
-      </ul>
-    </header>
-    <main>
-      ユーザーID：<input type="text" id="user_id" name="user_id" /><br />
-      <button
-        type="submit"
-        name="trust_flg"
-        id="trust_flg"
-        value="1"
-        onclick="trustPutRequest()"
-        class="button"
-      >
-        信用フラグ</button
-      ><br />
-      <hr />
-      プロジェクトID：<input
-        type="text"
-        name="project_id"
-        id="project_id"
-      /><br />
-      <button
-        type="submit"
-        name="documents_flg"
-        id="documents_flg"
-        value="1"
-        onclick="documentsPutRequest()"
-        class="button"
-      >
-        書類フラグ</button
-      ><br />
-      <button
-        type="submit"
-        name="repair_service_flg"
-        id="repair_service_flg"
-        value="1"
-        onclick="repairServicePutRequest()"
-        class="button"
-      >
-        修理フラグ</button
-      ><br />
-      <button
-        type="submit"
-        name="car_inspection_service_flg"
-        id="car_inspection_service_flg"
-        value="1"
-        onclick="carInspectionServicePutRequest()"
-        class="button"
-      >
-        車検フラグ</button
-      ><br />
-      <button
-        type="submit"
-        name="payment_flg"
-        id="payment_flg"
-        value="1"
-        onclick="paymentPutRequest()"
-        class="button"
-      >
-        支払いフラグ</button
-      ><br />
-      <button
-        type="submit"
-        name="receipt_contact_flg"
-        id="receipt_contact_flg"
-        value="1"
-        onclick="receiptContactPutRequest()"
-        class="button"
-      >
-        受け取り連絡フラグ</button
-      ><br />
-      <button
-        type="submit"
-        name="deposit_apply_flg"
-        id="deposit_apply_flg"
-        value="1"
-        onclick="depositApplyPutRequest()"
-        class="button"
-      >
-        消込フラグ</button
-      ><br />
-      <button
-        type="submit"
-        name="shipped_flg"
-        id="shipped_flg"
-        value="1"
-        onclick="shippedPutRequest()"
-        class="button"
-      >
-        出荷フラグ</button
-      ><br />
-      <button
-        type="submit"
-        name="delivered_flg"
-        id="delivered_flg"
-        value="1"
-        onclick="deliveredPutRequest()"
-        class="button"
-      >
-        配達完了フラグ</button
-      ><br />
-      <button
-        type="submit"
-        name="reminder_flg"
-        id="reminder_flg"
-        value="1"
-        onclick="reminderPutRequest()"
-        class="button"
-      >
-        催促フラグ</button
-      ><br />
-      <button
-        type="submit"
-        name="illegal_action_flg"
-        id="illegal_action_flg"
-        value="1"
-        onclick="illegalActionPutRequest()"
-        class="button"
-      >
-        法的措置フラグ</button
-      ><br />
-    </main>
-    <div id="messageArea"></div>
-  </body>
+  .clButton {
+    /* ブラウザ特有のスタイルを無効に */
+    -moz-appearance: none;
+    -webkit-appearance: none;
+    appearance: none;
+
+    /* 整える */
+    margin: 1em 0;
+    /* 前後の隙間 */
+    padding: 0.6em 1em;
+    /* 塗りの余白 */
+    font-size: 1em;
+    /* フォントサイズ */
+    background-color: #1aa1ff;
+    /* 背景色 */
+    color: #fff;
+    /* テキストカラー */
+    cursor: pointer;
+    /* カーソルを指マークに */
+    border-radius: 3px;
+    /* 角の丸み */
+    border: 0;
+    /* 枠線を消す */
+    transition: 0.3s;
+    /* ホバーの変化を滑らかに */
+  }
+
+  /* ホバー時（カーソルをのせた時）の見た目 */
+  .clButton:hover {
+    background-color: #064fda;
+    /* 背景色 */
+  }
+
+  .btnDiv {
+    display: flex;
+    justify-content: space-between;
+  }
+</style>
+
+<body>
+  <header>
+    <p class="logo">
+      <a href="/management"> オークション </a>
+    </p>
+
+    <ul class="header_r">
+      <li>
+        <button>
+          <a href="/car"> 車両登録</a>
+        </button>
+      </li>
+      <li class="login_name"></li>
+    </ul>
+  </header>
+  <main>
+    ユーザーID：<input type="text" id="user_id" name="user_id" /><br />
+    <button type="submit" name="trust_flg" id="trust_flg" value="1" onclick="trustPutRequest()" class="clButton">
+      信用フラグ</button><br />
+    <hr />
+    プロジェクトID：<input type="text" name="project_id" id="project_id" /><br />
+    <div class="btnDiv">
+      <button type="submit" name="documents_flg" id="documents_flg" value="1" onclick="documentsPutRequest()"
+        class="clButton">
+        書類フラグ</button><br />
+      <button type="submit" name="repair_service_flg" id="repair_service_flg" value="1"
+        onclick="repairServicePutRequest()" class="clButton">
+        修理フラグ</button><br />
+      <button type="submit" name="car_inspection_service_flg" id="car_inspection_service_flg" value="1"
+        onclick="carInspectionServicePutRequest()" class="clButton">
+        車検フラグ</button><br />
+      <button type="submit" name="payment_flg" id="payment_flg" value="1" onclick="paymentPutRequest()"
+        class="clButton">
+        支払いフラグ</button><br />
+      <button type="submit" name="receipt_contact_flg" id="receipt_contact_flg" value="1"
+        onclick="receiptContactPutRequest()" class="clButton">
+        受け取り連絡フラグ</button><br />
+      <button type="submit" name="deposit_apply_flg" id="deposit_apply_flg" value="1" onclick="depositApplyPutRequest()"
+        class="clButton">
+        消込フラグ</button><br />
+      <button type="submit" name="shipped_flg" id="shipped_flg" value="1" onclick="shippedPutRequest()"
+        class="clButton">
+        出荷フラグ</button><br />
+      <button type="submit" name="delivered_flg" id="delivered_flg" value="1" onclick="deliveredPutRequest()"
+        class="clButton">
+        配達完了フラグ</button><br />
+      <button type="submit" name="reminder_flg" id="reminder_flg" value="1" onclick="reminderPutRequest()"
+        class="clButton">
+        催促フラグ</button><br />
+      <button type="submit" name="illegal_action_flg" id="illegal_action_flg" value="1"
+        onclick="illegalActionPutRequest()" class="clButton">
+        法的措置フラグ</button><br />
+    </div>
+  </main>
+  <div id="messageArea"></div>
+</body>
+
 </html>
 
 <script>
@@ -274,7 +235,7 @@
         trust_flg: trust_flg,
       }),
     };
-    fetch("/flg", param).then((res) => {});
+    fetch("/flg", param).then((res) => { });
   };
 
   //書類フラグ処理
@@ -292,7 +253,7 @@
         documents_flg: documents_flg,
       }),
     };
-    fetch("/flg", param).then((res) => {});
+    fetch("/flg", param).then((res) => { });
   };
 
   //修理フラグ
@@ -311,7 +272,7 @@
         repair_service_flg: repair_service_flg,
       }),
     };
-    fetch("/flg", param).then((res) => {});
+    fetch("/flg", param).then((res) => { });
   };
 
   //車検フラグ
@@ -331,7 +292,7 @@
         car_inspection_service_flg: car_inspection_service_flg,
       }),
     };
-    fetch("/flg", param).then((res) => {});
+    fetch("/flg", param).then((res) => { });
   };
 
   //支払いフラグ
@@ -349,7 +310,7 @@
         payment_flg: payment_flg,
       }),
     };
-    fetch("/flg", param).then((res) => {});
+    fetch("/flg", param).then((res) => { });
   };
 
   //受け取りフラグ
@@ -369,7 +330,7 @@
         receipt_contact_flg: receipt_contact_flg,
       }),
     };
-    fetch("/flg", param).then((res) => {});
+    fetch("/flg", param).then((res) => { });
   };
 
   //消し込みフラグ
@@ -388,7 +349,7 @@
         deposit_apply_flg: deposit_apply_flg,
       }),
     };
-    fetch("/flg", param).then((res) => {});
+    fetch("/flg", param).then((res) => { });
   };
 
   //出荷フラグ
@@ -406,7 +367,7 @@
         shipped_flg: shipped_flg,
       }),
     };
-    fetch("/flg", param).then((res) => {});
+    fetch("/flg", param).then((res) => { });
   };
 
   //配達完了フラグ
@@ -424,7 +385,7 @@
         delivered_flg: delivered_flg,
       }),
     };
-    fetch("/flg", param).then((res) => {});
+    fetch("/flg", param).then((res) => { });
   };
   //催促フラグ
   const reminderPutRequest = () => {
@@ -441,7 +402,7 @@
         reminder_flg: reminder_flg,
       }),
     };
-    fetch("/flg", param).then((res) => {});
+    fetch("/flg", param).then((res) => { });
   };
 
   //法的処置フラグ
@@ -460,6 +421,6 @@
         illegal_action_flg: illegal_action_flg,
       }),
     };
-    fetch("/flg", param).then((res) => {});
+    fetch("/flg", param).then((res) => { });
   };
 </script>

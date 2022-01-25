@@ -123,35 +123,37 @@
     }
 
 
-    .button {
-        display: inline-block;
-        border-radius: 50%;
-        /* 角丸       */
-        font-size: 18pt;
-        /* 文字サイズ */
-        text-align: center;
-        /* 文字位置   */
+    .clButton {
+        /* ブラウザ特有のスタイルを無効に */
+        -moz-appearance: none;
+        -webkit-appearance: none;
+        appearance: none;
+
+        /* 整える */
+        margin: 1em 0;
+        /* 前後の隙間 */
+        padding: 0.6em 1em;
+        /* 塗りの余白 */
+        font-size: 1em;
+        /* フォントサイズ */
+        background-color: #1aa1ff;
+        /* 背景色 */
+        color: #fff;
+        /* テキストカラー */
         cursor: pointer;
-        /* カーソル   */
-        padding: 9px 27px;
-        /* 余白       */
-        background: #eb6100;
-        /* 背景色     */
-        color: #ffffff;
-        /* 文字色     */
-        line-height: 1em;
-        /* 1行の高さ  */
+        /* カーソルを指マークに */
+        border-radius: 3px;
+        /* 角の丸み */
+        border: 0;
+        /* 枠線を消す */
         transition: 0.3s;
-        /* なめらか変化 */
-        border: 2px solid #eb6100;
-        /* 枠の指定 */
+        /* ホバーの変化を滑らかに */
     }
 
-    .button:hover {
-        color: #eb6100;
-        /* 背景色     */
-        background: #ffffff;
-        /* 文字色     */
+    /* ホバー時（カーソルをのせた時）の見た目 */
+    .clButton:hover {
+        background-color: #064fda;
+        /* 背景色 */
     }
 
     .buttonArea {
@@ -177,7 +179,7 @@
         </ul>
     </header>
     <div class="buttonArea">
-        <button onclick="requestUser_get()" class="button">
+        <button onclick="requestUser_get()" class="clButton">
             マイページへ
         </button>
     </div>
