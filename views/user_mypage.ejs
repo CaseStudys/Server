@@ -1,279 +1,280 @@
 <!DOCTYPE html>
 <html lang="ja">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>マイページ</title>
-  </head>
-  <style>
-    * {
-      margin: 0px;
-      padding: 0px;
-      list-style-type: none;
-      box-sizing: border-box;
-      text-decoration: none;
-    }
 
-    .none {
-      display: none;
-      /* ボックスごと非表示 */
-    }
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>マイページ</title>
+</head>
+<style>
+  * {
+    margin: 0px;
+    padding: 0px;
+    list-style-type: none;
+    box-sizing: border-box;
+    text-decoration: none;
+  }
 
-    .hidden {
-      text-indent: 100%;
-      white-space: nowrap;
-      /* 改行せずに表示 */
-      overflow: hidden;
-      /* ボックスの中身が不可視 */
-    }
+  .none {
+    display: none;
+    /* ボックスごと非表示 */
+  }
 
-    body {
-      width: 100%;
-      height: 100%;
-    }
+  .hidden {
+    text-indent: 100%;
+    white-space: nowrap;
+    /* 改行せずに表示 */
+    overflow: hidden;
+    /* ボックスの中身が不可視 */
+  }
 
-    header {
-      width: 100%;
-      height: 80px;
-      display: flex;
-      font-size: 25px;
-      align-items: center;
-      background-color: rgb(202, 208, 177);
-      border-bottom: 2px solid black;
-      text-align: center;
-      margin: 0 auto;
-    }
+  body {
+    width: 100%;
+    height: 100%;
+  }
 
-    .logo {
-      width: 55%;
-      text-align: right;
-    }
+  header {
+    width: 100%;
+    height: 80px;
+    display: flex;
+    font-size: 25px;
+    align-items: center;
+    background-color: rgb(202, 208, 177);
+    border-bottom: 2px solid black;
+    text-align: center;
+    margin: 0 auto;
+  }
 
-    .header_r {
-      width: 40%;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-    }
+  .logo {
+    width: 55%;
+    text-align: right;
+  }
 
-    .header_r > li {
-      margin: 15px;
-    }
+  .header_r {
+    width: 40%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
 
-    .header_r > li > button {
-      color: #fff;
-      background-color: #eb6100;
-      border: 1px solid gray;
-      width: 100px;
-      height: 40px;
-    }
+  .header_r>li {
+    margin: 15px;
+  }
 
-    .login_name {
-      font-size: 20px;
-    }
+  .header_r>li>button {
+    color: #fff;
+    background-color: #eb6100;
+    border: 1px solid gray;
+    width: 100px;
+    height: 40px;
+  }
 
-    .login_box {
-      width: 40%;
-      height: 300px;
-      background-color: rgb(225, 222, 222);
-      border-radius: 8px;
-    }
+  .login_name {
+    font-size: 20px;
+  }
 
-    /* ---- main ---- */
-    main {
-      width: 80%;
-      display: flex;
-      justify-content: center;
-      margin: 0 auto;
-      /* background-color: red; */
-    }
+  .login_box {
+    width: 40%;
+    height: 300px;
+    background-color: rgb(225, 222, 222);
+    border-radius: 8px;
+  }
 
-    a {
-      color: black;
-    }
+  /* ---- main ---- */
+  main {
+    width: 80%;
+    display: flex;
+    justify-content: center;
+    margin: 0 auto;
+    /* background-color: red; */
+  }
 
-    /* ボタン */
-    .button {
-      display: flex;
-      justify-content: space-around;
-      margin: 20px;
-    }
+  a {
+    color: black;
+  }
 
-    .main_button > li {
-      margin: 5px;
-    }
+  /* ボタン */
+  .button {
+    display: flex;
+    justify-content: space-around;
+    margin: 20px;
+  }
 
-    .main_button > li > button {
-      width: 120px;
-      height: 30px;
-    }
+  .main_button>li {
+    margin: 5px;
+  }
 
-    .title {
-      text-align: center;
-    }
+  .main_button>li>button {
+    width: 120px;
+    height: 30px;
+  }
 
-    .bigBox {
-      padding-top: 40px;
-      padding-bottom: 40px;
-      width: 80%;
-      margin: 0 auto;
-      display: flex;
-    }
+  .title {
+    text-align: center;
+  }
 
-    .box {
-      width: 50%;
-      text-align: center;
-    }
+  .bigBox {
+    padding-top: 40px;
+    padding-bottom: 40px;
+    width: 80%;
+    margin: 0 auto;
+    display: flex;
+  }
 
-    /* 項目エリア */
-    .content_area {
-      margin: 20px auto;
-      /* background-color: #eb6100; */
-    }
+  .box {
+    width: 50%;
+    text-align: center;
+  }
 
-    .card_flex {
-      width: 100%;
-      display: flex;
-      flex-wrap: wrap;
-    }
+  /* 項目エリア */
+  .content_area {
+    margin: 20px auto;
+    /* background-color: #eb6100; */
+  }
 
-    /* 車両のカードレイアウト */
-    .card {
-      width: 300px;
-      height: 380px;
-      margin: 20px;
-      background-color: aquamarine;
-      border-radius: 8px;
-      text-align: center;
-    }
+  .card_flex {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+  }
 
-    .card_img {
-      width: 300px;
-      height: 200px;
-      background-color: black;
-    }
+  /* 車両のカードレイアウト */
+  .card {
+    width: 300px;
+    height: 380px;
+    margin: 20px;
+    background-color: aquamarine;
+    border-radius: 8px;
+    text-align: center;
+  }
 
-    .button {
-      display: inline-block;
-      border-radius: 50%;
-      /* 角丸       */
-      font-size: 18pt;
-      /* 文字サイズ */
-      text-align: center;
-      /* 文字位置   */
-      cursor: pointer;
-      /* カーソル   */
-      padding: 9px 27px;
-      /* 余白       */
-      background: #eb6100;
-      /* 背景色     */
-      color: #ffffff;
-      /* 文字色     */
-      line-height: 1em;
-      /* 1行の高さ  */
-      transition: 0.3s;
-      /* なめらか変化 */
-      border: 2px solid #eb6100;
-      /* 枠の指定 */
-    }
+  .card_img {
+    width: 300px;
+    height: 200px;
+    background-color: black;
+  }
 
-    .button:hover {
-      color: #eb6100;
-      /* 背景色     */
-      background: #ffffff;
-      /* 文字色     */
-    }
+  .button {
+    display: inline-block;
+    border-radius: 50%;
+    /* 角丸       */
+    font-size: 18pt;
+    /* 文字サイズ */
+    text-align: center;
+    /* 文字位置   */
+    cursor: pointer;
+    /* カーソル   */
+    padding: 9px 27px;
+    /* 余白       */
+    background: #eb6100;
+    /* 背景色     */
+    color: #ffffff;
+    /* 文字色     */
+    line-height: 1em;
+    /* 1行の高さ  */
+    transition: 0.3s;
+    /* なめらか変化 */
+    border: 2px solid #eb6100;
+    /* 枠の指定 */
+  }
 
-    .clButton {
-      /* ブラウザ特有のスタイルを無効に */
-      -moz-appearance: none;
-      -webkit-appearance: none;
-      appearance: none;
+  .button:hover {
+    color: #eb6100;
+    /* 背景色     */
+    background: #ffffff;
+    /* 文字色     */
+  }
 
-      /* 整える */
-      margin: 1em 0;
-      /* 前後の隙間 */
-      padding: 0.6em 1em;
-      /* 塗りの余白 */
-      font-size: 1em;
-      /* フォントサイズ */
-      background-color: #1aa1ff;
-      /* 背景色 */
-      color: #fff;
-      /* テキストカラー */
-      cursor: pointer;
-      /* カーソルを指マークに */
-      border-radius: 3px;
-      /* 角の丸み */
-      border: 0;
-      /* 枠線を消す */
-      transition: 0.3s;
-      /* ホバーの変化を滑らかに */
-    }
+  .clButton {
+    /* ブラウザ特有のスタイルを無効に */
+    -moz-appearance: none;
+    -webkit-appearance: none;
+    appearance: none;
 
-    /* ホバー時（カーソルをのせた時）の見た目 */
-    .clButton:hover {
-      background-color: #064fda;
-      /* 背景色 */
-    }
-  </style>
+    /* 整える */
+    margin: 1em 0;
+    /* 前後の隙間 */
+    padding: 0.6em 1em;
+    /* 塗りの余白 */
+    font-size: 1em;
+    /* フォントサイズ */
+    background-color: #1aa1ff;
+    /* 背景色 */
+    color: #fff;
+    /* テキストカラー */
+    cursor: pointer;
+    /* カーソルを指マークに */
+    border-radius: 3px;
+    /* 角の丸み */
+    border: 0;
+    /* 枠線を消す */
+    transition: 0.3s;
+    /* ホバーの変化を滑らかに */
+  }
 
-  <body>
-    <header>
-      <p class="logo">
-        <a href="/auction"> オークション </a>
-      </p>
+  /* ホバー時（カーソルをのせた時）の見た目 */
+  .clButton:hover {
+    background-color: #064fda;
+    /* 背景色 */
+  }
+</style>
 
-      <ul class="header_r">
-        <li>
-          <!-- <button>
+<body>
+  <header>
+    <p class="logo">
+      <a href="/auction"> オークション </a>
+    </p>
+
+    <ul class="header_r">
+      <li>
+        <!-- <button>
             <a href="/car"> 車両登録 </a>
           </button>
         </li> -->
-        </li>
+      </li>
 
-        <li class="login_name"></li>
-      </ul>
-    </header>
+      <li class="login_name"></li>
+    </ul>
+  </header>
 
-    <h1 class="title">マイページ</h1>
-    <div class="bigBox">
-      <div class="box">
-        <p>名前<%= values[0][0].name %></p>
-        <p>電話番号:<%= values[0][0].phone_number %></p>
-      </div>
-      <div class="box">
-        <button onclick="requestLogout_get()" class="button">
-          ログアウトする
-        </button>
-      </div>
+  <h1 class="title">マイページ</h1>
+  <div class="bigBox">
+    <div class="box">
+      <p>名前<%= values[0][0].name %>
+      </p>
+      <p>電話番号:<%= values[0][0].phone_number %>
+      </p>
     </div>
+    <div class="box">
+      <button onclick="requestLogout_get()" class="button">
+        ログアウトする
+      </button>
+    </div>
+  </div>
 
-    <h2 class="title">取引車両</h2>
+  <h2 class="title">取引車両</h2>
 
-    <div class="content_area">
-      <div class="card_flex">
-        <% for (var i=0; i < values[1].length; i++) { %>
+  <div class="content_area">
+    <div class="card_flex">
+      <% for (var i=0; i < values[1].length; i++) { %>
         <div class="card">
-          <!-- <img src="<%= values[1][i].picture_path %>" alt="車両画像" class="card_img" /> -->
-          <img src="/1/U00036466024_5_001.jpg" alt="" class="card_img" />
-          <p>車両名:<%= values[1][i].type_name %></p>
+          <img src="<%= values[1][i].picture_path %>" alt="車両画像" class="card_img" />
+          <p>車両名:<%= values[1][i].type_name %>
+          </p>
           <p>
             支払い状況: <% if(values[1][i].payment_flg==0){ %> 未払い <% } %>
           </p>
           <p>値段:<%= values[1][i].price %> 円</p>
-          <button
-            onclick="requestUser_put('<%= values[1][i].project_id %>')"
-            class="clButton"
-          >
+          <button onclick="requestUser_put('<%= values[1][i].project_id %>')" class="clButton">
             キャンセルボタン
           </button>
         </div>
         <% } %>
-      </div>
     </div>
-  </body>
+  </div>
+</body>
+
 </html>
 <script>
   //ログアウト
@@ -281,6 +282,24 @@
   const requestLogout_get = () => {
     window.location.href = "http://localhost:8080/logout";
   };
+
+
+  const carId = "<%=values.car_id %>";
+
+  fetch(`http://localhost:8080/car/picture/${carId}`).then((data) => {
+    data.json().then((data) => {
+      const paths = data.paths;
+      for (let i = 0; i < paths.length; i++) {
+        console.log("ff", paths[i]);
+        const newElm = document.createElement("img"); //imgタグ作成
+        newElm.src = paths[i].picture_path; //作成したimgタグのsrc属性にパスを追加
+        newElm.alt = ""; //作成したimgタグにaltを追加
+        //後は作成したimgタグをidがimagesのdivの中に挿入↓
+        const parentElm = document.getElementById("images");
+        parentElm.insertBefore(newElm, parentElm.firstChild);
+      }
+    });
+  });
 
   //userのPUT
   //取引キャンセル
