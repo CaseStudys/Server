@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <style>
+    * {
+      margin: 0px;
+      padding: 0px;
+      list-style-type: none;
+      box-sizing: border-box;
+      text-decoration: none;
+    }
+
+    .none {
+      display: none;
+      /* ボックスごと非表示 */
+    }
+
+    .hidden {
+      text-indent: 100%;
+      white-space: nowrap;
+      /* 改行せずに表示 */
+      overflow: hidden;
+      /* ボックスの中身が不可視 */
+    }
+
+    body {
+      width: 100%;
+      height: 100%;
+    }
+
+    header {
+      width: 100%;
+      height: 80px;
+      display: flex;
+      font-size: 25px;
+      align-items: center;
+      background-color: rgb(202, 208, 177);
+      border-bottom: 2px solid black;
+      text-align: center;
+      margin: 0 auto;
+    }
+
+    .logo {
+      width: 55%;
+      text-align: right;
+    }
+
+    .header_r {
+      width: 40%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .header_r > li {
+      margin: 15px;
+    }
+
+    .header_r > li > button {
+      color: #fff;
+      background-color: #eb6100;
+      border: 1px solid gray;
+      width: 100px;
+      height: 40px;
+    }
+
+    .login_name {
+      font-size: 20px;
+    }
+
+    .login_box {
+      width: 40%;
+      height: 300px;
+      background-color: rgb(225, 222, 222);
+      border-radius: 8px;
+    }
+
+    .button {
+      display: inline-block;
+      border-radius: 50%;
+      /* 角丸       */
+      font-size: 18pt;
+      /* 文字サイズ */
+      text-align: center;
+      /* 文字位置   */
+      cursor: pointer;
+      /* カーソル   */
+      padding: 9px 27px;
+      /* 余白       */
+      background: #eb6100;
+      /* 背景色     */
+      color: #ffffff;
+      /* 文字色     */
+      line-height: 1em;
+      /* 1行の高さ  */
+      transition: 0.3s;
+      /* なめらか変化 */
+      border: 2px solid #eb6100;
+      /* 枠の指定 */
+    }
+
+    .button:hover {
+      color: #eb6100;
+      /* 背景色     */
+      background: #ffffff;
+      /* 文字色     */
+    }
+
+    main {
+      text-align: center;
+    }
+
+    input {
+      margin-bottom: 20px;
+    }
+  </style>
+
+  <body>
+    <header>
+      <p class="logo">
+        <a href="/management"> オークション </a>
+      </p>
+
+      <ul class="header_r">
+        <li>
+          <button>
+            <a href="/car"> 車両登録</a>
+          </button>
+        </li>
+        <li class="login_name"></li>
+      </ul>
+    </header>
+    <main>
+      <h1>登録</h1>
+      <!-- <form action="" method="POST"> -->
+      <label for="distinction">
+        <input
+          type="radio"
+          name="distinction"
+          id="distinction"
+          value="0"
+          required
+        />業者
+        <input
+          type="radio"
+          name="distinction"
+          id="distinction"
+          value="0"
+          required
+        />個人 </label
+      ><br />
+      <div class="cp_iptxt">
+        <label for="name">
+          <input
+            type="text"
+            name="name"
+            id="name"
+            required
+            placeholder="お名前"
+          />
+        </label>
+      </div>
+      <br />
+      <div class="cp_iptxt">
+        <label for="birthday">
+          <input
+            type="date"
+            name="birthday"
+            id="birthday"
+            required
+            placeholder="お誕生日"
+          />
+        </label>
+      </div>
+      <br />
+      <div class="cp_iptxt">
+        <label for="phone_number">
+          <input
+            type="number"
+            id="phone_number"
+            name="phone_number"
+            size="12"
+            required
+            placeholder="電話番号"
+          />
+        </label>
+      </div>
+      <br />
+      <div class="cp_iptxt">
+        <label for="address">
+          <input
+            type="text"
+            id="address"
+            name="address"
+            required
+            placeholder="住所"
+          />
+        </label>
+      </div>
+      <br />
+      <div class="cp_iptxt">
+        <label for="password">
+          <input
+            type="password"
+            id="password"
+            name="password"
+            required
+            placeholder="パスワード"
+          />
+        </label>
+      </div>
+      <br />
+      <!-- <label for="trust_flg">
+        trust_flg <input type="text" name="trust_flg" id="trust_flg" value="0">
+    </label> -->
+      <button type="submit" onclick="postRequest()" class="button">
+        登録する
+      </button>
+      <!-- </form> -->
+      <div id="messageArea"></div>
+    </main>
+  </body>
+</html>
+
+<script>
+  const postRequest = () => {
+    const distinction = document.getElementById("distinction").value; //distinction取得
+    const birthday = document.getElementById("birthday").value; //birthday取得
+    const name = document.getElementById("name").value; //name取得
+    const phone_number = document.getElementById("phone_number").value; //phone_number取得
+    const address = document.getElementById("address").value; //address取得
+    const password = document.getElementById("password").value; //password取得
+    const trust_flg = document.getElementById("trust_flg").value; //trust_flg取得
+
+    const param = {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json; charset=utf-8",
+      },
+      body: JSON.stringify({
+        distinction: distinction,
+        birthday: birthday,
+        name: name,
+        phone_number: phone_number,
+        address: address,
+        password: password,
+        trust_flg: trust_flg,
+      }),
+    };
+
+    fetch("/user/signup", param).then((res) => {
+      res
+        .json()
+        .then((data) =>
+          data.result
+            ? (window.location.href = "http://localhost:8080/auction")
+            : alert("ユーザー登録に失敗しました")
+        );
+    });
+  };
+</script>

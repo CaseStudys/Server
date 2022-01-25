@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>出品者 管理一覧ページ</title>
+  </head>
+  <style>
+    * {
+      margin: 0px;
+      padding: 0px;
+      list-style-type: none;
+      box-sizing: border-box;
+      text-decoration: none;
+    }
+
+    .none {
+      display: none;
+      /* ボックスごと非表示 */
+    }
+
+    .hidden {
+      text-indent: 100%;
+      white-space: nowrap;
+      /* 改行せずに表示 */
+      overflow: hidden;
+      /* ボックスの中身が不可視 */
+    }
+
+    body {
+      width: 100%;
+      height: 100%;
+    }
+
+    header {
+      width: 100%;
+      height: 80px;
+      display: flex;
+      font-size: 25px;
+      align-items: center;
+      background-color: rgb(202, 208, 177);
+      border-bottom: 2px solid black;
+      text-align: center;
+      margin: 0 auto;
+    }
+
+    .logo {
+      width: 55%;
+      text-align: right;
+    }
+
+    .header_r {
+      width: 40%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .header_r > li {
+      margin: 15px;
+    }
+
+    .header_r > li > button {
+      color: #fff;
+      background-color: #eb6100;
+      border: 1px solid gray;
+      width: 100px;
+      height: 40px;
+    }
+
+    .login_name {
+      font-size: 20px;
+    }
+
+    .login_box {
+      width: 40%;
+      height: 300px;
+      background-color: rgb(225, 222, 222);
+      border-radius: 8px;
+    }
+
+    /* ---- main ---- */
+    main {
+      width: 80%;
+      display: flex;
+      justify-content: center;
+      margin: 0 auto;
+      /* background-color: red; */
+    }
+
+    .main_img {
+      width: 80%;
+      padding-top: 40px;
+    }
+
+    .card_img {
+      width: 800px;
+      margin: 0 auto;
+      height: 500px;
+      background-color: black;
+    }
+
+    a {
+      color: black;
+    }
+
+    table {
+      width: 800px;
+      border: solid 1px black;
+    }
+
+    tr {
+      border: solid 1px black;
+    }
+
+    th {
+      text-align: left;
+      border: solid 2px black;
+      background-color: rgb(192, 159, 159);
+    }
+  </style>
+
+  <body>
+    <header>
+      <p class="logo">
+        <a href="/management"> オークション </a>
+      </p>
+
+      <ul class="header_r">
+        <li>
+          <button>
+            <a href="/car">車両登録</a>
+          </button>
+        </li>
+        <li class="login_name"></li>
+      </ul>
+    </header>
+    <main>
+      <p><% console.log(values) %></p>
+
+      <a href="/employee">マイページリンク</a>
+
+      <% for (var i=0; i < values.length; i++) { %>
+
+      <div class="main_img">
+        <table>
+          <tr>
+            <th>車両プロジェクトID</th>
+            <td><%= values[i].project_id %></td>
+          </tr>
+          <tr>
+            <th>氏名</th>
+            <td><%= values[i].name %></td>
+          </tr>
+          <tr>
+            <th>電話番号</th>
+            <td><%= values[i].phone_number %></td>
+          </tr>
+          <tr>
+            <th>出品ID</th>
+            <td><%= values[i].exhibit_id %></td>
+          </tr>
+          <tr>
+            <th>落札者ID</th>
+            <td><%= values[i].buyer_id %></td>
+          </tr>
+          <tr>
+            <th>落札日</th>
+            <td>
+              <%= new Date(values[i].purchase_date).getFullYear() %>:<%=
+              Number(new Date(values[i].purchase_date).getMonth()) + 1 %>:<%=
+              new Date(values[i].purchase_date).getDate() %>
+            </td>
+          </tr>
+          <tr>
+            <th>落札額</th>
+            <td><%= values[i].price %></td>
+          </tr>
+          <tr>
+            <th>期日</th>
+            <td>
+              <%= new Date(values[i].due_date).getFullYear() %>:<%= Number(new
+              Date(values[i].due_date).getMonth()) + 1 %>:<%= new
+              Date(values[i].due_date).getDate() %>
+            </td>
+          </tr>
+          <tr>
+            <th>修理</th>
+            <% if (values[i].repair_service_flg==1) { %>
+            <td>済</td>
+            <% } else { %>
+            <td>未</td>
+            <% } %>
+          </tr>
+          <tr>
+            <th>車検</th>
+            <% if (values[i].car_inspection_service_flg==1) { %>
+            <td>済</td>
+            <% } else { %>
+            <td>未</td>
+            <% } %>
+          </tr>
+          <tr>
+            <th>書類</th>
+            <% if (values[i].documents_flg==1) { %>
+            <td>済</td>
+            <% } else { %>
+            <td>未</td>
+            <% } %>
+          </tr>
+          <tr>
+            <th>出荷</th>
+            <% if (values[i].shipped_flg==1) { %>
+            <td>済</td>
+            <% } else { %>
+            <td>未</td>
+            <% } %>
+          </tr>
+          <tr>
+            <th>納品</th>
+            <% if (values[i].delivered_flg==1) { %>
+            <td>済</td>
+            <% } else { %>
+            <td>未</td>
+            <% } %>
+          </tr>
+          <tr>
+            <th>消込完了</th>
+            <% if (values[i].deposit_apply_flg==1) { %>
+            <td>済</td>
+            <% } else { %>
+            <td>未</td>
+            <% } %>
+          </tr>
+          <tr>
+            <th>催促</th>
+            <% if (values[i].reminder_flg==1) { %>
+            <td>済 <% } else { %></td>
+
+            <td>
+              未 <% } %>
+
+              <button onclick="reminderFlg_put('<%= values[i].project_id %>')">
+                実行
+              </button>
+            </td>
+          </tr>
+          <tr>
+            <th>キャンセル</th>
+            <% if (values[i].cancel_flg==1) { %>
+            <td>済 <% } else { %></td>
+
+            <td>
+              未 <% } %>
+
+              <button
+                onclick="requestUser_put('<%= values[i].buyer_id %>','<%= values[i].project_id %>')"
+              >
+                実行
+              </button>
+            </td>
+          </tr>
+
+          <tr>
+            <th>法的措置</th>
+            <% if (values[i].illegal_action_flg==1) { %>
+            <td>済 <% } else { %></td>
+
+            <td>
+              未 <% } %>
+
+              <button
+                onclick="illegalActionFlg_put('<%= values[i].project_id %>')"
+              >
+                実行
+              </button>
+            </td>
+          </tr>
+
+          <tr>
+            <th>支払い</th>
+            <% if (values[i].payment_flg==1) { %>
+            <td>済</td>
+            <% } else { %>
+            <td>未</td>
+            <% } %>
+          </tr>
+          <tr>
+            <th>受け取り連絡</th>
+            <% if (values[i].receipt_contact_flg==1) { %>
+            <td>済</td>
+            <% } else { %>
+            <td>未</td>
+            <% } %>
+          </tr>
+        </table>
+        <% } %>
+      </div>
+    </main>
+
+    <footer></footer>
+  </body>
+</html>
+<script>
+  //userのPUT
+  //取引キャンセル
+  const requestUser_put = (user_id, project_id) => {
+    const param = {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json; charset=utf-8",
+      },
+      body: JSON.stringify({
+        user_id: user_id,
+        project_id: project_id,
+      }),
+    };
+
+    fetch("/user", param).then(() => {
+      window.location.href = "http://localhost:8080/ledger";
+    });
+  };
+
+  //催促フラグ
+  const reminderFlg_put = (project_id) => {
+    const param = {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json; charset=utf-8",
+      },
+      body: JSON.stringify({
+        project_id: project_id,
+        reminder_flg: 1,
+      }),
+    };
+
+    fetch("/flg", param).then(() => {
+      window.location.href = "http://localhost:8080/ledger";
+    });
+  };
+
+  //法的措置フラグ
+  const illegalActionFlg_put = (project_id) => {
+    const param = {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json; charset=utf-8",
+      },
+      body: JSON.stringify({
+        project_id: project_id,
+        illegal_action_flg: 1,
+      }),
+    };
+
+    fetch("/flg", param).then(() => {
+      window.location.href = "http://localhost:8080/ledger";
+    });
+  };
+</script>

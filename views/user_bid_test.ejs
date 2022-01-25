@@ -1,0 +1,115 @@
+
+exhibit_id:<%=values.exhibit_id %>
+car_id:<%=values.car_id %>
+car_name:<%=values.type_name %>
+
+なりきるuserId(初期値１):<input type="text" name="" id="uid" onchange="changeUserId()">
+
+現在価格：<span id="now_price"><%=values.price %></span>
+<p id="attention"></p>
+price:<input type="text" name="" id="price">
+
+<button onclick="bidRequest()" id="bidButton">入札</button>
+
+<p>現在時刻：<span id="nowDate"></span></p>
+<p>終了まで：<span id="endRemaining"></span></p>
+<p>開催まで：<span id="startRemaining"></span></p>
+
+<script src="/socket.io/socket.io.js"></script>
+<script>
+
+    const SocketIo = io();
+    let userId = 1//cookieからuserIdを取得　今は任意のidに変えてテストしてね
+    //test用ユーザーID
+    const changeUserId = () => {
+        userId = document.getElementById('uid').value
+    }
+
+
+    const exhibitId = "<%=values.exhibit_id %>"
+
+    //自身が最高入札者か判定
+    const attentionUserId = "<%=values.user_id %>"//最高入札者
+    console.log('userId',userId)
+    console.log('attentionUserId',attentionUserId)
+    if(userId == attentionUserId){//自身が最高入札者ならそのメッセージを表示
+            document.getElementById('attention').innerHTML='あなたが現在の最高額入札者です。'
+        }else{
+            document.getElementById('attention').innerHTML=''
+        }
+
+    //タイマーのセット
+    const startDate = new Date("<%=values.start_date %>")
+    const endDate = new Date(new Date("<%=values.start_date %>").setMinutes(startDate.getMinutes() + 5))
+
+
+
+
+/*------------------- 関数 --------------------*/
+
+    const countDownTimer = () => {
+        const startRemaining = getRemaining(startDate)
+        const endRemaining = getRemaining(endDate)
+        const elStartRemaining = document.getElementById('startRemaining')
+        const elEndRemaining = document.getElementById('endRemaining')
+        const overStartMsg = '開催中'
+        const overEndMsg = 'このオークションは終了しました'
+        const bidButton = document.getElementById('bidButton')
+
+        elStartRemaining.innerHTML = startRemaining ? startRemaining : overStartMsg
+        elEndRemaining.innerHTML = endRemaining ? endRemaining : overEndMsg
+        bidButton.disabled = !startRemaining && endRemaining ? false : true
+
+        document.getElementById('nowDate').innerHTML = new Date().toString()
+        setTimeout(countDownTimer,250)
+    }
+
+
+    const bidRequest = () => {
+        const price = document.getElementById("price").value;
+        const nowPrice = "<%=values.price %>"
+        console.log(nowPrice + 1000 )
+        if(price < Number(nowPrice) + 1000){
+            alert('入札可能額は現在価格＋1000円以上です。')
+            return
+        }
+        SocketIo.emit('c2s_bid',{
+            exhibitId:exhibitId,
+            userId:userId,
+            price:price
+        })
+    }
+    //現在日時との差を返す。差が負の場合falseを返す
+    const getRemaining = (targetDate) => {
+        const nowDate = new Date()
+        let difference = targetDate - nowDate
+        if(difference >= 0){
+            const hour = Math.floor(difference / (1000 * 60 * 60))
+            difference -= (hour * (1000 * 60 * 60))
+            const minutes = Math.floor(difference / (1000 * 60))
+            difference -= (minutes * (1000 * 60))
+            const second = Math.floor(difference / 1000)
+
+            return `${hour}：${minutes}：${second}`
+        }else{
+            return false
+        }
+    }
+
+    countDownTimer()
+/*------------------- WebSocket --------------------*/
+    //入札通知
+    SocketIo.on('s2c_bid',(msg) => {
+        document.getElementById('now_price').innerHTML= msg.price
+        if(userId == msg.userId){
+            document.getElementById('attention').innerHTML='あなたが現在の最高額入札者です。'
+        }else{
+            document.getElementById('attention').innerHTML=''
+        }
+    })
+    //落札通知。（落札者のみに送信される）
+    SocketIo.on(`success_${userId}`,(msg) => {
+        window.location.href = 'http://localhost:8080/user_payment';
+})
+
+</script>

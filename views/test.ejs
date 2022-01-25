@@ -1,0 +1,45 @@
+<%-include('partials/header.ejs') %>
+<h1>ejsテストぺーじ！！</h1>
+
+<p>従業員検索API↓</p>
+
+id<input type="text" id="id" value="999" /><br />
+<br />
+<button onclick="getRequest()">取得（GET）</button>
+<hr />
+<div id="messageArea"></div>
+<hr />
+<%-include('partials/footer.ejs') %>
+
+<script src="/socket.io/socket.io.js"></script>
+<script>
+  const SocketIo = io();
+
+  const getRequest = () => {
+    const id = document.getElementById("id").value; //id取得
+    fetch(`/employee/${id}`).then((res) => {
+      res.json().then((data) => {
+        const newElm = document.createElement("p");
+        let resultMessage = "GET：";
+        for (let i = 0; i < data.length; i++) {
+          resultMessage += data[i]["employee_id"];
+          resultMessage += data[i]["name"];
+          resultMessage += data[i]["phone_number"];
+        }
+
+        const newContent = document.createTextNode(resultMessage);
+        newElm.appendChild(newContent);
+        const parentElm = document.getElementById("messageArea");
+        parentElm.insertBefore(newElm, parentElm.firstChild);
+      });
+    });
+  };
+
+  SocketIo.on("test3", (msg) => {
+    console.log(msg);
+  });
+
+  SocketIo.on("test7", (msg) => {
+    console.log(msg);
+  });
+</script>

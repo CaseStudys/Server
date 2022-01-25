@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>出品者 管理一覧ページ</title>
+</head>
+<style>
+  * {
+    margin: 0px;
+    padding: 0px;
+    list-style-type: none;
+    box-sizing: border-box;
+    text-decoration: none;
+  }
+
+  .none {
+    display: none;
+    /* ボックスごと非表示 */
+  }
+
+  .hidden {
+    text-indent: 100%;
+    white-space: nowrap;
+    /* 改行せずに表示 */
+    overflow: hidden;
+    /* ボックスの中身が不可視 */
+  }
+
+  body {
+    width: 100%;
+    height: 100%;
+  }
+
+  header {
+    width: 100%;
+    height: 80px;
+    display: flex;
+    font-size: 25px;
+    align-items: center;
+    background-color: rgb(202, 208, 177);
+    border-bottom: 2px solid black;
+    text-align: center;
+    margin: 0 auto;
+  }
+
+  .logo {
+    width: 55%;
+    text-align: right;
+  }
+
+  .header_r {
+    width: 40%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .header_r>li {
+    margin: 15px;
+  }
+
+  .header_r>li>button {
+    color: #fff;
+    background-color: #eb6100;
+    border: 1px solid gray;
+    width: 100px;
+    height: 40px;
+  }
+
+  .login_name {
+    font-size: 20px;
+  }
+
+  .login_box {
+    width: 40%;
+    height: 300px;
+    background-color: rgb(225, 222, 222);
+    border-radius: 8px;
+  }
+
+  /* ---- main ---- */
+  main {
+    /* width: 80%; */
+    display: flex;
+    justify-content: center;
+    margin: 0 auto;
+    /* background-color: red; */
+  }
+
+  /* ボタン */
+  .main_button {
+    display: flex;
+    justify-content: right;
+    margin: 20px;
+  }
+
+  .main_button>li {
+    margin: 5px;
+  }
+
+  .main_button>li>button {
+    width: 120px;
+    height: 30px;
+  }
+
+  /* 項目エリア */
+  .content_area {
+    margin: 20px auto;
+    /* background-color: #eb6100; */
+  }
+
+  /* 項目名 */
+  .title_name {
+    font-size: 20px;
+    font-weight: bold;
+    padding-left: 25px;
+  }
+
+  .card_flex {
+    width: 100%;
+
+    display: flex;
+    flex-wrap: wrap;
+  }
+
+  /* 車両のカードレイアウト */
+  .card {
+    width: 300px;
+    height: 320px;
+    margin: 20px;
+    background-color: rgb(202, 208, 177);
+    border-radius: 8px;
+    text-align: center;
+  }
+
+  .card_img {
+    width: 100%;
+    height: 200px;
+    /* background-color: black; */
+  }
+
+  .ddd {
+    width: 300px;
+  }
+
+  a {
+    color: black;
+  }
+  .auction{
+    width: 200px;
+    height: 30px;
+    border-radius: 3px;
+    background-color: brown;
+    color: white;
+  }
+</style>
+
+<body>
+  <header>
+    <p class="logo">
+      <a href="/management"> オークション </a>
+    </p>
+    <ul class="header_r">
+      <li>
+        <button>
+          <a href="/car"> 車両登録</a>
+        </button>
+      </li>
+      <li class="login_name"></li>
+    </ul>
+  </header>
+  <main>
+    <div>
+      <ul class="main_button">
+        <li><button>
+            <a href='/car'>車両登録</a>
+          </button></li>
+        <li><button>
+            <a href='/exhibit'>車両出品</a>
+          </button></li>
+        <li><button>
+            <a href='/ledger'>台帳管理</a>
+          </button></li>
+          <li><button>
+            <a href='/employee'>マイページ</a>
+          </button></li>
+      </ul>
+
+      <!-- <h1><%= console.log(values[0].length) %>様の</h1> -->
+      <div class="content_area">
+        <p class="title_name">取引中</p>
+        <div class="card_flex">
+          <!-- 1枚目 -->
+          <% for (var i=0; i < values[0].length; i++) { %>
+            <div class="card">
+              <a href='/management/detail/<%= values[0][i].car_id %>'>
+                <img class="card_img" src="<%= values[0][i].picture_path %>" alt="" />
+                <% console.log(values[0][i].picture_path) %>
+                  <p>番号<%= values[0][i].car_id %>
+                  </p>
+                  <p>
+                    <%= values[0][i].type_name %>
+                  </p>
+                  <p>
+                    <%= values[0][i].price %>円
+                  </p>
+            </div>
+            <% } %>
+              </a>
+        </div>
+      </div>
+
+      <div class="content_area">
+        <p class="title_name">オークション登録車両</p>
+        <div class="card_flex">
+          <% for (var i=0; i < values[1].length; i++) { %>
+            <div class="card">
+              <a href='/management/detail/<%= values[1][i].car_id %>'>
+                <img class="card_img" src="<%= values[1][i].picture_path %>" alt="" />
+                <p>番号<%= values[1][i].car_id %>
+                </p>
+                <p>
+                  <%= values[1][i].type_name %>
+                </p>
+                <p>
+                  <%= values[1][i].purchace_price %>円
+                </p>
+            </div>
+            <% } %>
+              </a>
+        </div>
+      </div>
+      <div class="content_area">
+        <p class="title_name">車両登録</p>
+        <div class="card_flex">
+          <!-- 1枚目 -->
+          <% for (var i=0; i < values[2].length; i++) { %>
+            <div class="card">
+              <a href='/management/detail/<%= values[2][i].car_id %>'>
+
+                <img class="card_img" src="<%= values[2][i].picture_path %>" alt="" />
+                <p>番号<%= values[2][i].car_id %>
+                </p>
+                <p>
+                  <%= values[2][i].type_name %>
+                </p>
+                <p>
+                  <%= values[2][i].purchace_price %>円
+                </p>
+              </a>
+              <button class="auction" onclick="requestCar_put('<%= values[2][i].car_id %>')">オークション登録</button>
+            </div>
+            <% } %>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <footer></footer>
+</body>
+
+</html>
+
+<script>
+  //carのPUT
+  const requestCar_put = (car_id) => {
+    console.log(car_id);
+
+    const param = {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json; charset=utf-8"
+      },
+      body: JSON.stringify({
+        car_id: car_id
+      })
+    }
+
+    fetch('/car', param).then(() => {
+      window.location.href = 'http://localhost:8080/management';
+    })
+  }
+</script>
