@@ -129,11 +129,11 @@
   /* 車両のカードレイアウト */
   .card {
     width: 300px;
-    height: 300px;
+    height: 320px;
     margin: 20px;
     background-color: rgb(202, 208, 177);
     border-radius: 8px;
-
+    text-align: center;
   }
 
   .card_img {
@@ -148,6 +148,13 @@
 
   a {
     color: black;
+  }
+  .auction{
+    width: 200px;
+    height: 30px;
+    border-radius: 3px;
+    background-color: brown;
+    color: white;
   }
 </style>
 
@@ -244,7 +251,7 @@
                   <%= values[2][i].purchace_price %>円
                 </p>
               </a>
-              <button onclick="requestCar_put('<%= values[2][i].car_id %>')">オークション登録</button>
+              <button class="auction" onclick="requestCar_put('<%= values[2][i].car_id %>')">オークション登録</button>
             </div>
             <% } %>
         </div>
